@@ -1,4 +1,5 @@
 ﻿namespace MultiTerminal
+    //choi에 분기만들고 커밋해보기
 {
     partial class Form1
     {
