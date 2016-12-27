@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                //나는야 최강 최홍석! 최강석
             }
             base.Dispose(disposing);
         }
