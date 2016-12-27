@@ -25,11 +25,6 @@ namespace MultiTerminal
             arduSerialPort.Open();                //포트 오픈
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string textbox1;
-            textbox1 = T1.Text;
-            arduSerialPort.Write(textbox1);
-        }
+  
     }
 }
