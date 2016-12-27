@@ -17,6 +17,7 @@ namespace MultiTerminal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            ////aaaaaa주석으로 커밋테스트
         }
     }
 }
