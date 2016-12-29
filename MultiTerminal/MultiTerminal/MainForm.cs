@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MultiTerminal
 {
-    public partial class MultiTerminal111 : MetroFramework.Forms.MetroForm
+    public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        public MultiTerminal111()
+        public MainForm()
         {
             InitializeComponent();
         }
