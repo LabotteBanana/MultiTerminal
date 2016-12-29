@@ -142,10 +142,11 @@
             // 
             // metroTile1
             // 
+            this.metroTile1.BackColor = System.Drawing.Color.White;
             this.metroTile1.Location = new System.Drawing.Point(3, 3);
             this.metroTile1.Name = "metroTile1";
             this.metroTile1.Size = new System.Drawing.Size(115, 50);
-            this.metroTile1.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Purple;
             this.metroTile1.TabIndex = 3;
             this.metroTile1.Text = "BlueTooth";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,6 +237,7 @@
             this.metroButton1.Location = new System.Drawing.Point(22, 247);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(134, 32);
+            this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroButton1.TabIndex = 12;
             this.metroButton1.Text = "metroButton1";
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
@@ -306,6 +308,7 @@
             this.metroTextBox3.Location = new System.Drawing.Point(93, 86);
             this.metroTextBox3.Name = "metroTextBox3";
             this.metroTextBox3.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox3.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroTextBox3.TabIndex = 4;
             this.metroTextBox3.Text = "metroTextBox3";
             // 

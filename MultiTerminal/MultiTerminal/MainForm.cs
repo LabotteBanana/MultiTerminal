@@ -21,6 +21,8 @@ namespace MultiTerminal
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Lime;
             usercontrol1.Init();
             this.Controls.Add(usercontrol1);
             usercontrol1.Show();
