@@ -22,10 +22,11 @@ namespace MultiTerminal
         private void MainForm_Load(object sender, EventArgs e)
         {
             usercontrol1.Init();
+            this.Controls.Add(usercontrol1);
             usercontrol1.Show();
         }
         [Docking(DockingBehavior.Ask)]
-        public class metroUserControl1 : UserControl
+        public class metroUserControl1 : MetroFramework.Controls.MetroUserControl
         {
             public MetroFramework.Controls.MetroLabel metroLabel1;
             public MetroFramework.Controls.MetroTextBox metroTextBox1;
@@ -46,9 +47,11 @@ namespace MultiTerminal
             }
             public void Init()
             {
-                Location = new Point(5, 369);
-                Size = new Size(330, 330);
-                BackColor = Color.AliceBlue;
+                Theme = MetroFramework.MetroThemeStyle.Dark;
+                Location = new System.Drawing.Point(3, 372);
+                Name = "metroUserControl1";
+                Size = new System.Drawing.Size(150, 150);
+                TabIndex = 7;
                 metroLabel1 = new MetroFramework.Controls.MetroLabel();
                 metroLabel2 = new MetroFramework.Controls.MetroLabel();
                 metroLabel3 = new MetroFramework.Controls.MetroLabel();
@@ -71,14 +74,16 @@ namespace MultiTerminal
                 metroTextBox3.Size = controlSize;
                 metroTextBox4.Size = controlSize;
                 metroTextBox5.Size = controlSize;
-                metroTextBox1.Visible = true;
+                this.Controls.Add(metroTextBox1);
+                this.Controls.Add(metroTextBox2);
+                this.Controls.Add(metroTextBox3);
+                this.Controls.Add(metroTextBox4);
+                this.Controls.Add(metroTextBox5);
                 metroTextBox1.Show();
                 metroTextBox2.Show();
                 metroTextBox3.Show();
                 metroTextBox4.Show();
                 metroTextBox4.Text = "쒸발";
-                this.Visible = true;
-                this.Show();
             }
         }
 

@@ -31,34 +31,34 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.metroTile1 = new MetroFramework.Controls.MetroTile();
-            this.metroTile2 = new MetroFramework.Controls.MetroTile();
-            this.metroTile3 = new MetroFramework.Controls.MetroTile();
-            this.metroTile4 = new MetroFramework.Controls.MetroTile();
             this.metroTile5 = new MetroFramework.Controls.MetroTile();
+            this.metroTile4 = new MetroFramework.Controls.MetroTile();
+            this.metroTile3 = new MetroFramework.Controls.MetroTile();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
+            this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox3 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox4 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
-            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox4 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox3 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.metroPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -86,58 +86,6 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // metroTile1
-            // 
-            this.metroTile1.Location = new System.Drawing.Point(3, 3);
-            this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(115, 50);
-            this.metroTile1.Style = MetroFramework.MetroColorStyle.Silver;
-            this.metroTile1.TabIndex = 3;
-            this.metroTile1.Text = "BlueTooth";
-            this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile1.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile1.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.metroTile1.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            // 
-            // metroTile2
-            // 
-            this.metroTile2.Location = new System.Drawing.Point(3, 59);
-            this.metroTile2.Name = "metroTile2";
-            this.metroTile2.Size = new System.Drawing.Size(115, 50);
-            this.metroTile2.Style = MetroFramework.MetroColorStyle.Silver;
-            this.metroTile2.TabIndex = 4;
-            this.metroTile2.Text = "RF";
-            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile2.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.metroTile2.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            // 
-            // metroTile3
-            // 
-            this.metroTile3.Location = new System.Drawing.Point(3, 115);
-            this.metroTile3.Name = "metroTile3";
-            this.metroTile3.Size = new System.Drawing.Size(115, 50);
-            this.metroTile3.Style = MetroFramework.MetroColorStyle.Silver;
-            this.metroTile3.TabIndex = 5;
-            this.metroTile3.Text = "UART";
-            this.metroTile3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile3.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile3.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.metroTile3.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            // 
-            // metroTile4
-            // 
-            this.metroTile4.Location = new System.Drawing.Point(3, 171);
-            this.metroTile4.Name = "metroTile4";
-            this.metroTile4.Size = new System.Drawing.Size(115, 50);
-            this.metroTile4.Style = MetroFramework.MetroColorStyle.Silver;
-            this.metroTile4.TabIndex = 6;
-            this.metroTile4.Text = "WIFI";
-            this.metroTile4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile4.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile4.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.metroTile4.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            // 
             // metroTile5
             // 
             this.metroTile5.BackColor = System.Drawing.Color.White;
@@ -152,6 +100,58 @@
             this.metroTile5.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile5.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile5.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            // 
+            // metroTile4
+            // 
+            this.metroTile4.Location = new System.Drawing.Point(3, 171);
+            this.metroTile4.Name = "metroTile4";
+            this.metroTile4.Size = new System.Drawing.Size(115, 50);
+            this.metroTile4.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile4.TabIndex = 6;
+            this.metroTile4.Text = "WIFI";
+            this.metroTile4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile4.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile4.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile4.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            // 
+            // metroTile3
+            // 
+            this.metroTile3.Location = new System.Drawing.Point(3, 115);
+            this.metroTile3.Name = "metroTile3";
+            this.metroTile3.Size = new System.Drawing.Size(115, 50);
+            this.metroTile3.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile3.TabIndex = 5;
+            this.metroTile3.Text = "UART";
+            this.metroTile3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile3.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile3.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile3.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            // 
+            // metroTile2
+            // 
+            this.metroTile2.Location = new System.Drawing.Point(3, 59);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(115, 50);
+            this.metroTile2.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile2.TabIndex = 4;
+            this.metroTile2.Text = "RF";
+            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile2.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile2.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            // 
+            // metroTile1
+            // 
+            this.metroTile1.Location = new System.Drawing.Point(3, 3);
+            this.metroTile1.Name = "metroTile1";
+            this.metroTile1.Size = new System.Drawing.Size(115, 50);
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile1.TabIndex = 3;
+            this.metroTile1.Text = "BlueTooth";
+            this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile1.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile1.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile1.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
             // 
             // menuStrip1
             // 
@@ -206,90 +206,30 @@
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
             // 
-            // metroTextBox1
+            // metroLabel6
             // 
-            this.metroTextBox1.Location = new System.Drawing.Point(93, 4);
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox1.TabIndex = 2;
-            this.metroTextBox1.Text = "metroTextBox1";
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(4, 208);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel6.TabIndex = 15;
+            this.metroLabel6.Text = "metroLabel6";
             // 
-            // metroTextBox2
+            // metroTextBox6
             // 
-            this.metroTextBox2.Location = new System.Drawing.Point(93, 45);
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox2.TabIndex = 3;
-            this.metroTextBox2.Text = "metroTextBox2";
+            this.metroTextBox6.Location = new System.Drawing.Point(93, 208);
+            this.metroTextBox6.Name = "metroTextBox6";
+            this.metroTextBox6.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox6.TabIndex = 14;
+            this.metroTextBox6.Text = "metroTextBox6";
             // 
-            // metroTextBox3
+            // metroButton2
             // 
-            this.metroTextBox3.Location = new System.Drawing.Point(93, 86);
-            this.metroTextBox3.Name = "metroTextBox3";
-            this.metroTextBox3.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox3.TabIndex = 4;
-            this.metroTextBox3.Text = "metroTextBox3";
-            // 
-            // metroTextBox4
-            // 
-            this.metroTextBox4.Location = new System.Drawing.Point(93, 127);
-            this.metroTextBox4.Name = "metroTextBox4";
-            this.metroTextBox4.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox4.TabIndex = 5;
-            this.metroTextBox4.Text = "metroTextBox4";
-            // 
-            // metroTextBox5
-            // 
-            this.metroTextBox5.Location = new System.Drawing.Point(93, 168);
-            this.metroTextBox5.Name = "metroTextBox5";
-            this.metroTextBox5.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox5.TabIndex = 6;
-            this.metroTextBox5.Text = "metroTextBox5";
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 7);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(81, 19);
-            this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "metroLabel1";
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(4, 45);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel2.TabIndex = 8;
-            this.metroLabel2.Text = "metroLabel2";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 86);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel3.TabIndex = 9;
-            this.metroLabel3.Text = "metroLabel3";
-            // 
-            // metroLabel4
-            // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(3, 127);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel4.TabIndex = 10;
-            this.metroLabel4.Text = "metroLabel4";
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(4, 168);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel5.TabIndex = 11;
-            this.metroLabel5.Text = "metroLabel5";
+            this.metroButton2.Location = new System.Drawing.Point(195, 247);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(134, 32);
+            this.metroButton2.TabIndex = 13;
+            this.metroButton2.Text = "metroButton2";
             // 
             // metroButton1
             // 
@@ -300,30 +240,90 @@
             this.metroButton1.Text = "metroButton1";
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
-            // metroButton2
+            // metroLabel5
             // 
-            this.metroButton2.Location = new System.Drawing.Point(195, 247);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(134, 32);
-            this.metroButton2.TabIndex = 13;
-            this.metroButton2.Text = "metroButton2";
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(4, 168);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel5.TabIndex = 11;
+            this.metroLabel5.Text = "metroLabel5";
             // 
-            // metroTextBox6
+            // metroLabel4
             // 
-            this.metroTextBox6.Location = new System.Drawing.Point(93, 208);
-            this.metroTextBox6.Name = "metroTextBox6";
-            this.metroTextBox6.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox6.TabIndex = 14;
-            this.metroTextBox6.Text = "metroTextBox6";
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(3, 127);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel4.TabIndex = 10;
+            this.metroLabel4.Text = "metroLabel4";
             // 
-            // metroLabel6
+            // metroLabel3
             // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(4, 208);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel6.TabIndex = 15;
-            this.metroLabel6.Text = "metroLabel6";
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(4, 86);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel3.TabIndex = 9;
+            this.metroLabel3.Text = "metroLabel3";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(4, 45);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel2.TabIndex = 8;
+            this.metroLabel2.Text = "metroLabel2";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(3, 7);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(81, 19);
+            this.metroLabel1.TabIndex = 7;
+            this.metroLabel1.Text = "metroLabel1";
+            // 
+            // metroTextBox5
+            // 
+            this.metroTextBox5.Location = new System.Drawing.Point(93, 168);
+            this.metroTextBox5.Name = "metroTextBox5";
+            this.metroTextBox5.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox5.TabIndex = 6;
+            this.metroTextBox5.Text = "metroTextBox5";
+            // 
+            // metroTextBox4
+            // 
+            this.metroTextBox4.Location = new System.Drawing.Point(93, 127);
+            this.metroTextBox4.Name = "metroTextBox4";
+            this.metroTextBox4.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox4.TabIndex = 5;
+            this.metroTextBox4.Text = "metroTextBox4";
+            // 
+            // metroTextBox3
+            // 
+            this.metroTextBox3.Location = new System.Drawing.Point(93, 86);
+            this.metroTextBox3.Name = "metroTextBox3";
+            this.metroTextBox3.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox3.TabIndex = 4;
+            this.metroTextBox3.Text = "metroTextBox3";
+            // 
+            // metroTextBox2
+            // 
+            this.metroTextBox2.Location = new System.Drawing.Point(93, 45);
+            this.metroTextBox2.Name = "metroTextBox2";
+            this.metroTextBox2.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox2.TabIndex = 3;
+            this.metroTextBox2.Text = "metroTextBox2";
+            // 
+            // metroTextBox1
+            // 
+            this.metroTextBox1.Location = new System.Drawing.Point(93, 4);
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox1.TabIndex = 2;
+            this.metroTextBox1.Text = "metroTextBox1";
             // 
             // metroPanel3
             // 
@@ -371,6 +371,15 @@
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 10;
             // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(5, 2);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(37, 19);
+            this.metroLabel7.TabIndex = 16;
+            this.metroLabel7.Text = "로그";
+            // 
             // richTextBox2
             // 
             this.richTextBox2.AcceptsTab = true;
@@ -385,15 +394,6 @@
             this.richTextBox2.TabStop = false;
             this.richTextBox2.Text = "ㅁㅁㅁㅁ\nㄹㄹㄹㄹㄹ\nㄴㄴㄴㄴ\nㄷㄷㄷㄷ";
             this.richTextBox2.ZoomFactor = 1.3F;
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(5, 2);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(37, 19);
-            this.metroLabel7.TabIndex = 16;
-            this.metroLabel7.Text = "로그";
             // 
             // MainForm
             // 
