@@ -47,7 +47,7 @@ namespace MultiTerminal
             string responseData = string.Empty;
 
             Int32 Bytes = clientStream.Read(data, 0, data.Length);
-            responseData = Encoding.ASCII.GetString(data, 0, bytes);
+            responseData = Encoding.ASCII.GetString(data, 0, Bytes);
 
 
            
