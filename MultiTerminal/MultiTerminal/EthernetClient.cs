@@ -52,13 +52,5 @@ namespace MultiTerminal
 
            
         }
-        private void Echo(string msg, ASCIIEncoding encoder, NetworkStream clientStream)
-        {
-            byte[] buffer = encoder.GetBytes(msg);
-
-            clientStream.Write(buffer, 0, buffer.Length);
-            clientStream.Flush();
-        }
-
     }
 }
