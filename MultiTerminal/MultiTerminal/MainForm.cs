@@ -10,8 +10,11 @@ using System.Windows.Forms;
 
 namespace MultiTerminal
 {
+   
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
+        static int connectType = 0;
+        static Ethernet ethernet = new Ethernet();
         private metroUserControl1 usercontrol1 = new metroUserControl1();
 
         public MainForm()
@@ -91,7 +94,40 @@ namespace MultiTerminal
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            metroTextBox6.Text = usercontrol1.metroTextBox4.Text;
+            switch(connectType)
+            {
+                case 5:
+                    {
+                        ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
+                    }break;
+                case 6:
+                    {
+                        ethernet.ClinetOpen(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
+                    }break;
+            }
+        }
+
+        private void metroTile6_Click(object sender, EventArgs e)
+        {
+            connectType = 5;
+        }
+
+        private void metroTile7_Click(object sender, EventArgs e)
+        {
+            connectType = 6;
+
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            string toclientmsg = ethernet.sendToClient(this.metroTextBox4.Text);
+            this.richTextBox1.Text += toclientmsg;
+            this.richTextBox1.Text += "\n";
+            string toservermsg = ethernet.sendToServer(this.metroTextBox5.Text);
+            this.richTextBox2.Text += toservermsg;
+            this.richTextBox2.Text += "\n";
+
+
         }
     }
 }

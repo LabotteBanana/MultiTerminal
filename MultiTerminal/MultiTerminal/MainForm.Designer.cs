@@ -31,6 +31,8 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroTile7 = new MetroFramework.Controls.MetroTile();
+            this.metroTile6 = new MetroFramework.Controls.MetroTile();
             this.metroTile5 = new MetroFramework.Controls.MetroTile();
             this.metroTile4 = new MetroFramework.Controls.MetroTile();
             this.metroTile3 = new MetroFramework.Controls.MetroTile();
@@ -40,6 +42,7 @@
             this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
@@ -70,6 +73,8 @@
             // 
             this.metroPanel1.AutoSize = true;
             this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.metroPanel1.Controls.Add(this.metroTile7);
+            this.metroPanel1.Controls.Add(this.metroTile6);
             this.metroPanel1.Controls.Add(this.metroTile5);
             this.metroPanel1.Controls.Add(this.metroTile4);
             this.metroPanel1.Controls.Add(this.metroTile3);
@@ -80,11 +85,43 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(124, 284);
+            this.metroPanel1.Size = new System.Drawing.Size(124, 397);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // metroTile7
+            // 
+            this.metroTile7.BackColor = System.Drawing.Color.White;
+            this.metroTile7.ForeColor = System.Drawing.SystemColors.Control;
+            this.metroTile7.Location = new System.Drawing.Point(6, 339);
+            this.metroTile7.Name = "metroTile7";
+            this.metroTile7.Size = new System.Drawing.Size(115, 50);
+            this.metroTile7.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile7.TabIndex = 9;
+            this.metroTile7.Text = "tcpclient";
+            this.metroTile7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile7.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile7.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile7.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile7.Click += new System.EventHandler(this.metroTile7_Click);
+            // 
+            // metroTile6
+            // 
+            this.metroTile6.BackColor = System.Drawing.Color.White;
+            this.metroTile6.ForeColor = System.Drawing.SystemColors.Control;
+            this.metroTile6.Location = new System.Drawing.Point(3, 283);
+            this.metroTile6.Name = "metroTile6";
+            this.metroTile6.Size = new System.Drawing.Size(115, 50);
+            this.metroTile6.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroTile6.TabIndex = 8;
+            this.metroTile6.Text = "tcpserver";
+            this.metroTile6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile6.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile6.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile6.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile6.Click += new System.EventHandler(this.metroTile6_Click);
             // 
             // metroTile5
             // 
@@ -182,6 +219,7 @@
             // 
             // metroPanel2
             // 
+            this.metroPanel2.Controls.Add(this.metroButton3);
             this.metroPanel2.Controls.Add(this.metroLabel6);
             this.metroPanel2.Controls.Add(this.metroTextBox6);
             this.metroPanel2.Controls.Add(this.metroButton2);
@@ -207,6 +245,15 @@
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
             // 
+            // metroButton3
+            // 
+            this.metroButton3.Location = new System.Drawing.Point(223, 249);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(80, 32);
+            this.metroButton3.TabIndex = 16;
+            this.metroButton3.Text = "갱신";
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            // 
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
@@ -226,20 +273,20 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(195, 247);
+            this.metroButton2.Location = new System.Drawing.Point(115, 247);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(134, 32);
+            this.metroButton2.Size = new System.Drawing.Size(80, 32);
             this.metroButton2.TabIndex = 13;
-            this.metroButton2.Text = "metroButton2";
+            this.metroButton2.Text = "연결 끊기";
             // 
             // metroButton1
             // 
             this.metroButton1.Location = new System.Drawing.Point(22, 247);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(134, 32);
+            this.metroButton1.Size = new System.Drawing.Size(78, 32);
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroButton1.TabIndex = 12;
-            this.metroButton1.Text = "metroButton1";
+            this.metroButton1.Text = "연결";
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // metroLabel5
@@ -247,18 +294,18 @@
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.Location = new System.Drawing.Point(4, 168);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(67, 19);
             this.metroLabel5.TabIndex = 11;
-            this.metroLabel5.Text = "metroLabel5";
+            this.metroLabel5.Text = "ClientMsg";
             // 
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.Location = new System.Drawing.Point(3, 127);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(72, 19);
             this.metroLabel4.TabIndex = 10;
-            this.metroLabel4.Text = "metroLabel4";
+            this.metroLabel4.Text = "ServerMsg";
             // 
             // metroLabel3
             // 
@@ -274,18 +321,18 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(4, 45);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(62, 19);
             this.metroLabel2.TabIndex = 8;
-            this.metroLabel2.Text = "metroLabel2";
+            this.metroLabel2.Text = "Port주소";
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(3, 7);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(81, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(48, 19);
             this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "metroLabel1";
+            this.metroLabel1.Text = "IP주소";
             // 
             // metroTextBox5
             // 
@@ -356,8 +403,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(315, 285);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.TabStop = false;
-            this.richTextBox1.Text = "ㅁㅁㅁㅁ\nㄹㄹㄹㄹㄹ\nㄴㄴㄴㄴ\nㄷㄷㄷㄷ";
-            this.richTextBox1.ZoomFactor = 1.3F;
+            this.richTextBox1.Text = "";
             // 
             // metroPanel4
             // 
@@ -459,6 +505,9 @@
         private MetroFramework.Controls.MetroPanel metroPanel4;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private MetroFramework.Controls.MetroTile metroTile6;
+        private MetroFramework.Controls.MetroTile metroTile7;
+        private MetroFramework.Controls.MetroButton metroButton3;
     }
 }
 

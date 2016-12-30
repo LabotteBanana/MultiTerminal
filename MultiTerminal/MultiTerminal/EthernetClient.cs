@@ -12,7 +12,7 @@ namespace MultiTerminal
     class EthernetClient
     {
         private string myMessage = "";
-        private TcpClient m_Client = new TcpClient();
+        private static TcpClient m_Client = new TcpClient();
         private IPEndPoint DestinationEndPoint;
         public void Connect(string ipAddres, int ipPort)
         {
@@ -33,7 +33,7 @@ namespace MultiTerminal
         //    }
         //}
 
-        private void SendMessage(string msg)
+        public void SendMessage(string msg)
         {
             NetworkStream clientStream = m_Client.GetStream();
             ASCIIEncoding encoder = new ASCIIEncoding();

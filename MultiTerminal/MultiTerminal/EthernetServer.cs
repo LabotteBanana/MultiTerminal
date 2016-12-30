@@ -15,7 +15,7 @@ namespace MultiTerminal
         private Thread listenThread;
         private int m_ClientCount = 0 ;
 
-        public void Connect(string ipAddres, int ipPort)
+        public void Connect(int ipPort)
         {
            this.m_Server = new TcpListener(IPAddress.Loopback, ipPort);
             this.listenThread = new Thread(new ThreadStart(ListenForClients));
@@ -75,7 +75,7 @@ namespace MultiTerminal
             }
             tcpClient.Close();
         }
-        private void WriteMessage(string msg)
+        public void WriteMessage(string msg)
         {
         }
         private void Echo(string msg, ASCIIEncoding encoder ,NetworkStream clientStream)
