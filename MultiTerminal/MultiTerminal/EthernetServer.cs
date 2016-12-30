@@ -9,7 +9,7 @@ using System.Threading;
 namespace MultiTerminal
 {
 
-    class Ethernet
+    class EthernetServer
     {
         private TcpListener m_Server;
         private Thread listenThread;
@@ -86,5 +86,4 @@ namespace MultiTerminal
             clientStream.Flush();
         }
     };
-
 }
