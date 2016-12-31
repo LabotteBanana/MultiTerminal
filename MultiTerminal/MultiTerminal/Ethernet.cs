@@ -8,25 +8,53 @@ namespace MultiTerminal
 {
     class Ethernet
     {
-        EthernetClient client = new EthernetClient();
-        EthernetServer server = new EthernetServer();
+       static EthernetClient client = new EthernetClient();
+       static EthernetServer server = new EthernetServer();
 
+        //서버 열기
         public void ServerOpen(int ipPort)
         {
             server.Connect(ipPort);
         }
+        //서버 닫기
+        public void ServerClose()
+        {
+            server.Disconnect();
+        }
+        //클라이언트 열기
         public void ClinetOpen(string ipAddres,int ipPort)
         {
             client.Connect(ipAddres, ipPort);
         }
-        public string sendToServer(string msg)
+        //클라이언트 닫기
+        public void ClientClose()
+        {
+            client.Disconnect();
+        }
+
+        //클라에서 서버로 보내기
+        public string SendToServer(string msg)
         {
             client.SendMessage(msg);
             return msg;
         }
-        public string sendToClient(string msg)
+        //서버에서 클라로 보내기
+        public string SendToClient(string msg)
         {
-            server.WriteMessage(msg);
+            server.SendMessage(msg);
+            return msg;
+        }
+
+        //클라에서 받은 서버메시지
+        public string RecvToServer()
+        {
+            string msg =  client.RecvMessage();
+            return msg;
+        }
+        //서버에서 받은 클라메시지
+        public string RecvToClient()
+        {
+            string msg = server.RecvMessage();
             return msg;
         }
     }

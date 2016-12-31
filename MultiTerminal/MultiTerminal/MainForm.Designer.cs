@@ -57,16 +57,17 @@
             this.metroTextBox3 = new MetroFramework.Controls.MetroTextBox();
             this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.metroPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
-            this.metroPanel3.SuspendLayout();
             this.metroPanel4.SuspendLayout();
+            this.metroPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
@@ -219,6 +220,7 @@
             // 
             // metroPanel2
             // 
+            this.metroPanel2.Controls.Add(this.metroButton4);
             this.metroPanel2.Controls.Add(this.metroButton3);
             this.metroPanel2.Controls.Add(this.metroLabel6);
             this.metroPanel2.Controls.Add(this.metroTextBox6);
@@ -247,11 +249,11 @@
             // 
             // metroButton3
             // 
-            this.metroButton3.Location = new System.Drawing.Point(223, 249);
+            this.metroButton3.Location = new System.Drawing.Point(173, 247);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(80, 32);
             this.metroButton3.TabIndex = 16;
-            this.metroButton3.Text = "갱신";
+            this.metroButton3.Text = "보내기";
             this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
             // 
             // metroLabel6
@@ -273,7 +275,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(115, 247);
+            this.metroButton2.Location = new System.Drawing.Point(87, 247);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(80, 32);
             this.metroButton2.TabIndex = 13;
@@ -281,7 +283,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(22, 247);
+            this.metroButton1.Location = new System.Drawing.Point(4, 247);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(78, 32);
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
@@ -375,36 +377,6 @@
             this.metroTextBox1.TabIndex = 2;
             this.metroTextBox1.Text = "metroTextBox1";
             // 
-            // metroPanel3
-            // 
-            this.metroPanel3.BackColor = System.Drawing.Color.Black;
-            this.metroPanel3.Controls.Add(this.richTextBox1);
-            this.metroPanel3.HorizontalScrollbarBarColor = true;
-            this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(479, 80);
-            this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(315, 285);
-            this.metroPanel3.TabIndex = 5;
-            this.metroPanel3.VerticalScrollbarBarColor = true;
-            this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel3.VerticalScrollbarSize = 10;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.AcceptsTab = true;
-            this.richTextBox1.AutoWordSelection = true;
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.richTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(315, 285);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.TabStop = false;
-            this.richTextBox1.Text = "";
-            // 
             // metroPanel4
             // 
             this.metroPanel4.Controls.Add(this.metroLabel7);
@@ -441,8 +413,45 @@
             this.richTextBox2.Size = new System.Drawing.Size(443, 339);
             this.richTextBox2.TabIndex = 3;
             this.richTextBox2.TabStop = false;
-            this.richTextBox2.Text = "ㅁㅁㅁㅁ\nㄹㄹㄹㄹㄹ\nㄴㄴㄴㄴ\nㄷㄷㄷㄷ";
-            this.richTextBox2.ZoomFactor = 1.3F;
+            this.richTextBox2.Text = "받기 :";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.AcceptsTab = true;
+            this.richTextBox1.AutoWordSelection = true;
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.richTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.richTextBox1.Location = new System.Drawing.Point(0, -1);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(316, 286);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.TabStop = false;
+            this.richTextBox1.Text = "보내기 :";
+            // 
+            // metroPanel3
+            // 
+            this.metroPanel3.BackColor = System.Drawing.Color.Black;
+            this.metroPanel3.Controls.Add(this.richTextBox1);
+            this.metroPanel3.HorizontalScrollbarBarColor = true;
+            this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel3.HorizontalScrollbarSize = 10;
+            this.metroPanel3.Location = new System.Drawing.Point(478, 82);
+            this.metroPanel3.Name = "metroPanel3";
+            this.metroPanel3.Size = new System.Drawing.Size(315, 285);
+            this.metroPanel3.TabIndex = 5;
+            this.metroPanel3.VerticalScrollbarBarColor = true;
+            this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel3.VerticalScrollbarSize = 10;
+            // 
+            // metroButton4
+            // 
+            this.metroButton4.Location = new System.Drawing.Point(252, 247);
+            this.metroButton4.Name = "metroButton4";
+            this.metroButton4.Size = new System.Drawing.Size(80, 32);
+            this.metroButton4.TabIndex = 17;
+            this.metroButton4.Text = "받기";
+            this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
             // 
             // MainForm
             // 
@@ -467,9 +476,9 @@
             this.menuStrip1.PerformLayout();
             this.metroPanel2.ResumeLayout(false);
             this.metroPanel2.PerformLayout();
-            this.metroPanel3.ResumeLayout(false);
             this.metroPanel4.ResumeLayout(false);
             this.metroPanel4.PerformLayout();
+            this.metroPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,14 +509,15 @@
         private MetroFramework.Controls.MetroTextBox metroTextBox3;
         private MetroFramework.Controls.MetroTextBox metroTextBox2;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private MetroFramework.Controls.MetroPanel metroPanel3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private MetroFramework.Controls.MetroPanel metroPanel4;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private MetroFramework.Controls.MetroTile metroTile6;
         private MetroFramework.Controls.MetroTile metroTile7;
         private MetroFramework.Controls.MetroButton metroButton3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private MetroFramework.Controls.MetroPanel metroPanel3;
+        private MetroFramework.Controls.MetroButton metroButton4;
     }
 }
 

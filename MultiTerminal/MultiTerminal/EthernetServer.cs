@@ -14,12 +14,19 @@ namespace MultiTerminal
         private TcpListener m_Server;
         private Thread listenThread;
         private int m_ClientCount = 0 ;
-
+        ASCIIEncoding encoder = new ASCIIEncoding();
+        NetworkStream Stream;
+        private Queue<string> m_RecvQueue;
         public void Connect(int ipPort)
         {
            this.m_Server = new TcpListener(IPAddress.Loopback, ipPort);
             this.listenThread = new Thread(new ThreadStart(ListenForClients));
             this.listenThread.Start();
+        }
+        public void Disconnect()
+        {
+            listenThread.Abort();
+            m_Server.Stop();
         }
         private void ListenForClients()
         {
@@ -32,16 +39,16 @@ namespace MultiTerminal
 
                 ///create a thread to handle communication
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
+                m_RecvQueue = new Queue<string>();
                 clientThread.Start(client);
             }
         }
         private void HandleClientComm(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
-            NetworkStream clientStream = tcpClient.GetStream();
+            Stream = tcpClient.GetStream();
 
             byte[] message = new byte[4096];
-            string error;
             int bytesRead;
 
             while(true)
@@ -49,7 +56,7 @@ namespace MultiTerminal
                 bytesRead = 0;
                 try
                 {
-                    bytesRead = clientStream.Read(message, 0, 4096);
+                    bytesRead = Stream.Read(message, 0, 4096);
                 }
                 catch
                 {
@@ -64,26 +71,24 @@ namespace MultiTerminal
                     break;
                 }
                 ///success received
-                ASCIIEncoding encoder = new ASCIIEncoding();
 
                 ///byte to string
                 string msg = encoder.GetString(message, 0, bytesRead);
-                //통신을 통해서 받은 msg
-                WriteMessage(msg);
-
-                Echo(msg, encoder, clientStream);
+                m_RecvQueue.Enqueue(msg);
             }
             tcpClient.Close();
         }
-        public void WriteMessage(string msg)
+        public string RecvMessage()
         {
+            string msg = m_RecvQueue.Dequeue();
+            return msg;
         }
-        private void Echo(string msg, ASCIIEncoding encoder ,NetworkStream clientStream)
+        public void SendMessage(string msg)
         {
             byte[] buffer = encoder.GetBytes(msg);
 
-            clientStream.Write(buffer, 0, buffer.Length);
-            clientStream.Flush();
+            Stream.Write(buffer, 0, buffer.Length);
+            Stream.Flush();
         }
     };
 }

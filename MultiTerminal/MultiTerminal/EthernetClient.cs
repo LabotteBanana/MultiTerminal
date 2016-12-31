@@ -12,12 +12,15 @@ namespace MultiTerminal
     class EthernetClient
     {
         private string myMessage = "";
-        private static TcpClient m_Client = new TcpClient();
+        private static TcpClient m_Client;
         private IPEndPoint DestinationEndPoint;
+        private NetworkStream clientToserver;
         public void Connect(string ipAddres, int ipPort)
         {
+            m_Client = new TcpClient();
             this.DestinationEndPoint = new IPEndPoint(IPAddress.Parse(ipAddres), ipPort);
             m_Client.Connect(DestinationEndPoint);
+            clientToserver = m_Client.GetStream();
         }
         //private void RtbClientKeyDown(object sender, KeyEventArgs e)
         //{
@@ -35,22 +38,28 @@ namespace MultiTerminal
 
         public void SendMessage(string msg)
         {
-            NetworkStream clientStream = m_Client.GetStream();
             ASCIIEncoding encoder = new ASCIIEncoding();
             byte[] buffer = encoder.GetBytes(msg);
 
-            clientStream.Write(buffer, 0, buffer.Length);
-            clientStream.Flush();
+            clientToserver.Write(buffer, 0, buffer.Length);
+            clientToserver.Flush();
+        }
+        public string RecvMessage()
+        {
 
-            Byte[] data = new byte[256];
+            Byte[] data = new byte[4096];
 
             string responseData = string.Empty;
 
-            Int32 Bytes = clientStream.Read(data, 0, data.Length);
+            Int32 Bytes = clientToserver.Read(data, 0, data.Length);
             responseData = Encoding.ASCII.GetString(data, 0, Bytes);
 
-
+            return responseData;
            
+        }
+        public void Disconnect()
+        {
+            m_Client.Close();
         }
     }
 }

@@ -115,19 +115,37 @@ namespace MultiTerminal
         private void metroTile7_Click(object sender, EventArgs e)
         {
             connectType = 6;
-
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            string toclientmsg = ethernet.sendToClient(this.metroTextBox4.Text);
-            this.richTextBox1.Text += toclientmsg;
-            this.richTextBox1.Text += "\n";
-            string toservermsg = ethernet.sendToServer(this.metroTextBox5.Text);
-            this.richTextBox2.Text += toservermsg;
-            this.richTextBox2.Text += "\n";
+            if (connectType == 5) //server측
+            {
+                string toclientmsg = ethernet.SendToClient(this.metroTextBox4.Text);
+                this.richTextBox1.Text += toclientmsg+"\n";
 
+            }
+            if (connectType == 6) //클라측
+            {
+                string toservermsg = ethernet.SendToServer(this.metroTextBox5.Text);
+                this.richTextBox1.Text += toservermsg+"\n";
+            }
 
+        }
+
+        private void metroButton4_Click(object sender, EventArgs e)
+        {
+            if (connectType == 5)
+            {
+                string recvclientmsg = ethernet.RecvToClient();
+                this.richTextBox2.Text += recvclientmsg + "\n";
+            }
+            if(connectType ==6)
+            {
+                string recvservmsg = ethernet.RecvToServer();
+                this.richTextBox2.Text += recvservmsg + "\n";
+
+            }
         }
     }
 }
