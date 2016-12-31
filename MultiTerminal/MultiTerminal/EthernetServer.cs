@@ -19,7 +19,8 @@ namespace MultiTerminal
         private Queue<string> m_RecvQueue;
         public void Connect(int ipPort)
         {
-           this.m_Server = new TcpListener(IPAddress.Loopback, ipPort);
+           
+           this.m_Server = new TcpListener(IPAddress.Any, ipPort);
             this.listenThread = new Thread(new ThreadStart(ListenForClients));
             this.listenThread.Start();
         }
