@@ -11,50 +11,73 @@ namespace MultiTerminal
 {
     class EthernetClient
     {
-        private string myMessage = "";
+        private Thread m_ClientThread;
+        private Queue<string> m_RecvQueue = new Queue<string>();
         private static TcpClient m_Client;
+        public static bool m_isConnected =false;
         private IPEndPoint DestinationEndPoint;
-        private NetworkStream clientToserver;
+        ASCIIEncoding encoder = new ASCIIEncoding();
+
+        private NetworkStream Stream;
+        public bool isConnected()
+        {
+            if (m_Client.Connected == true)
+                m_isConnected = true;
+            else
+                m_isConnected = false;
+            return m_isConnected;
+        }
         public void Connect(string ipAddres, int ipPort)
         {
             m_Client = new TcpClient();
             this.DestinationEndPoint = new IPEndPoint(IPAddress.Parse(ipAddres), ipPort);
-            m_Client.Connect(DestinationEndPoint);
-            clientToserver = m_Client.GetStream();
+            m_ClientThread = new Thread(new ThreadStart(StartComm));
         }
-        //private void RtbClientKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyData != Keys.Enter || e.KeyData != Keys.Return)
-        //    {
-        //        myMessage += (char)e.KeyValue;
-        //    }
-        //    else
-        //    {
-        //        SendMessage(myMessage);
-        //        myMessage = "";
+        private void StartComm()
+        {
+                m_Client.Connect(DestinationEndPoint);
+                Stream = m_Client.GetStream();
+                Thread clientThread = new Thread(new ParameterizedThreadStart(HandleComm));
+                clientThread.Start();
+        }
+        private void HandleComm(object client )
+        {
+            m_Client = (TcpClient)client;
+            //clientToserver = m_Client.GetStream();
 
-        //    }
-        //}
+            byte[] message = new byte[1024];
+            int bytesRead;
+            while(true)
+            {
+                bytesRead = 0;
+                try
+                {
+                    bytesRead = Stream.Read(message, 0, 1024);
+                }
+                catch
+                {
+                    m_Client.SendTimeout = 5;
+                }
+                if(bytesRead == 0)
+                {
+                    break;
+                }
+                string msg = encoder.GetString(message, 0, bytesRead);
+                m_RecvQueue.Enqueue(msg);
+            }
+        }
 
         public void SendMessage(string msg)
         {
-            ASCIIEncoding encoder = new ASCIIEncoding();
             byte[] buffer = encoder.GetBytes(msg);
 
-            clientToserver.Write(buffer, 0, buffer.Length);
-            clientToserver.Flush();
+            Stream.Write(buffer, 0, buffer.Length);
+            Stream.Flush();
         }
         public string RecvMessage()
         {
-
-            Byte[] data = new byte[4096];
-
-            string responseData = string.Empty;
-
-            Int32 Bytes = clientToserver.Read(data, 0, data.Length);
-            responseData = Encoding.ASCII.GetString(data, 0, Bytes);
-
-            return responseData;
+            string msg = m_RecvQueue.Dequeue();
+            return msg;
            
         }
         public void Disconnect()

@@ -10,6 +10,22 @@ namespace MultiTerminal
     {
        static EthernetClient client = new EthernetClient();
        static EthernetServer server = new EthernetServer();
+       public bool serverConnected()
+        {
+            if (server.isConnected() == true)
+            {
+                return true;
+            }
+            else return false;
+        }
+        public bool clientConnected()
+        {
+            if (client.isConnected() == true)
+            {
+                return true;
+            }
+            else return false;
+        }
 
         //서버 열기
         public void ServerOpen(int ipPort)

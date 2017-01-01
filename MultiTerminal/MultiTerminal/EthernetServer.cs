@@ -16,7 +16,8 @@ namespace MultiTerminal
         private int m_ClientCount = 0 ;
         ASCIIEncoding encoder = new ASCIIEncoding();
         NetworkStream Stream;
-        private Queue<string> m_RecvQueue;
+        public static bool m_isConnected = false;
+        private Queue<string> m_RecvQueue = new Queue<string>();
         public void Connect(int ipPort)
         {
            
@@ -24,6 +25,15 @@ namespace MultiTerminal
             this.listenThread = new Thread(new ThreadStart(ListenForClients));
             this.listenThread.Start();
         }
+        public bool isConnected()
+        {
+            if (m_Server.Server.Connected == true)
+                m_isConnected = true;
+            else
+                m_isConnected = false;
+            return m_isConnected;
+        }
+
         public void Disconnect()
         {
             listenThread.Abort();
@@ -40,7 +50,6 @@ namespace MultiTerminal
 
                 ///create a thread to handle communication
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
-                m_RecvQueue = new Queue<string>();
                 clientThread.Start(client);
             }
         }

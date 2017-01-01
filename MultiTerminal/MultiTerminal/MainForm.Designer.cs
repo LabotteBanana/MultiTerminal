@@ -42,6 +42,7 @@
             this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
@@ -62,7 +63,6 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
-            this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.metroPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -246,6 +246,15 @@
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
+            // 
+            // metroButton4
+            // 
+            this.metroButton4.Location = new System.Drawing.Point(252, 247);
+            this.metroButton4.Name = "metroButton4";
+            this.metroButton4.Size = new System.Drawing.Size(80, 32);
+            this.metroButton4.TabIndex = 17;
+            this.metroButton4.Text = "받기";
+            this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
             // 
             // metroButton3
             // 
@@ -444,15 +453,6 @@
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
             // 
-            // metroButton4
-            // 
-            this.metroButton4.Location = new System.Drawing.Point(252, 247);
-            this.metroButton4.Name = "metroButton4";
-            this.metroButton4.Size = new System.Drawing.Size(80, 32);
-            this.metroButton4.TabIndex = 17;
-            this.metroButton4.Text = "받기";
-            this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -470,6 +470,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MultiTerminal";
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
