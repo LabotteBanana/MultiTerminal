@@ -21,11 +21,14 @@ namespace MultiTerminal
         private NetworkStream Stream;
         public bool isConnected()
         {
-            if (m_Client.Connected == true)
-                m_isConnected = true;
-            else
-                m_isConnected = false;
-            return m_isConnected;
+            if (m_Client != null)
+            {
+                if (m_Client.Connected == true)
+                    m_isConnected = true;
+                else
+                    m_isConnected = false;
+            }
+                return m_isConnected;
         }
         public void Connect(string ipAddres, int ipPort)
         {
