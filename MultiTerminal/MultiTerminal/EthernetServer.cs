@@ -27,13 +27,10 @@ namespace MultiTerminal
         }
         public bool isConnected()
         {
-            if (m_Server != null)
-            {
-                if (m_Server.Server.Connected == true)
-                    m_isConnected = true;
-                else
-                    m_isConnected = false;
-            }
+            if (m_Server.Server.Connected == true)
+                m_isConnected = true;
+            else
+                m_isConnected = false;
             return m_isConnected;
         }
 
