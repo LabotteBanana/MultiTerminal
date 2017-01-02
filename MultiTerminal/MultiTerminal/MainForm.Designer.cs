@@ -133,11 +133,12 @@
             this.metroTile5.Size = new System.Drawing.Size(115, 50);
             this.metroTile5.Style = MetroFramework.MetroColorStyle.Silver;
             this.metroTile5.TabIndex = 7;
-            this.metroTile5.Text = "ZigBee";
+            this.metroTile5.Text = "udpclient";
             this.metroTile5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile5.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile5.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile5.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile5.Click += new System.EventHandler(this.metroTile5_Click);
             // 
             // metroTile4
             // 
@@ -146,11 +147,12 @@
             this.metroTile4.Size = new System.Drawing.Size(115, 50);
             this.metroTile4.Style = MetroFramework.MetroColorStyle.Silver;
             this.metroTile4.TabIndex = 6;
-            this.metroTile4.Text = "WIFI";
+            this.metroTile4.Text = "udpserver";
             this.metroTile4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile4.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile4.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile4.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile4.Click += new System.EventHandler(this.metroTile4_Click);
             // 
             // metroTile3
             // 
@@ -289,6 +291,7 @@
             this.metroButton2.Size = new System.Drawing.Size(80, 32);
             this.metroButton2.TabIndex = 13;
             this.metroButton2.Text = "연결 끊기";
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
             // metroButton1
             // 

@@ -96,6 +96,14 @@ namespace MultiTerminal
         {
             switch(connectType)
             {
+                case 3:
+                    {
+                        ethernet.uServerOpen(Int32.Parse(this.metroTextBox2.Text));
+                    }break;
+                case 4:
+                    {
+                        ethernet.uClinetOpen(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
+                    }break;
                 case 5:
                     {
                         ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
@@ -122,6 +130,18 @@ namespace MultiTerminal
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
+            if (connectType == 3) //server측
+            {
+                string toclientmsg = ethernet.uSendToClient(this.metroTextBox4.Text);
+                this.richTextBox1.Text += toclientmsg + "\n";
+
+            }
+            if (connectType == 4) //client 측
+            {
+                string toclientmsg = ethernet.uSendToServer(this.metroTextBox4.Text);
+                this.richTextBox1.Text += toclientmsg + "\n";
+            }
+
             if (connectType == 5) //server측
             {
                 string toclientmsg = ethernet.SendToClient(this.metroTextBox4.Text);
@@ -140,6 +160,22 @@ namespace MultiTerminal
 
         private void metroButton4_Click(object sender, EventArgs e)
         {
+            if (connectType == 3)
+            {
+                string recvclientmsg = ethernet.uRecvToClient();
+                this.richTextBox2.Text += recvclientmsg + "\n";
+            }
+            if (connectType == 4)
+            {
+                string toservermsg = ethernet.uRecvToServer();
+                this.richTextBox2.Text += toservermsg + "\n";
+
+                //string recvservmsg = ethernet.RecvToServer();
+                //this.richTextBox2.Text += recvservmsg + "\n";
+
+            }
+
+
             if (connectType == 5)
             {
                 string recvclientmsg = ethernet.RecvToClient();
@@ -158,7 +194,17 @@ namespace MultiTerminal
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(ethernet.serverConnected() == true)
+            if (ethernet.userverConnected() == true)
+            {
+                ethernet.uServerClose();
+            }
+            else if (ethernet.uclientConnected() == true)
+            {
+                ethernet.uClientClose();
+            }
+
+
+            if (ethernet.serverConnected() == true)
             {
                 ethernet.ServerClose();
             }
@@ -169,6 +215,21 @@ namespace MultiTerminal
             Process currentProcess = Process.GetCurrentProcess();
             currentProcess.Kill();
         }
+
+        private void metroTile4_Click(object sender, EventArgs e)
+        {
+            connectType = 3;
+        }
+
+        private void metroTile5_Click(object sender, EventArgs e)
+        {
+            connectType = 4;
+
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-///ㅁㅁㅁㅁㄴㅇㄻㄴㅇㄹ
