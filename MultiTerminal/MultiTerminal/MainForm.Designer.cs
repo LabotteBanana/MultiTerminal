@@ -63,6 +63,7 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.COMportComboBox = new MetroFramework.Controls.MetroComboBox();
             this.metroPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -86,7 +87,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(124, 397);
+            this.metroPanel1.Size = new System.Drawing.Size(128, 397);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -96,7 +97,7 @@
             // 
             this.metroTile7.BackColor = System.Drawing.Color.White;
             this.metroTile7.ForeColor = System.Drawing.SystemColors.Control;
-            this.metroTile7.Location = new System.Drawing.Point(6, 339);
+            this.metroTile7.Location = new System.Drawing.Point(3, 339);
             this.metroTile7.Name = "metroTile7";
             this.metroTile7.Size = new System.Drawing.Size(115, 50);
             this.metroTile7.Style = MetroFramework.MetroColorStyle.Silver;
@@ -453,11 +454,21 @@
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
             // 
+            // COMportComboBox
+            // 
+            this.COMportComboBox.FormattingEnabled = true;
+            this.COMportComboBox.ItemHeight = 23;
+            this.COMportComboBox.Location = new System.Drawing.Point(133, 386);
+            this.COMportComboBox.Name = "COMportComboBox";
+            this.COMportComboBox.Size = new System.Drawing.Size(121, 29);
+            this.COMportComboBox.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 768);
+            this.Controls.Add(this.COMportComboBox);
             this.Controls.Add(this.metroPanel4);
             this.Controls.Add(this.metroPanel3);
             this.Controls.Add(this.metroPanel2);
@@ -471,7 +482,7 @@
             this.Text = "MultiTerminal";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Load += new System.EventHandler(this.COMportComboBox_Load);
             this.metroPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -519,6 +530,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private MetroFramework.Controls.MetroButton metroButton4;
+        private MetroFramework.Controls.MetroComboBox COMportComboBox;
     }
 }
 

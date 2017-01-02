@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO.Ports;
+
 namespace MultiTerminal
 {
    
@@ -17,11 +19,13 @@ namespace MultiTerminal
         static Ethernet ethernet = new Ethernet();
         //private metroUserControl1 usercontrol1 = new metroUserControl1();
         Client client = new Client();
+
+        public SerialPort serialPort;
+
         public MainForm()
         {
             InitializeComponent();
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -169,6 +173,21 @@ namespace MultiTerminal
             Process currentProcess = Process.GetCurrentProcess();
             currentProcess.Kill();
         }
+
+        //COMPortComboBox Data Load
+        private void COMportComboBox_Load(object sender, EventArgs e)
+        {
+            COMportComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            serialPort = new SerialPort();
+            List<string> data = new List<string>();
+
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                data.Add(s);
+            }
+            COMportComboBox.Items.AddRange(data.Cast<object>().ToArray());
+            COMportComboBox.SelectedIndex = 0;
+
+        }
     }
 }
-///ㅁㅁㅁㅁㄴㅇㄻㄴㅇㄹ
