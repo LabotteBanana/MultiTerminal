@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+
 namespace MultiTerminal
 {
    
@@ -15,8 +16,10 @@ namespace MultiTerminal
     {
         static int connectType = 0;
         static Ethernet ethernet = new Ethernet();
-        //private metroUserControl1 usercontrol1 = new metroUserControl1();
+        static Serial serial = new Serial();
         Client client = new Client();
+        //private metroUserControl1 usercontrol1 = new metroUserControl1();
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,11 +28,17 @@ namespace MultiTerminal
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.metroTile1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.Blue_Tile.Style = MetroFramework.MetroColorStyle.Lime;
             //usercontrol1.Init();
             //this.Controls.Add(usercontrol1);
             //usercontrol1.Show();
         }
+
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            serial.DisConSerial();
+        }
+
         //[Docking(DockingBehavior.Ask)]
         //public class metroUserControl1 : MetroFramework.Controls.MetroUserControl
         //{
@@ -92,39 +101,61 @@ namespace MultiTerminal
         //    }
         //}
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        
+        private void ConnectBtn_Click(object sender, EventArgs e)  // 연결 버튼
         {
             switch(connectType)
             {
+                case 2:
+                    {
+                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);
+                    }
+                    break;
                 case 5:
                     {
                         ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
                     }break;
                 case 6:
                     {
-                        client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
-
-                        //ethernet.ClinetOpen(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
+                        client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));      
                     }
                     break;
             }
         }
 
-        private void metroTile6_Click(object sender, EventArgs e)
+        private void DisConBtn_Click(object sender, EventArgs e)
+        {
+            if (connectType == 2) //시리얼
+            {
+                serial.DisConSerial();
+            }
+        }
+
+        private void UART_Tile_Click(object sender, EventArgs e)
+        {
+            connectType = 2;
+        }
+
+        private void Server_Tile_Click(object sender, EventArgs e)
         {
             connectType = 5;
         }
 
-        private void metroTile7_Click(object sender, EventArgs e)
+        private void Client_Tile_Click(object sender, EventArgs e)
         {
             connectType = 6;
         }
 
-        private void metroButton3_Click(object sender, EventArgs e)
+        private void SendBtn_Click(object sender, EventArgs e)
         {
+            if (connectType == 2) //시리얼
+            {
+                string toserialmsg = serial.SerialSend(this.richTextBox1.Text);
+                this.richTextBox1.Text += toserialmsg + "\n";
+            }
             if (connectType == 5) //server측
             {
-                string toclientmsg = ethernet.SendToClient(this.metroTextBox4.Text);
+                string toclientmsg = ethernet.SendToClient(this.BaudRate.Text);
                 this.richTextBox1.Text += toclientmsg+"\n";
 
             }
@@ -149,10 +180,6 @@ namespace MultiTerminal
             {
                 string toservermsg = client.Receive();
                 this.richTextBox2.Text += toservermsg + "\n";
-
-                //string recvservmsg = ethernet.RecvToServer();
-                //this.richTextBox2.Text += recvservmsg + "\n";
-
             }
         }
 
@@ -169,6 +196,7 @@ namespace MultiTerminal
             Process currentProcess = Process.GetCurrentProcess();
             currentProcess.Kill();
         }
+
+        
     }
 }
-///ㅁㅁㅁㅁㄴㅇㄻㄴㅇㄹ
