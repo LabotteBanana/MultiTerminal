@@ -11,6 +11,7 @@ namespace MultiTerminal
     class Serial
     {
         SerialPort sPort;
+        public string receivedata = null;
 
         public void SerialOpen(String Port, String Baud)
         {
@@ -73,7 +74,8 @@ namespace MultiTerminal
                     else
                     { strRecData += Convert.ToChar(buff[iTemp]); }
                 }
-                // txtRec.Text += strRecData;
+
+                receivedata += strRecData;
 
             }
         }

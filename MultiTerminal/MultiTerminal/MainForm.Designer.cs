@@ -138,6 +138,7 @@
             this.Zigbee_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Zigbee_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Zigbee_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.Zigbee_Tile.Click += new System.EventHandler(this.Zigbee_Tile_Click);
             // 
             // WIFI_Tile
             // 
@@ -151,6 +152,7 @@
             this.WIFI_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.WIFI_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.WIFI_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.WIFI_Tile.Click += new System.EventHandler(this.WIFI_Tile_Click);
             // 
             // UART_Tile
             // 
@@ -178,6 +180,7 @@
             this.RF_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RF_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.RF_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.RF_Tile.Click += new System.EventHandler(this.RF_Tile_Click);
             // 
             // Blue_Tile
             // 
@@ -192,6 +195,7 @@
             this.Blue_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Blue_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Blue_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.Blue_Tile.Click += new System.EventHandler(this.Blue_Tile_Click);
             // 
             // menuStrip1
             // 
@@ -255,7 +259,7 @@
             this.ReceiveBtn.Size = new System.Drawing.Size(80, 32);
             this.ReceiveBtn.TabIndex = 17;
             this.ReceiveBtn.Text = "받기";
-            this.ReceiveBtn.Click += new System.EventHandler(this.metroButton4_Click);
+            this.ReceiveBtn.Click += new System.EventHandler(this.ReceiveBtn_Click);
             // 
             // SendBtn
             // 

@@ -102,40 +102,35 @@ namespace MultiTerminal
         //}
 
         
-        private void ConnectBtn_Click(object sender, EventArgs e)  // 연결 버튼
+        
+
+
+        //연결 방법 선택 //
+        private void Blue_Tile_Click(object sender, EventArgs e)
         {
-            switch(connectType)
-            {
-                case 2:
-                    {
-                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);
-                    }
-                    break;
-                case 5:
-                    {
-                        ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
-                    }break;
-                case 6:
-                    {
-                        client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));      
-                    }
-                    break;
-            }
+
+            connectType = 0;
         }
 
-        private void DisConBtn_Click(object sender, EventArgs e)
+        private void RF_Tile_Click(object sender, EventArgs e)
         {
-            if (connectType == 2) //시리얼
-            {
-                serial.DisConSerial();
-            }
-        }
+            connectType = 1;
+        }      
 
         private void UART_Tile_Click(object sender, EventArgs e)
         {
             connectType = 2;
         }
 
+        private void WIFI_Tile_Click(object sender, EventArgs e)
+        {
+            connectType = 3;
+        }
+
+        private void Zigbee_Tile_Click(object sender, EventArgs e)
+        {
+            connectType = 4;
+        }
         private void Server_Tile_Click(object sender, EventArgs e)
         {
             connectType = 5;
@@ -145,6 +140,49 @@ namespace MultiTerminal
         {
             connectType = 6;
         }
+
+        // UI 기능 함수
+
+        private void Change_Color(int connectType)
+        {
+
+        }
+
+
+        // 터미널 기능 버튼 //
+        private void ConnectBtn_Click(object sender, EventArgs e)  // 연결 버튼
+        {
+            switch (connectType)
+            {
+                case 2:
+                    {
+                        this.UART_Tile.Style = MetroFramework.MetroColorStyle.Pink;
+                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);
+                    }
+                    break;
+                case 5:
+                    {
+                        this.Server_Tile.Style = MetroFramework.MetroColorStyle.Black;
+                        ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
+                    }
+                    break;
+                case 6:
+                    {
+                        this.Client_Tile.Style = MetroFramework.MetroColorStyle.White;
+                        client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
+                    }
+                    break;
+            }
+        }
+
+        private void DisConBtn_Click(object sender, EventArgs e)    // 연결 해제 버튼
+        {
+            if (connectType == 2) //시리얼
+            {
+                serial.DisConSerial();
+            }
+        }
+
 
         private void SendBtn_Click(object sender, EventArgs e)
         {
@@ -169,8 +207,13 @@ namespace MultiTerminal
 
         }
 
-        private void metroButton4_Click(object sender, EventArgs e)
+        private void ReceiveBtn_Click(object sender, EventArgs e)
         {
+
+            if (connectType == 2)
+            {
+                this.richTextBox2.Text += serial.receivedata + "\n";
+            }
             if (connectType == 5)
             {
                 string recvclientmsg = ethernet.RecvToClient();
@@ -182,6 +225,10 @@ namespace MultiTerminal
                 this.richTextBox2.Text += toservermsg + "\n";
             }
         }
+
+
+
+
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
