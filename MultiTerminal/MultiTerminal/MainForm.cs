@@ -25,7 +25,7 @@ namespace MultiTerminal
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)  // 폼 열렸을 때
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
             this.Blue_Tile.Style = MetroFramework.MetroColorStyle.Lime;
@@ -34,7 +34,7 @@ namespace MultiTerminal
             //usercontrol1.Show();
         }
 
-        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)  // 메인폼 닫혔을 때 
         {
             serial.DisConSerial();
         }
@@ -105,7 +105,7 @@ namespace MultiTerminal
         
 
 
-        //연결 방법 선택 //
+        // 연결 방법 선택 0 ~ 6 //
         private void Blue_Tile_Click(object sender, EventArgs e)
         {
 
@@ -120,11 +120,13 @@ namespace MultiTerminal
         private void UART_Tile_Click(object sender, EventArgs e)
         {
             connectType = 2;
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Pink; // 클릭시 박스 색 변경
         }
 
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
             connectType = 3;
+            
         }
 
         private void Zigbee_Tile_Click(object sender, EventArgs e)
@@ -134,15 +136,19 @@ namespace MultiTerminal
         private void Server_Tile_Click(object sender, EventArgs e)
         {
             connectType = 5;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Black;
         }
 
         private void Client_Tile_Click(object sender, EventArgs e)
         {
             connectType = 6;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.White;
         }
 
-        // UI 기능 함수
 
+
+
+        // UI 기능 함수
         private void Change_Color(int connectType)
         {
 
@@ -155,20 +161,17 @@ namespace MultiTerminal
             switch (connectType)
             {
                 case 2:
-                    {
-                        this.UART_Tile.Style = MetroFramework.MetroColorStyle.Pink;
-                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);
+                    {     
+                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);      // 시리얼 오픈
                     }
                     break;
                 case 5:
-                    {
-                        this.Server_Tile.Style = MetroFramework.MetroColorStyle.Black;
+                    {                       
                         ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
                 case 6:
-                    {
-                        this.Client_Tile.Style = MetroFramework.MetroColorStyle.White;
+                    {                       
                         client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
@@ -184,12 +187,12 @@ namespace MultiTerminal
         }
 
 
-        private void SendBtn_Click(object sender, EventArgs e)
+        private void SendBtn_Click(object sender, EventArgs e)      // 보내기 버튼
         {
             if (connectType == 2) //시리얼
             {
-                string toserialmsg = serial.SerialSend(this.richTextBox1.Text);
-                this.richTextBox1.Text += toserialmsg + "\n";
+                string toserialmsg = serial.SerialSend(this.richTextBox1.Text); // 시리얼 값 받아오기
+                this.richTextBox1.Text += toserialmsg + "\n";                   // 시리얼 텍스트박스에 표현
             }
             if (connectType == 5) //server측
             {
@@ -207,12 +210,12 @@ namespace MultiTerminal
 
         }
 
-        private void ReceiveBtn_Click(object sender, EventArgs e)
+        private void ReceiveBtn_Click(object sender, EventArgs e)   // 받기 버튼
         {
 
             if (connectType == 2)
             {
-                this.richTextBox2.Text += serial.receivedata + "\n";
+                this.richTextBox2.Text += serial.receivedata + "\n";       // 시리얼 전역변수에서 받아서 텍스트박스에 표현
             }
             if (connectType == 5)
             {
