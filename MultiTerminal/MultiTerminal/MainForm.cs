@@ -229,7 +229,25 @@ namespace MultiTerminal
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
+            if (connectType == 3) //server측
+            {
+                ethernet.uServerClose();
 
+            }
+            if (connectType == 4) //client 측
+            {
+                ethernet.uClientClose();
+            }
+
+            if (connectType == 5) //server측
+            {
+                ethernet.ServerClose();
+
+            }
+            if (connectType == 6) //클라측
+            {
+                ethernet.ClientClose();
+            }
         }
     }
 }

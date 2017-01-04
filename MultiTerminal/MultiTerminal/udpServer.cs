@@ -22,27 +22,33 @@ namespace MultiTerminal
         {
             byte[] data = new byte[1024];
             data = Encoding.UTF8.GetBytes(sendMsg);
-            server.Send(data, data.Length, EP);
+            if (server != null)
+                server.Send(data, data.Length, EP);
         }
         public string RecvMessage()
         {
             byte[] recv = new byte[1024];
-            recv = server.Receive(ref EP);
-
+            if (server != null)
+                recv = server.Receive(ref EP);
             string recvMsg = Encoding.Default.GetString(recv);
             return recvMsg;
         }
         public void DisConnect()
         {
+            if(server!=null)
             server.Close();
         }
         public bool isConnected()
         {
-            if (server.Client.Connected == true)
-                m_isConnected = true;
-            else
-                m_isConnected = false;
-            return m_isConnected;
+            if (server != null)
+            {
+                if (server.Client.Connected == true)
+                    m_isConnected = true;
+                else
+                    m_isConnected = false;
+            }
+            else m_isConnected = false;
+                return m_isConnected;
         }
 
 

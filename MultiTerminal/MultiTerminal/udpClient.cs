@@ -23,7 +23,8 @@ namespace MultiTerminal
         public string RecvMessage()
         {
             byte[] data = new byte[1024];
-            data = client.Receive(ref ep);
+            if (client != null)
+                data = client.Receive(ref ep);
             string sendData = Encoding.Default.GetString(data);
 
             if (sendData.Length > 0)
@@ -51,6 +52,7 @@ namespace MultiTerminal
             }
             else
             {
+                if(client!=null)
                 client.Send(data,data.Length);
             }
         }
@@ -60,10 +62,14 @@ namespace MultiTerminal
         }
         public bool isConnected()
         {
-            if (client.Client.Connected == true)
-                m_isConnected = true;
-            else
-                m_isConnected = false;
+            if (client != null)
+            {
+                if (client.Client.Connected == true)
+                    m_isConnected = true;
+                else
+                    m_isConnected = false;
+            }
+            else m_isConnected = false;
             return m_isConnected;
         }
 
