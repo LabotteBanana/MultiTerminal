@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
+//UdpClient
+//https://msdn.microsoft.com/ko-kr/library/tst0kwb1(v=vs.110).aspx
 
 namespace MultiTerminal
 {
@@ -13,7 +15,6 @@ namespace MultiTerminal
     {
         private UdpClient client;
         private IPEndPoint ep;
-        private IPEndPoint sender;
         private bool m_isConnected = false;
         public void Connect(string IP,int port)
         {

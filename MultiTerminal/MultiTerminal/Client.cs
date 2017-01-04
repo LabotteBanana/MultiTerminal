@@ -33,7 +33,6 @@ namespace MultiTerminal
                 serverPort = Port;
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 Connect();
-
             }
             catch (Exception e)
             {

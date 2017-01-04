@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
+//UdpClient
+//https://msdn.microsoft.com/ko-kr/library/tst0kwb1(v=vs.110).aspx
 namespace MultiTerminal
 {
     class udpServer
