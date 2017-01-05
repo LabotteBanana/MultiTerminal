@@ -166,6 +166,7 @@
             this.metroTile3.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile3.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile3.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile3.Click += new System.EventHandler(this.metroTile3_Click);
             // 
             // metroTile2
             // 
@@ -179,6 +180,7 @@
             this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile2.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile2.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
             // metroTile1
             // 
@@ -317,9 +319,9 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.Location = new System.Drawing.Point(3, 127);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(72, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(83, 19);
             this.metroLabel4.TabIndex = 10;
-            this.metroLabel4.Text = "ServerMsg";
+            this.metroLabel4.Text = "메시지 내용";
             // 
             // metroLabel3
             // 

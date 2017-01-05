@@ -14,6 +14,8 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         static int connectType = 0;
+        TCPServer sTCP = new TCPServer();
+        TCPClient cTCP = new TCPClient();
         static Ethernet ethernet = new Ethernet();
         //private metroUserControl1 usercontrol1 = new metroUserControl1();
         Client client = new Client();
@@ -96,6 +98,17 @@ namespace MultiTerminal
         {
             switch(connectType)
             {
+                case 1:
+                    {
+                        sTCP.Connect(Int32.Parse(this.metroTextBox2.Text));
+                    }
+                    break;
+                case 2:
+                    {
+                        cTCP.Connect(metroTextBox1.Text,Int32.Parse(this.metroTextBox2.Text));
+                    }
+                    break;
+
                 case 3:
                     {
                         ethernet.uServerOpen(Int32.Parse(this.metroTextBox2.Text));
@@ -248,6 +261,18 @@ namespace MultiTerminal
             {
                 ethernet.ClientClose();
             }
+        }
+
+        private void metroTile2_Click(object sender, EventArgs e)
+        {
+           connectType = 1; //server측
+
+        }
+
+        private void metroTile3_Click(object sender, EventArgs e)
+        {
+            connectType = 2; //client측
+
         }
     }
 }
