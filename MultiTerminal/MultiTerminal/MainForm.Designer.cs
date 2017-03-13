@@ -406,9 +406,9 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.button2);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(592, 200);
+            this.SerialPanel.Location = new System.Drawing.Point(623, 118);
             this.SerialPanel.Name = "SerialPanel";
-            this.SerialPanel.Size = new System.Drawing.Size(337, 325);
+            this.SerialPanel.Size = new System.Drawing.Size(346, 269);
             this.SerialPanel.TabIndex = 7;
             // 
             // Serial_Combo_FlowCon

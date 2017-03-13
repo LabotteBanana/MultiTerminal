@@ -16,6 +16,10 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         static int connectType = 0;
+        static Ucla ucla = new Ucla();
+        static Tcla tcla = new Tcla();
+        static Userv userv = new Userv();
+        static Tserv tserv = new Tserv();
         static Serial serial = new Serial();
         SerialPort serialport;
 
@@ -64,13 +68,11 @@ namespace MultiTerminal
         private void Server_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(5);
-            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Black;
         }
 
         private void Client_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(6);
-            this.Client_Tile.Style = MetroFramework.MetroColorStyle.White;
         }
 
 
@@ -101,7 +103,7 @@ namespace MultiTerminal
                         Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
                         Serial_Combo_Port.SelectedIndex = 0;
 
-                        //serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);      // 시리얼 오픈
+                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);      // 시리얼 오픈
                     }
                     break;
                 case 3:
