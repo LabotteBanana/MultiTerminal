@@ -87,7 +87,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(128, 397);
+            this.metroPanel1.Size = new System.Drawing.Size(203, 397);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -178,6 +178,7 @@
             this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile2.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile2.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
             // metroTile1
             // 
@@ -281,7 +282,6 @@
             this.metroTextBox6.Name = "metroTextBox6";
             this.metroTextBox6.Size = new System.Drawing.Size(239, 35);
             this.metroTextBox6.TabIndex = 14;
-            this.metroTextBox6.Text = "metroTextBox6";
             // 
             // metroButton2
             // 
@@ -315,7 +315,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.Location = new System.Drawing.Point(3, 127);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(72, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(71, 19);
             this.metroLabel4.TabIndex = 10;
             this.metroLabel4.Text = "ServerMsg";
             // 
@@ -352,7 +352,6 @@
             this.metroTextBox5.Name = "metroTextBox5";
             this.metroTextBox5.Size = new System.Drawing.Size(239, 35);
             this.metroTextBox5.TabIndex = 6;
-            this.metroTextBox5.Text = "metroTextBox5";
             // 
             // metroTextBox4
             // 
@@ -360,7 +359,6 @@
             this.metroTextBox4.Name = "metroTextBox4";
             this.metroTextBox4.Size = new System.Drawing.Size(239, 35);
             this.metroTextBox4.TabIndex = 5;
-            this.metroTextBox4.Text = "metroTextBox4";
             // 
             // metroTextBox3
             // 
@@ -369,7 +367,6 @@
             this.metroTextBox3.Size = new System.Drawing.Size(239, 35);
             this.metroTextBox3.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroTextBox3.TabIndex = 4;
-            this.metroTextBox3.Text = "metroTextBox3";
             // 
             // metroTextBox2
             // 
@@ -377,7 +374,6 @@
             this.metroTextBox2.Name = "metroTextBox2";
             this.metroTextBox2.Size = new System.Drawing.Size(239, 35);
             this.metroTextBox2.TabIndex = 3;
-            this.metroTextBox2.Text = "metroTextBox2";
             // 
             // metroTextBox1
             // 
@@ -385,7 +381,6 @@
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.Size = new System.Drawing.Size(239, 35);
             this.metroTextBox1.TabIndex = 2;
-            this.metroTextBox1.Text = "metroTextBox1";
             // 
             // metroPanel4
             // 
@@ -441,7 +436,6 @@
             // 
             // metroPanel3
             // 
-            this.metroPanel3.BackColor = System.Drawing.Color.Black;
             this.metroPanel3.Controls.Add(this.richTextBox1);
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
