@@ -58,7 +58,7 @@
             this.SeriPort = new MetroFramework.Controls.MetroTextBox();
             this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.SerialPanel = new System.Windows.Forms.Panel();
+            this.SerialPanel = new MetroFramework.Controls.MetroPanel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_Parity = new System.Windows.Forms.ComboBox();
@@ -184,10 +184,11 @@
             // 
             // RF_Tile
             // 
+            this.RF_Tile.ForeColor = System.Drawing.SystemColors.ControlText;
             this.RF_Tile.Location = new System.Drawing.Point(3, 6);
             this.RF_Tile.Name = "RF_Tile";
             this.RF_Tile.Size = new System.Drawing.Size(115, 50);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
             this.RF_Tile.TabIndex = 4;
             this.RF_Tile.Text = "RF";
             this.RF_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -406,10 +407,16 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.button2);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(592, 200);
+            this.SerialPanel.HorizontalScrollbarBarColor = true;
+            this.SerialPanel.HorizontalScrollbarHighlightOnWheel = false;
+            this.SerialPanel.HorizontalScrollbarSize = 10;
+            this.SerialPanel.Location = new System.Drawing.Point(133, 82);
             this.SerialPanel.Name = "SerialPanel";
-            this.SerialPanel.Size = new System.Drawing.Size(337, 325);
-            this.SerialPanel.TabIndex = 7;
+            this.SerialPanel.Size = new System.Drawing.Size(341, 284);
+            this.SerialPanel.TabIndex = 4;
+            this.SerialPanel.VerticalScrollbarBarColor = true;
+            this.SerialPanel.VerticalScrollbarHighlightOnWheel = false;
+            this.SerialPanel.VerticalScrollbarSize = 10;
             // 
             // Serial_Combo_FlowCon
             // 
@@ -568,7 +575,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(443, 339);
             this.richTextBox2.TabIndex = 3;
             this.richTextBox2.TabStop = false;
-            this.richTextBox2.Text = "받기 :";
+            this.richTextBox2.Text = "";
             // 
             // richTextBox1
             // 
@@ -595,9 +602,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 768);
             this.Controls.Add(this.metroPanel4);
-            this.Controls.Add(this.SerialPanel);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.metroPanel2);
+            this.Controls.Add(this.SerialPanel);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
@@ -655,7 +662,7 @@
         private MetroFramework.Controls.MetroButton SendBtn;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private MetroFramework.Controls.MetroButton ReceiveBtn;
-        private System.Windows.Forms.Panel SerialPanel;
+        private MetroFramework.Controls.MetroPanel SerialPanel;
         private System.Windows.Forms.ComboBox Serial_Combo_FlowCon;
         private System.Windows.Forms.ComboBox Serial_Combo_StopBit;
         private System.Windows.Forms.ComboBox Serial_Combo_Parity;

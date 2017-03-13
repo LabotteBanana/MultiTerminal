@@ -48,31 +48,64 @@ namespace MultiTerminal
         private void RF_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(1);
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }      
 
         private void UART_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(2);
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UART_Tile.Style = MetroFramework.MetroColorStyle.Pink; // 클릭시 박스 색 변경
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(3);
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Pink;
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
         private void Zigbee_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(4);
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Pink;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
         private void Server_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(5);
-            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Black;
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Pink;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
 
         private void Client_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(6);
-            this.Client_Tile.Style = MetroFramework.MetroColorStyle.White;
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Pink;
         }
 
 
@@ -88,10 +121,14 @@ namespace MultiTerminal
         {
             switch (OptionNumber)
             {
-                case 1:
+                case 1://
+                    this.SerialPanel.Visible = false;
+                    this.metroPanel2.Visible = true;
                     break;
-                case 2:
+                case 2://Serial
                     {
+                        this.SerialPanel.Visible = true;
+                        this.metroPanel2.Visible = false;
                         this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
                         serialport = new SerialPort();
                         List<string> data = new List<string>();
@@ -105,16 +142,16 @@ namespace MultiTerminal
                         //serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);      // 시리얼 오픈
                     }
                     break;
-                case 3:
+                case 3://WIFI
                     break;
-                case 4:
+                case 4://Zigbee
                     break;
-                case 5:
+                case 5://TCP Server
                     {                       
                         ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
-                case 6:
+                case 6://TCP Client
                     {                       
                         client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
                     }
@@ -178,7 +215,7 @@ namespace MultiTerminal
 
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        {/*
             if(ethernet.serverConnected() == true)
             {
                 ethernet.ServerClose();
@@ -188,7 +225,8 @@ namespace MultiTerminal
                 ethernet.ClientClose();
             }
             Process currentProcess = Process.GetCurrentProcess();
-            currentProcess.Kill();
+            currentProcess.Kill();*/
+            Application.Exit();
         }
 
         
