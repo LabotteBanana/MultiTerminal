@@ -406,7 +406,7 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.button2);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(592, 200);
+            this.SerialPanel.Location = new System.Drawing.Point(682, 41);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(337, 325);
             this.SerialPanel.TabIndex = 7;
@@ -418,6 +418,7 @@
             this.Serial_Combo_FlowCon.Name = "Serial_Combo_FlowCon";
             this.Serial_Combo_FlowCon.Size = new System.Drawing.Size(121, 20);
             this.Serial_Combo_FlowCon.TabIndex = 13;
+            this.Serial_Combo_FlowCon.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_FlowCon_SelectedIndexChanged);
             // 
             // Serial_Combo_StopBit
             // 
@@ -426,6 +427,7 @@
             this.Serial_Combo_StopBit.Name = "Serial_Combo_StopBit";
             this.Serial_Combo_StopBit.Size = new System.Drawing.Size(121, 20);
             this.Serial_Combo_StopBit.TabIndex = 12;
+            this.Serial_Combo_StopBit.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_StopBit_SelectedIndexChanged);
             // 
             // Serial_Combo_Parity
             // 
@@ -434,6 +436,7 @@
             this.Serial_Combo_Parity.Name = "Serial_Combo_Parity";
             this.Serial_Combo_Parity.Size = new System.Drawing.Size(121, 20);
             this.Serial_Combo_Parity.TabIndex = 11;
+            this.Serial_Combo_Parity.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Parity_SelectedIndexChanged);
             // 
             // Serial_Combo_Data
             // 
@@ -442,6 +445,7 @@
             this.Serial_Combo_Data.Name = "Serial_Combo_Data";
             this.Serial_Combo_Data.Size = new System.Drawing.Size(121, 20);
             this.Serial_Combo_Data.TabIndex = 10;
+            this.Serial_Combo_Data.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Data_SelectedIndexChanged);
             // 
             // Serial_Combo_Baud
             // 
@@ -450,6 +454,7 @@
             this.Serial_Combo_Baud.Name = "Serial_Combo_Baud";
             this.Serial_Combo_Baud.Size = new System.Drawing.Size(121, 20);
             this.Serial_Combo_Baud.TabIndex = 9;
+            this.Serial_Combo_Baud.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Baud_SelectedIndexChanged);
             // 
             // Serial_Combo_Port
             // 
@@ -458,6 +463,7 @@
             this.Serial_Combo_Port.Name = "Serial_Combo_Port";
             this.Serial_Combo_Port.Size = new System.Drawing.Size(121, 20);
             this.Serial_Combo_Port.TabIndex = 8;
+            this.Serial_Combo_Port.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Port_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -521,6 +527,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Serial_Btn_OK
             // 
@@ -530,6 +537,7 @@
             this.Serial_Btn_OK.TabIndex = 0;
             this.Serial_Btn_OK.Text = "옵션적용";
             this.Serial_Btn_OK.UseVisualStyleBackColor = true;
+            this.Serial_Btn_OK.Click += new System.EventHandler(this.Serial_Btn_OK_Click);
             // 
             // metroPanel4
             // 

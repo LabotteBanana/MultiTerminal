@@ -13,22 +13,49 @@ namespace MultiTerminal
         SerialPort sPort;
         public string receivedata = null;   // 시리얼 데이터 받기위한 임시 전역 변수...
 
-        public void SerialOpen(String Port, String Baud)
+        public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT)
         {
+
             try
             {
                 if (null == sPort)
                 {
                     sPort = new SerialPort();
                     sPort.DataReceived += new SerialDataReceivedEventHandler(sPort_DataReceived);   // 데이터 리시브 반응 이벤트 함수. 데이터가 들어올때마다 구동됨.
+                    WT = "500";
+                    RT = "500";
 
                     sPort.PortName = Port;
                     sPort.BaudRate = Convert.ToInt32(Baud);
-                    sPort.DataBits = (int)8;
-                    sPort.Parity = Parity.None;
-                    sPort.StopBits = StopBits.One;
-                    sPort.ReadTimeout = (int)500;
-                    sPort.WriteTimeout = (int)500;
+                    sPort.DataBits = Convert.ToInt32(Data);
+
+                    switch (parity) {
+                        case "none": sPort.Parity = Parity.None;
+                            break;
+                        case "odd": sPort.Parity = Parity.Odd;
+                            break;
+                        case "even": sPort.Parity = Parity.Even;
+                            break;
+                        case "mark": sPort.Parity = Parity.Mark;
+                            break;
+                        case "space":sPort.Parity = Parity.Space;
+                            break;
+                    }
+
+                    switch (stopbits)
+                    {
+                        case "1 bit":
+                            sPort.StopBits = StopBits.One;
+                            break;
+                        case "1.5 bit":
+                            sPort.StopBits = StopBits.OnePointFive;
+                            break;
+                        case "2 bit":
+                            sPort.StopBits = StopBits.Two;
+                            break;
+                    }
+                    sPort.ReadTimeout = Convert.ToInt32(RT);
+                    sPort.WriteTimeout = Convert.ToInt32(WT);
                     sPort.Open();
                 }
 
