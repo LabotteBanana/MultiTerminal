@@ -58,10 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Ethernet.cs" />
-    <Compile Include="EthernetClient.cs" />
-    <Compile Include="EthernetServer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

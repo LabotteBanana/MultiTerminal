@@ -16,11 +16,9 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         static int connectType = 0;
-        static Ethernet ethernet = new Ethernet();
         static Serial serial = new Serial();
         SerialPort serialport;
 
-        Client client = new Client();
         //private metroUserControl1 usercontrol1 = new metroUserControl1();
 
         public MainForm()
@@ -112,12 +110,10 @@ namespace MultiTerminal
                     break;
                 case 5:
                     {                       
-                        ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
                 case 6:
                     {                       
-                        client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
             }
@@ -141,14 +137,10 @@ namespace MultiTerminal
             }
             if (connectType == 5) //server측
             {
-                string toclientmsg = ethernet.SendToClient(this.BaudRate.Text);
-                this.richTextBox1.Text += toclientmsg+"\n";
 
             }
             if (connectType == 6) //클라측
             {
-                string toservermsg = client.Send(metroTextBox5.Text);
-                this.richTextBox1.Text += toservermsg + "\n";
                 //string toservermsg = ethernet.SendToServer(this.metroTextBox5.Text);
                 //this.richTextBox1.Text += toservermsg + "\n";
             }
@@ -164,13 +156,9 @@ namespace MultiTerminal
             }
             if (connectType == 5)
             {
-                string recvclientmsg = ethernet.RecvToClient();
-                this.richTextBox2.Text += recvclientmsg + "\n";
             }
             if(connectType ==6)
             {
-                string toservermsg = client.Receive();
-                this.richTextBox2.Text += toservermsg + "\n";
             }
         }
 
@@ -180,16 +168,6 @@ namespace MultiTerminal
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(ethernet.serverConnected() == true)
-            {
-                ethernet.ServerClose();
-            }
-            else if(ethernet.clientConnected() == true)
-            {
-                ethernet.ClientClose();
-            }
-            Process currentProcess = Process.GetCurrentProcess();
-            currentProcess.Kill();
         }
 
         
