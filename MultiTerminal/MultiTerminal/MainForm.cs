@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO.Ports;
 
 namespace MultiTerminal
 {
@@ -17,6 +18,8 @@ namespace MultiTerminal
         static int connectType = 0;
         static Ethernet ethernet = new Ethernet();
         static Serial serial = new Serial();
+        SerialPort serialport;
+
         Client client = new Client();
         //private metroUserControl1 usercontrol1 = new metroUserControl1();
 
@@ -28,7 +31,6 @@ namespace MultiTerminal
         private void MainForm_Load(object sender, EventArgs e)  // 폼 열렸을 때
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Blue_Tile.Style = MetroFramework.MetroColorStyle.Lime;
             //usercontrol1.Init();
             //this.Controls.Add(usercontrol1);
             //usercontrol1.Show();
@@ -39,113 +41,39 @@ namespace MultiTerminal
             serial.DisConSerial();
         }
 
-        //[Docking(DockingBehavior.Ask)]
-        //public class metroUserControl1 : MetroFramework.Controls.MetroUserControl
-        //{
-        //    public MetroFramework.Controls.MetroLabel metroLabel1;
-        //    public MetroFramework.Controls.MetroTextBox metroTextBox1;
-        //    public MetroFramework.Controls.MetroLabel metroLabel2;
-        //    public MetroFramework.Controls.MetroTextBox metroTextBox2;
-        //    public MetroFramework.Controls.MetroLabel metroLabel3;
-        //    public MetroFramework.Controls.MetroTextBox metroTextBox3;
-        //    public MetroFramework.Controls.MetroLabel metroLabel4;
-        //    public MetroFramework.Controls.MetroTextBox metroTextBox4;
-        //    public MetroFramework.Controls.MetroTextBox metroTextBox5;
-        //    public MetroFramework.Controls.MetroButton metroButton1;
-
-        //    private Size controlSize = new Size(30, 40);
-        //    private Size controlSize2 = new Size(40, 40);
-        //    public metroUserControl1()
-        //    {
-
-        //    }
-        //    public void Init()
-        //    {
-        //        Theme = MetroFramework.MetroThemeStyle.Dark;
-        //        Location = new System.Drawing.Point(3, 372);
-        //        Name = "metroUserControl1";
-        //        Size = new System.Drawing.Size(150, 150);
-        //        TabIndex = 7;
-        //        metroLabel1 = new MetroFramework.Controls.MetroLabel();
-        //        metroLabel2 = new MetroFramework.Controls.MetroLabel();
-        //        metroLabel3 = new MetroFramework.Controls.MetroLabel();
-        //        metroLabel4 = new MetroFramework.Controls.MetroLabel();
-        //        metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-        //        metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-        //        metroTextBox3 = new MetroFramework.Controls.MetroTextBox();
-        //        metroTextBox4 = new MetroFramework.Controls.MetroTextBox();
-        //        metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-        //        metroButton1 = new MetroFramework.Controls.MetroButton();
-
-        //        metroButton1.Location = new Point(5, 10);
-        //        metroTextBox1.Location = new Point(15, 10);
-        //        metroTextBox2.Location = new Point(15, 30);
-        //        metroTextBox3.Location = new Point(15, 70);
-        //        metroTextBox4.Location = new Point(15, 110);
-        //        metroTextBox5.Location = new Point(15, 150);
-        //        metroTextBox1.Size = controlSize;
-        //        metroTextBox2.Size = controlSize;
-        //        metroTextBox3.Size = controlSize;
-        //        metroTextBox4.Size = controlSize;
-        //        metroTextBox5.Size = controlSize;
-        //        this.Controls.Add(metroTextBox1);
-        //        this.Controls.Add(metroTextBox2);
-        //        this.Controls.Add(metroTextBox3);
-        //        this.Controls.Add(metroTextBox4);
-        //        this.Controls.Add(metroTextBox5);
-        //        metroTextBox1.Show();
-        //        metroTextBox2.Show();
-        //        metroTextBox3.Show();
-        //        metroTextBox4.Show();
-        //        metroTextBox4.Text = "쒸발";
-        //    }
-        //}
-
         
         
 
-
-        // 연결 방법 선택 0 ~ 6 //
-        private void Blue_Tile_Click(object sender, EventArgs e)
-        {
-
-            connectType = 0;
-        }
-
+        // 연결 방법 선택 1 ~ 6 //
         private void RF_Tile_Click(object sender, EventArgs e)
         {
-            connectType = 1;
+            OptionSelect(1);
         }      
 
         private void UART_Tile_Click(object sender, EventArgs e)
         {
-            connectType = 2;
+            OptionSelect(2);
             this.UART_Tile.Style = MetroFramework.MetroColorStyle.Pink; // 클릭시 박스 색 변경
         }
-
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
-            connectType = 3;
-            
+            OptionSelect(3);
         }
-
         private void Zigbee_Tile_Click(object sender, EventArgs e)
         {
-            connectType = 4;
+            OptionSelect(4);
         }
         private void Server_Tile_Click(object sender, EventArgs e)
         {
-            connectType = 5;
+            OptionSelect(5);
             this.Server_Tile.Style = MetroFramework.MetroColorStyle.Black;
         }
 
         private void Client_Tile_Click(object sender, EventArgs e)
         {
-            connectType = 6;
+            OptionSelect(6);
             this.Client_Tile.Style = MetroFramework.MetroColorStyle.White;
         }
-
-
 
 
         // UI 기능 함수
@@ -155,15 +83,31 @@ namespace MultiTerminal
         }
 
 
-        // 터미널 기능 버튼 //
-        private void ConnectBtn_Click(object sender, EventArgs e)  // 연결 버튼
+        // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
+        private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            switch (connectType)
+            switch (OptionNumber)
             {
+                case 1:
+                    break;
                 case 2:
-                    {     
-                        serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);      // 시리얼 오픈
+                    {
+                        this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
+                        serialport = new SerialPort();
+                        List<string> data = new List<string>();
+                        foreach (string s in SerialPort.GetPortNames())
+                        {
+                            data.Add(s);
+                        }
+                        Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
+                        Serial_Combo_Port.SelectedIndex = 0;
+
+                        //serial.SerialOpen(this.SeriPort.Text, this.BaudRate.Text);      // 시리얼 오픈
                     }
+                    break;
+                case 3:
+                    break;
+                case 4:
                     break;
                 case 5:
                     {                       
