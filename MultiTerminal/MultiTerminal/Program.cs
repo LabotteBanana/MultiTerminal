@@ -24,3 +24,5 @@ namespace MultiTerminal
         }
     }
 }
+
+///마스터로 커밋
