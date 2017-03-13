@@ -92,6 +92,7 @@ namespace MultiTerminal
                     break;
                 case 2:
                     {
+
                         this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
                         serialport = new SerialPort();
                         List<string> data = new List<string>();
