@@ -16,6 +16,8 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         static int connectType = 0;
+        static public int Chk_Hexa_Flag = 0;
+
         static Ethernet ethernet = new Ethernet();
         static Serial serial = new Serial();
         SerialPort serialport;
@@ -128,19 +130,19 @@ namespace MultiTerminal
         {
             if (connectType == 2) //시리얼
             {
-                string toserialmsg = serial.SerialSend(this.richTextBox1.Text); // 시리얼 값 받아오기
-                this.richTextBox1.Text += toserialmsg + "\n";                   // 시리얼 텍스트박스에 표현
+                string toserialmsg = serial.SerialSend(this.SendWindowBox.Text); // 시리얼 값 받아오기
+                this.SendWindowBox.Text += toserialmsg + "\n";                   // 시리얼 텍스트박스에 표현
             }
             if (connectType == 5) //server측
             {
                 string toclientmsg = ethernet.SendToClient(this.BaudRate.Text);
-                this.richTextBox1.Text += toclientmsg+"\n";
+                this.SendWindowBox.Text += toclientmsg+"\n";
 
             }
             if (connectType == 6) //클라측
             {
                 string toservermsg = client.Send(metroTextBox5.Text);
-                this.richTextBox1.Text += toservermsg + "\n";
+                this.SendWindowBox.Text += toservermsg + "\n";
                 //string toservermsg = ethernet.SendToServer(this.metroTextBox5.Text);
                 //this.richTextBox1.Text += toservermsg + "\n";
             }
@@ -152,17 +154,17 @@ namespace MultiTerminal
 
             if (connectType == 2)
             {
-                this.richTextBox2.Text += serial.receivedata + "\n";       // 시리얼 전역변수에서 받아서 텍스트박스에 표현
+                this.ReceiveWindowBox.Text += serial.receivedata + "\n";       // 시리얼 전역변수에서 받아서 텍스트박스에 표현
             }
             if (connectType == 5)
             {
                 string recvclientmsg = ethernet.RecvToClient();
-                this.richTextBox2.Text += recvclientmsg + "\n";
+                this.ReceiveWindowBox.Text += recvclientmsg + "\n";
             }
             if(connectType ==6)
             {
                 string toservermsg = client.Receive();
-                this.richTextBox2.Text += toservermsg + "\n";
+                this.ReceiveWindowBox.Text += toservermsg + "\n";
             }
         }
 
@@ -287,7 +289,32 @@ namespace MultiTerminal
 
         private void button2_Click(object sender, EventArgs e)
         {
-            serial.SerialSend(richTextBox1.Text);
+            byte[] byteSendData = new byte[200];
+            int SendCount = 0;
+            try
+            {
+                if(true == Chk_Hexa.Checked)
+                {
+                    foreach (string s in SendWindowBox.Text.Split(' '))
+                    {
+                        if (s != null && s != "")
+                        {
+                            byteSendData[SendCount] = Convert.ToByte(s, 16);
+                        }
+                    }
+                    serial.SerialSend(this.SendWindowBox.Text);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Chk_Hexa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Chk_Hexa_Flag == 0) Chk_Hexa_Flag = 1;
+            else Chk_Hexa_Flag = 0;
         }
     }
 }

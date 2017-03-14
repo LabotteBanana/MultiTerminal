@@ -75,9 +75,10 @@
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ReceiveWindowBox = new System.Windows.Forms.RichTextBox();
+            this.SendWindowBox = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Chk_Hexa = new System.Windows.Forms.CheckBox();
             this.metroPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -120,7 +121,6 @@
             this.Client_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Client_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Client_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.Client_Tile.Click += new System.EventHandler(this.Client_Tile_Click);
             // 
             // Server_Tile
             // 
@@ -136,7 +136,6 @@
             this.Server_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Server_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Server_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.Server_Tile.Click += new System.EventHandler(this.Server_Tile_Click);
             // 
             // Zigbee_Tile
             // 
@@ -406,7 +405,7 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.button2);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(682, 41);
+            this.SerialPanel.Location = new System.Drawing.Point(607, 102);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(337, 325);
             this.SerialPanel.TabIndex = 7;
@@ -542,7 +541,7 @@
             // metroPanel4
             // 
             this.metroPanel4.Controls.Add(this.metroLabel7);
-            this.metroPanel4.Controls.Add(this.richTextBox2);
+            this.metroPanel4.Controls.Add(this.ReceiveWindowBox);
             this.metroPanel4.HorizontalScrollbarBarColor = true;
             this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel4.HorizontalScrollbarSize = 10;
@@ -563,48 +562,60 @@
             this.metroLabel7.TabIndex = 16;
             this.metroLabel7.Text = "로그";
             // 
-            // richTextBox2
+            // ReceiveWindowBox
             // 
-            this.richTextBox2.AcceptsTab = true;
-            this.richTextBox2.AutoWordSelection = true;
-            this.richTextBox2.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.richTextBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.richTextBox2.Location = new System.Drawing.Point(0, 24);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(443, 339);
-            this.richTextBox2.TabIndex = 3;
-            this.richTextBox2.TabStop = false;
-            this.richTextBox2.Text = "받기 :";
+            this.ReceiveWindowBox.AcceptsTab = true;
+            this.ReceiveWindowBox.AutoWordSelection = true;
+            this.ReceiveWindowBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.ReceiveWindowBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ReceiveWindowBox.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.ReceiveWindowBox.Location = new System.Drawing.Point(0, 24);
+            this.ReceiveWindowBox.Name = "ReceiveWindowBox";
+            this.ReceiveWindowBox.ReadOnly = true;
+            this.ReceiveWindowBox.Size = new System.Drawing.Size(443, 339);
+            this.ReceiveWindowBox.TabIndex = 3;
+            this.ReceiveWindowBox.TabStop = false;
+            this.ReceiveWindowBox.Text = "받기 :";
             // 
-            // richTextBox1
+            // SendWindowBox
             // 
-            this.richTextBox1.AcceptsTab = true;
-            this.richTextBox1.AutoWordSelection = true;
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.richTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.richTextBox1.Location = new System.Drawing.Point(490, 89);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(284, 246);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.TabStop = false;
-            this.richTextBox1.Text = "보내기 :";
+            this.SendWindowBox.AcceptsTab = true;
+            this.SendWindowBox.AutoWordSelection = true;
+            this.SendWindowBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.SendWindowBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.SendWindowBox.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.SendWindowBox.Location = new System.Drawing.Point(490, 89);
+            this.SendWindowBox.Name = "SendWindowBox";
+            this.SendWindowBox.Size = new System.Drawing.Size(284, 246);
+            this.SendWindowBox.TabIndex = 2;
+            this.SendWindowBox.TabStop = false;
+            this.SendWindowBox.Text = "보내기 :";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // Chk_Hexa
+            // 
+            this.Chk_Hexa.AutoSize = true;
+            this.Chk_Hexa.Location = new System.Drawing.Point(269, 421);
+            this.Chk_Hexa.Name = "Chk_Hexa";
+            this.Chk_Hexa.Size = new System.Drawing.Size(72, 16);
+            this.Chk_Hexa.TabIndex = 8;
+            this.Chk_Hexa.Text = "16김진수";
+            this.Chk_Hexa.UseVisualStyleBackColor = true;
+            this.Chk_Hexa.CheckedChanged += new System.EventHandler(this.Chk_Hexa_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 768);
+            this.Controls.Add(this.Chk_Hexa);
             this.Controls.Add(this.metroPanel4);
             this.Controls.Add(this.SerialPanel);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.SendWindowBox);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -615,7 +626,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MultiTerminal";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -657,11 +667,11 @@
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private MetroFramework.Controls.MetroPanel metroPanel4;
         private MetroFramework.Controls.MetroLabel metroLabel7;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox ReceiveWindowBox;
         private MetroFramework.Controls.MetroTile Server_Tile;
         private MetroFramework.Controls.MetroTile Client_Tile;
         private MetroFramework.Controls.MetroButton SendBtn;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox SendWindowBox;
         private MetroFramework.Controls.MetroButton ReceiveBtn;
         private System.Windows.Forms.Panel SerialPanel;
         private System.Windows.Forms.ComboBox Serial_Combo_FlowCon;
@@ -679,6 +689,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Serial_Btn_OK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.CheckBox Chk_Hexa;
     }
 }
 

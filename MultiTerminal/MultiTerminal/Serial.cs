@@ -86,24 +86,24 @@ namespace MultiTerminal
         {
             int intRecSize = sPort.BytesToRead; // 들어온 데이터의 크기에 따라 사이즈 초기화
             string strRecData;  // 최종 데이터 저장 변수
-            int chkRecHexa = 0; // 16진수 여부...
+
 
             if (intRecSize != 0)    // 들어온 데이터 사이즈가 0 이상이면...
             {
                 strRecData = "";
                 byte[] buff = new byte[intRecSize]; // 데이터 사이즈에 따른 버퍼 생성
                 sPort.Read(buff, 0, intRecSize);    // buff에 시리얼 데이터 Read...!
-
+                
                 for (int iTemp = 0; iTemp < intRecSize; iTemp++)
                 {
-                    if (chkRecHexa == 1)    // 16진수인 경우...
+                    if ( MainForm.Chk_Hexa_Flag == 1)    // 16진수인 경우...
                     { strRecData += buff[iTemp].ToString("X2") + " "; }
                     else
                     { strRecData += Convert.ToChar(buff[iTemp]); }  // 최종 변수에 buff 내용 대입
                 }
 
-                receivedata += strRecData;  
-
+                receivedata += strRecData;
+                
             }
         }
 
