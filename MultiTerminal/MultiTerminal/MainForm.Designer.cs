@@ -100,7 +100,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(124, 397);
+            this.metroPanel1.Size = new System.Drawing.Size(203, 397);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -226,7 +226,6 @@
             // metroPanel2
             // 
             this.metroPanel2.Controls.Add(this.ReceiveBtn);
-            this.metroPanel2.Controls.Add(this.SendBtn);
             this.metroPanel2.Controls.Add(this.metroLabel6);
             this.metroPanel2.Controls.Add(this.metroTextBox6);
             this.metroPanel2.Controls.Add(this.DisConBtn);
@@ -263,7 +262,7 @@
             // 
             // SendBtn
             // 
-            this.SendBtn.Location = new System.Drawing.Point(173, 247);
+            this.SendBtn.Location = new System.Drawing.Point(490, 334);
             this.SendBtn.Name = "SendBtn";
             this.SendBtn.Size = new System.Drawing.Size(80, 32);
             this.SendBtn.TabIndex = 16;
@@ -603,6 +602,7 @@
             this.ClientSize = new System.Drawing.Size(960, 768);
             this.Controls.Add(this.metroPanel4);
             this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.SendBtn);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.SerialPanel);
             this.Controls.Add(this.metroPanel1);

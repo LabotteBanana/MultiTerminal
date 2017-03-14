@@ -15,7 +15,7 @@ namespace MultiTerminal
    
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        static int connectType = 0;
+        static int connectType = 1;
         static Ethernet ethernet = new Ethernet();
         static Serial serial = new Serial();
         SerialPort serialport;
@@ -122,11 +122,13 @@ namespace MultiTerminal
             switch (OptionNumber)
             {
                 case 1://
+                    connectType = 1;
                     this.SerialPanel.Visible = false;
                     this.metroPanel2.Visible = true;
                     break;
                 case 2://Serial
                     {
+                        connectType = 2;
                         this.SerialPanel.Visible = true;
                         this.metroPanel2.Visible = false;
                         this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
@@ -143,16 +145,20 @@ namespace MultiTerminal
                     }
                     break;
                 case 3://WIFI
+                    connectType = 3;
                     break;
                 case 4://Zigbee
+                    connectType = 4;
                     break;
                 case 5://TCP Server
-                    {                       
+                    {
+                        connectType = 5;
                         ethernet.ServerOpen(Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
                 case 6://TCP Client
-                    {                       
+                    {
+                        connectType = 6;
                         client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
@@ -172,8 +178,14 @@ namespace MultiTerminal
         {
             if (connectType == 2) //시리얼
             {
-                string toserialmsg = serial.SerialSend(this.richTextBox1.Text); // 시리얼 값 받아오기
-                this.richTextBox1.Text += toserialmsg + "\n";                   // 시리얼 텍스트박스에 표현
+                // 시리얼 텍스트박스에 표현
+                if (serialport.IsOpen)
+                {
+                    string toserialmsg = serial.SerialSend(this.richTextBox1.Text); // 시리얼 값 받아오기
+                    this.richTextBox1.Text += toserialmsg + "\n";
+                }
+                else
+                    this.richTextBox1.Text = "";
             }
             if (connectType == 5) //server측
             {

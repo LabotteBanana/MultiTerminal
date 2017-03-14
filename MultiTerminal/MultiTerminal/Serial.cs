@@ -11,6 +11,7 @@ namespace MultiTerminal
     class Serial
     {
         SerialPort sPort;
+        private RichTextBox serialRichtextbox2;
         public string receivedata = null;   // 시리얼 데이터 받기위한 임시 전역 변수...
 
         public void SerialOpen(String Port, String Baud)
@@ -38,7 +39,7 @@ namespace MultiTerminal
                 }
                 else
                 {
-                    MessageBox.Show("시리얼 포트를 연결했습니다.");
+                    MessageBox.Show("시리얼 포트 연결에 실패했습니다.");
                 }
             }
             catch (System.Exception ex)
@@ -75,7 +76,7 @@ namespace MultiTerminal
                     { strRecData += Convert.ToChar(buff[iTemp]); }  // 최종 변수에 buff 내용 대입
                 }
 
-                receivedata += strRecData;  
+                receivedata += strRecData;
 
             }
         }
