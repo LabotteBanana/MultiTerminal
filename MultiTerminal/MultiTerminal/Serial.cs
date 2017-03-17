@@ -14,13 +14,14 @@ namespace MultiTerminal
         private RichTextBox serialRichtextbox2;
         public string receivedata = null;   // 시리얼 데이터 받기위한 임시 전역 변수...
 
-        public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT)
+        public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT, RichTextBox serialRichtextbox2)
         {
 
             try
             {
                 if (null == sPort)
                 {
+                    this.serialRichtextbox2 = serialRichtextbox2;
                     sPort = new SerialPort();
                     sPort.DataReceived += new SerialDataReceivedEventHandler(sPort_DataReceived);   // 데이터 리시브 반응 이벤트 함수. 데이터가 들어올때마다 구동됨.
                     WT = "500";
@@ -104,7 +105,7 @@ namespace MultiTerminal
                 }
 
                 receivedata += strRecData;
-
+                serialRichtextbox2.Text += receivedata;
             }
         }
 

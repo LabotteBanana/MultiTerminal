@@ -186,7 +186,7 @@
             this.RF_Tile.Location = new System.Drawing.Point(3, 6);
             this.RF_Tile.Name = "RF_Tile";
             this.RF_Tile.Size = new System.Drawing.Size(115, 50);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
             this.RF_Tile.TabIndex = 4;
             this.RF_Tile.Text = "RF";
             this.RF_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -224,7 +224,6 @@
             // metroPanel2
             // 
             this.metroPanel2.Controls.Add(this.ReceiveBtn);
-            this.metroPanel2.Controls.Add(this.SendBtn);
             this.metroPanel2.Controls.Add(this.metroLabel6);
             this.metroPanel2.Controls.Add(this.metroTextBox6);
             this.metroPanel2.Controls.Add(this.DisConBtn);
@@ -575,7 +574,7 @@
             this.ReceiveWindowBox.Size = new System.Drawing.Size(443, 339);
             this.ReceiveWindowBox.TabIndex = 3;
             this.ReceiveWindowBox.TabStop = false;
-            this.ReceiveWindowBox.Text = "받기 :";
+            this.ReceiveWindowBox.Text = "";
             // 
             // SendWindowBox
             // 
@@ -589,7 +588,7 @@
             this.SendWindowBox.Size = new System.Drawing.Size(284, 246);
             this.SendWindowBox.TabIndex = 2;
             this.SendWindowBox.TabStop = false;
-            this.SendWindowBox.Text = "보내기 :";
+            this.SendWindowBox.Text = "";
             // 
             // contextMenuStrip1
             // 
@@ -619,6 +618,7 @@
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.SendBtn);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(0, 60, 0, 0);
