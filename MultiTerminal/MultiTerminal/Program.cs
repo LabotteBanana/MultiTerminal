@@ -15,12 +15,15 @@ namespace MultiTerminal
         /// </summary>
         [STAThread]
 
-        static void Main()
+        public static void Main()
         {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainForm main = new MainForm();
+            Application.Run(main);
+            main.Dispose();
+            Application.Exit();
         }
     }
 }

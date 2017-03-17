@@ -11,20 +11,19 @@ using System.IO;
 
 namespace MultiTerminal
 {
-    class Tserv
+    public class Tserv
     {
+        MainForm main = null;
         public Socket server =null;
         public Socket client = null;
-        Thread th= null;
+        Thread th= null; //Recv가능 쓰레드
         private string ip;
         private string client_ip;
         private int port;
         public NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-        private byte[] data = new byte[1024];
         private NetworkStream ns = null;
         private StreamReader sr = null;
         private StreamWriter sw = null;
-        public string Message;
         public void DisplayNetworkInfo()
         {
             foreach (NetworkInterface adapter in adapters)
@@ -66,16 +65,19 @@ namespace MultiTerminal
         }
             
 
-        public Tserv(int Port) //순수 서버로 만들때
+        public Tserv(MainForm Main,int Port) //서버로 만들때
         {
+            main = Main;
             port = Port;
         }
 
-        public Tserv(string IP,int Port) //순수 클라로 만들때
+        public Tserv(MainForm Main,string IP,int Port) //클라로 만들때
         {
+            main = Main;
             port = Port;
             ip = IP;
         }
+
         public void ServerStart()
         {
             try
@@ -86,24 +88,20 @@ namespace MultiTerminal
                 server.Bind(ipep);
                 server.Listen(30);//30초대기
 
-                //Console.WriteLine("서버시작..대기중!");
                 client = server.Accept();
 
                 IPEndPoint claIP = (IPEndPoint)client.RemoteEndPoint;
                 client_ip = claIP.Address.ToString();
 
-                //ns = new NetworkStream(server);
-
                 ns = new NetworkStream(client);
                 sr = new StreamReader(ns);
                 sw = new StreamWriter(ns);
 
-                th = new Thread(new ThreadStart(RecvMsg)); //상대 문자열 수신
+                th = new Thread(new ThreadStart(RecvMsg)); //상대 문자열 수신 쓰레드 가동
                 th.Start();
             }
             catch(Exception ex)
             {
-                //자꾸 이쪽으로 온다.
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
         }
@@ -131,8 +129,8 @@ namespace MultiTerminal
                 sw = new StreamWriter(ns);
 
                 th = new Thread(new ThreadStart(RecvMsg));
-
                 th.Start();
+
                 return true;
             }
             catch(Exception ex)
@@ -205,24 +203,6 @@ namespace MultiTerminal
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
 
             }
-            //int total = 0;
-            //int size = data.Length;
-            //int left_data = size;
-            //int send_data = 0;
-
-            //// 전송할 데이터의 크기 전달
-            //byte[] data_size = new byte[4];
-            //data_size = BitConverter.GetBytes(size);
-            //send_data = server.Send(data_size);
-            ////동일한 내용?  //ns.Write(data, left_data, 4);
-
-            ////실제 데이터 전송
-            //while (total < size)
-            //{
-            //    send_data = server.Send(data, total, left_data, SocketFlags.None);
-            //    total += send_data;
-            //    left_data -= send_data;
-            //}
         }
         public void RecvMsg()
         {
@@ -231,30 +211,9 @@ namespace MultiTerminal
                 while (client.Connected)
                 {
                     string msg = sr.ReadLine();
-                    Message = msg;
-                    return;
+                    main.richTextBox2.Text += "수신 : "+ msg + "\n";
+
                 }
-                //int total = 0;
-                //int size = 0;
-                //int left_data = 0;
-                //int recv_data = 0;
-
-                ////수신할 데이터 크기 알아내기
-                //byte[] data_size = new byte[4];
-                //recv_data = server.Receive(data_size, 0, 4, SocketFlags.None);
-                ////동일한 내용? // ns.Read(data_size, left_data, 4);
-
-                //size = BitConverter.ToInt32(data_size, 0);
-                //left_data = size;
-
-                //byte[] data = new byte[size];
-                //while (total < size)
-                //{
-                //    recv_data = server.Receive(data, total, left_data, 0);
-                //    if (recv_data == 0) break;
-                //    total += recv_data;
-                //    left_data -= recv_data;
-                //}
             }
             catch (Exception ex)
             {

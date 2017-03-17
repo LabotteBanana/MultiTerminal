@@ -16,27 +16,46 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         int ServiceType = 0;
-        bool isServ = false;
+        public bool isServ = false;
         static int connectType = 0;
         //static Ucla ucla = new Ucla();
-        private Tserv tcla=null;
+        public Tserv tcla=null;
         //static Userv userv = new Userv();
-        private Tserv tserv= null;
+        public Tserv tserv= null;
         static Serial serial = new Serial();
         SerialPort serialport;
-
         //private metroUserControl1 usercontrol1 = new metroUserControl1();
 
         public MainForm()
         {
             InitializeComponent();
         }
-        private void Application_Idle(Object sender, EventArgs e)
-        {
+        //private void Application_Idle(Object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (isServ == true && tserv != null && tserv.client.Connected == true)
+        //        {
+        //            tserv.RecvMsg();
+        //            richTextBox2.Text += "수신 : " + tserv.Message + "\n";
+        //        }
+        //        else if (isServ == false && tcla != null && tcla.client.Connected == true)
+        //        {
+        //            tcla.RecvMsg();
+        //            richTextBox2.Text += "수신 : " + tcla.Message + "\n";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
 
-            //MessageBox.Show("You are in the Application.Idle event.");
+        //}
+        //private EventHandler checkRecv(object Sender, EventArgs e)
+        //{
 
-        }
+        //    return 
+        //}
         private void MainForm_Load(object sender, EventArgs e)  // 폼 열렸을 때
         {
             
@@ -45,6 +64,7 @@ namespace MultiTerminal
             UdpPanel.Visible = false;
             SerialPanel.Visible = false;
 
+             //+= new EventHandler(Application_Idle);
             //usercontrol1.Init();
             //this.Controls.Add(usercontrol1);
             //usercontrol1.Show();
@@ -265,7 +285,7 @@ namespace MultiTerminal
             if(checkBox1.Checked==true) 
             {
                 int port = Int32.Parse(comboBox6.Text);
-                tserv = new Tserv(port);
+                tserv = new Tserv(this,port);
                 tserv.ServerStart();
                
             }
@@ -273,7 +293,7 @@ namespace MultiTerminal
             {
                 int port = Int32.Parse(comboBox6.Text);
                 string ip = comboBox5.Text;
-                tcla = new Tserv(ip, port);
+                tcla = new Tserv(this,ip, port);
                 tcla.Connect();
             }
         }
@@ -311,43 +331,54 @@ namespace MultiTerminal
 
         private void button9_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (isServ == true && tserv.client.Connected == true)
-                {
-                    tserv.SendMsg(textBox2.Text);
-                    richTextBox1.Text += textBox2.Text;
-                    richTextBox2.Text += "송신 : " + textBox2.Text + "\n";
-                }
-                else if (isServ == false && tcla.client.Connected == true)
-                {
-                    tcla.SendMsg(textBox2.Text);
-                    richTextBox1.Text += textBox2.Text;
-                    richTextBox2.Text += "송신 : " + textBox2.Text+"\n";
 
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        //private void button8_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+
+        //        if (isServ == true && tserv.client.Connected == true)
+        //        {
+        //            tserv.RecvMsg();
+        //            richTextBox2.Text += "수신 : " + tserv.Message + "\n";
+
+        //        }
+        //        else if (isServ == false && tcla.client.Connected == true)
+        //        {
+        //            tcla.RecvMsg();
+        //            richTextBox2.Text += "수신 : " + tcla.Message + "\n";
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-
                 if (isServ == true && tserv.client.Connected == true)
                 {
-                    tserv.RecvMsg();
-                    richTextBox2.Text += "수신 : " + tserv.Message + "\n";
-
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        tserv.SendMsg(textBox2.Text);
+                        richTextBox1.Text += textBox2.Text;
+                        richTextBox2.Text += "송신 : " + textBox2.Text + "\n";
+                    }
                 }
                 else if (isServ == false && tcla.client.Connected == true)
                 {
-                    tcla.RecvMsg();
-                    richTextBox2.Text += "수신 : " + tcla.Message + "\n";
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        tcla.SendMsg(textBox2.Text);
+                        richTextBox1.Text += textBox2.Text;
+                        richTextBox2.Text += "송신 : " + textBox2.Text + "\n";
+                    }
 
                 }
             }
