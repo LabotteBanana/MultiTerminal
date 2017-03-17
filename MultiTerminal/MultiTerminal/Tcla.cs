@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -11,13 +12,17 @@ namespace MultiTerminal
 {
     class Tcla
     {
-        private Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        public Socket client;
         private NetworkStream ns;
         private StreamReader sr;
         private StreamWriter sw;
 
+        //clientThread.Start();
+
+        //clientThread.IsAlive == true -> clientThread.Abort();
+
         public NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-        
+
         private byte[] data = new byte[1024];
         public void DisplayNetworkInfo()
         {
@@ -34,23 +39,23 @@ namespace MultiTerminal
                 Console.WriteLine("IP Address : " + Get_MyIP()); // 내 IP주소
                 */
 
-                if(Gatewayaddress.Count>0)
+                if (Gatewayaddress.Count > 0)
                 {
-                    foreach(GatewayIPAddressInformation address in Gatewayaddress)
+                    foreach (GatewayIPAddressInformation address in Gatewayaddress)
                     {
                         Console.WriteLine("GateWay Address :" + address.Address.ToString()); //게이트웨이 주소
                     }
                 }
-                if(dhcpServers.Count>0)
+                if (dhcpServers.Count > 0)
                 {
-                    foreach(IPAddress dhcp in dhcpServers)
+                    foreach (IPAddress dhcp in dhcpServers)
                     {
                         Console.WriteLine("DHCP Servers : " + dhcp.ToString()); //DHCP 주소
                     }
                 }
-                if(dnsServers.Count>0)
+                if (dnsServers.Count > 0)
                 {
-                    foreach(IPAddress dns in dnsServers)
+                    foreach (IPAddress dns in dnsServers)
                     {
                         Console.WriteLine("DNS Servers : " + dns.ToString()); //DNS 주소
                     }
@@ -71,32 +76,29 @@ namespace MultiTerminal
             {
                 IPAddress host = IPAddress.Parse(ip);
                 IPEndPoint ipep = new IPEndPoint(host, port);
-                ns = new NetworkStream(sock);
+                //ns = new NetworkStream(sock);
 
-                sr = new StreamReader(ns);
-                sw = new StreamWriter(ns);
-
+                //sr = new StreamReader(ns);
+                //sw = new StreamWriter(ns);
+                Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 sock.Connect(ipep);
-                sock.Send(Encoding.ASCII.GetBytes("Hello Server!"));
-                sock.Receive(data);
+                //sock.Send(Encoding.ASCII.GetBytes("Hello Server!"));
+                //sock.Receive(data);
+                client = sock;
                 if (sock.Connected == true)
                     return true;
                 else
                     return false;
             }
-            catch(SocketException ex)
+            catch (SocketException ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
             }
-            finally
-            {
-                if(sock !=null) sock.Close();
-            }
         }
         public bool DisConnect()
         {
-            sock.Close();
+            client.Close();
             return true;
         }
         public bool SendMsg(byte[] data)
@@ -111,18 +113,18 @@ namespace MultiTerminal
                 // 전송할 데이터의 크기 전달
                 byte[] data_size = new byte[4];
                 data_size = BitConverter.GetBytes(size);
-                send_data = sock.Send(data_size);
-
+                send_data = client.Send(data_size);
+                //동일한 내용?  //ns.Write(data, left_data, 4);
                 //실제 데이터 전송
-                while(total <size )
+                while (total < size)
                 {
-                    send_data = sock.Send(data, total, left_data, SocketFlags.None);
+                    send_data = client.Send(data, total, left_data, SocketFlags.None);
                     total += send_data;
                     left_data -= send_data;
                 }
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
@@ -139,21 +141,22 @@ namespace MultiTerminal
 
                 //수신할 데이터 크기 알아내기
                 byte[] data_size = new byte[4];
-                recv_data = sock.Receive(data_size, 0, 4, SocketFlags.None);
+                recv_data = client.Receive(data_size, 0, 4, SocketFlags.None);
+                //동일한 내용? // ns.Read(data_size, left_data, 4);
                 size = BitConverter.ToInt32(data_size, 0);
                 left_data = size;
 
                 byte[] data = new byte[size];
-                while(total<size)
+                while (total < size)
                 {
-                    recv_data = sock.Receive(data, total, left_data, 0);
+                    recv_data = client.Receive(data, total, left_data, 0);
                     if (recv_data == 0) break;
                     total += recv_data;
                     left_data -= recv_data;
                 }
                 return data;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
@@ -166,7 +169,7 @@ namespace MultiTerminal
         }
         public void SetDelay(int timer)
         {
-            this.sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, timer);
+            this.client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, timer);
         }
     }
 }
