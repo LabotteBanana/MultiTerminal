@@ -232,6 +232,7 @@ namespace MultiTerminal
                 {
                     string msg = sr.ReadLine();
                     Message = msg;
+                    return;
                 }
                 //int total = 0;
                 //int size = 0;
@@ -257,7 +258,7 @@ namespace MultiTerminal
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
         }

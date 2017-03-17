@@ -311,42 +311,50 @@ namespace MultiTerminal
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if (isServ == true && tserv.server.Connected == true)
+            try
             {
-                tserv.SendMsg(textBox2.Text);
-                richTextBox2.Text += textBox2.Text;
-            }
-            else if(isServ == false && tcla.client.Connected == true)
-            {
-                tcla.SendMsg(textBox2.Text);
-                richTextBox2.Text += textBox2.Text;
+                if (isServ == true && tserv.client.Connected == true)
+                {
+                    tserv.SendMsg(textBox2.Text);
+                    richTextBox1.Text += textBox2.Text;
+                    richTextBox2.Text += "송신 : " + textBox2.Text + "\n";
+                }
+                else if (isServ == false && tcla.client.Connected == true)
+                {
+                    tcla.SendMsg(textBox2.Text);
+                    richTextBox1.Text += textBox2.Text;
+                    richTextBox2.Text += "송신 : " + textBox2.Text+"\n";
 
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show(sender.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (isServ == true && tserv.server.Connected == true)
+            try
             {
-               tserv.RecvMsg();
-                richTextBox1.Text += tserv.Message+"\n";
 
+                if (isServ == true && tserv.client.Connected == true)
+                {
+                    tserv.RecvMsg();
+                    richTextBox2.Text += "수신 : " + tserv.Message + "\n";
+
+                }
+                else if (isServ == false && tcla.client.Connected == true)
+                {
+                    tcla.RecvMsg();
+                    richTextBox2.Text += "수신 : " + tcla.Message + "\n";
+
+                }
             }
-            else if (isServ == false && tcla.client.Connected == true)
+            catch (Exception ex)
             {
-                tcla.RecvMsg();
-                richTextBox1.Text += tserv.Message + "\n";
-
+                MessageBox.Show(ex.ToString());
             }
-            else
-            {
-                MessageBox.Show(sender.ToString());
-            }
-
         }
     }
 }
