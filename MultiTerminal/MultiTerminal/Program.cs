@@ -20,7 +20,8 @@ namespace MultiTerminal
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainForm main = new MainForm();
+            Application.Run(main);
         }
     }
 }
