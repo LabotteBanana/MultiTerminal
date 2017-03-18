@@ -137,7 +137,7 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            Point Loc = new Point(140, 6);
+            Point Loc = new Point(3, 0);
             switch (OptionNumber)
             {
                 case 1:
@@ -151,8 +151,9 @@ namespace MultiTerminal
                         connectType = 2;
                         SerialPanel.Location = Loc;
                         this.SerialPanel.Visible = true;    // 시리얼 패널 보이기
-                        TcpPanel.Visible = false;
-                        UdpPanel.Visible = false;
+
+                        this.TcpPanel.Visible = false;
+                        this.UdpPanel.Visible = false;
                         Serial_Combo_Init();
                     }
                     break;
@@ -179,7 +180,8 @@ namespace MultiTerminal
                     {
                         connectType = 6;
                         UdpPanel.Location = Loc;
-                        SerialPanel.Visible = false;
+
+                        this.SerialPanel.Visible = false;
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = true;
                         //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
@@ -284,12 +286,12 @@ namespace MultiTerminal
         {
 
             // 시리얼 옵션 콤보박스 초기화
-            this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDown;
+            this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDownList ;
+            this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDownList;
 
             List<string> data = new List<string>();
             foreach (string s in SerialPort.GetPortNames())
@@ -488,6 +490,11 @@ namespace MultiTerminal
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void TcpPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
