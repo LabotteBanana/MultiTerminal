@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// 블루투스 
-using System.IO.Ports;
-
-
 namespace MultiTerminal
 {
-    public partial class Form1 : Form
+    class UIThread : EventArgs
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+     
+    }
+
+    class Global
+    {
+        public static string globalVar;
     }
 }

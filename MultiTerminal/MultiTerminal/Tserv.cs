@@ -211,7 +211,7 @@ namespace MultiTerminal
                 while (client.Connected)
                 {
                     string msg = sr.ReadLine();
-                    main.richTextBox2.Text += "수신 : "+ msg + "\n";
+                    main.ReceiveWindowBox.Text += "수신 : "+ msg + "\n";
 
                 }
             }
