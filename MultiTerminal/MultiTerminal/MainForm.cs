@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
-
+using System.Timers;
 namespace MultiTerminal
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
@@ -27,7 +27,9 @@ namespace MultiTerminal
 
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
-
+        public System.Timers.Timer timer = null;
+        public static System.Timers.Timer mactimer = null;
+        private DateTime nowTime;
 
 
 
@@ -42,11 +44,58 @@ namespace MultiTerminal
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
 
+
             UI_Init();
+
+
 
         }
 
+        #region Timer(타임스탬프)
+        private void OnTimeEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            nowTime = e.SignalTime;
+        }
 
+        private  void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
+        {
+            if (isServ == true && tserv.client.Connected == true)
+            {
+                tserv.SendMsg(textBox1.Text);
+                SendWindowBox.Text += textBox1.Text;
+                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+            }
+            if (isServ == false && tcla.client.Connected == true)
+            {
+                tcla.SendMsg(textBox1.Text);
+                SendWindowBox.Text += textBox1.Text;
+                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+            }
+
+
+        }
+        public string GetTimer()
+        {
+            string now = null;
+            now = "[ " + nowTime.Hour + "::" + nowTime.Minute + "::" + nowTime.Second + "::" + nowTime.Millisecond + "]";
+            return now;
+        }
+
+        public void SetMacroTime(int perSec)
+        {
+            // 초당 10번이면 100/1000
+            // 초당 5번 이면 50/1000
+            bool btrue = true;
+            mactimer.Interval = 10000000;
+            if (btrue == false)
+            {
+                mactimer.Elapsed += OnMacro;
+            }
+                mactimer.Enabled = true;
+
+
+        }
+        #endregion
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)  // 메인폼 닫혔을 때 
         {
@@ -114,7 +163,9 @@ namespace MultiTerminal
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Pink;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
-
+        private void CheckMacro()
+        {
+        }
         private void UDP_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(6);
@@ -137,7 +188,7 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            Point Loc = new Point(3, 0);
+            Point Loc = new Point(140, 6);
             switch (OptionNumber)
             {
                 case 1:
@@ -151,9 +202,8 @@ namespace MultiTerminal
                         connectType = 2;
                         SerialPanel.Location = Loc;
                         this.SerialPanel.Visible = true;    // 시리얼 패널 보이기
-
-                        this.TcpPanel.Visible = false;
-                        this.UdpPanel.Visible = false;
+                        TcpPanel.Visible = false;
+                        UdpPanel.Visible = false;
                         Serial_Combo_Init();
                     }
                     break;
@@ -180,8 +230,7 @@ namespace MultiTerminal
                     {
                         connectType = 6;
                         UdpPanel.Location = Loc;
-
-                        this.SerialPanel.Visible = false;
+                        SerialPanel.Visible = false;
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = true;
                         //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
@@ -247,12 +296,14 @@ namespace MultiTerminal
         {
 
             // 시리얼 옵션 콤보박스 초기화
+
             this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDownList;
+
 
             List<string> data = new List<string>();
             foreach (string s in SerialPort.GetPortNames())
@@ -383,6 +434,7 @@ namespace MultiTerminal
 
         #endregion
 
+        #region TCP UI
         private void button3_Click(object sender, EventArgs e)
         {
             //comboBox5 -> IP, comboBox6 -> Port
@@ -401,7 +453,7 @@ namespace MultiTerminal
                 tcla.Connect();
             }
         }
-
+        #region TCP서버여부
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
@@ -417,12 +469,9 @@ namespace MultiTerminal
             }
 
         }
+        #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region TCP 로그
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -432,8 +481,10 @@ namespace MultiTerminal
                     if (e.KeyCode == Keys.Enter)
                     {
                         tserv.SendMsg(textBox1.Text);
-                        SendBox1.Text += textBox1.Text;
-                        ReceiveWindowBox.Text += "송신 : " + textBox1.Text + "\n";
+
+                        SendWindowBox.Text += textBox1.Text;
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+
                     }
                 }
                 else if (isServ == false && tcla.client.Connected == true)
@@ -441,8 +492,10 @@ namespace MultiTerminal
                     if (e.KeyCode == Keys.Enter)
                     {
                         tcla.SendMsg(textBox1.Text);
-                        SendBox1.Text += textBox1.Text;
-                        ReceiveWindowBox.Text += "송신 : " + textBox1.Text + "\n";
+
+                        SendWindowBox.Text += textBox1.Text;
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+
                     }
 
                 }
@@ -452,9 +505,30 @@ namespace MultiTerminal
                 MessageBox.Show(ex.ToString());
             }
         }
+        #endregion
 
-        private void TcpPanel_Paint(object sender, PaintEventArgs e)
+        #endregion
+
+
+        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
         {
+            int value = Int32.Parse(textBox2.Text);
+            Thread macroThread = new Thread(() => SetMacroTime(value));
+            if (checkBox3.Checked == true)
+            {
+                if (macroThread.IsAlive == false)
+                    macroThread.Start();
+                else
+                    macroThread.Resume();
+            }
+            else
+            {
+                if (macroThread.IsAlive == true)
+                {
+                    macroThread.Suspend();
+                }
+            }
+
 
         }
 
@@ -469,6 +543,20 @@ namespace MultiTerminal
                 Flag_AEAS[i] = 0;
                 Flag_ASCII[i] = 0;
             }
+                        TcpPanel.Visible = false;
+            
+            timer = new System.Timers.Timer();
+            mactimer = new System.Timers.Timer();
+            timer.Interval = 0.0001; // 1000==>1초 0.0001==>1000만분의1
+
+            timer.Enabled = true;
+            mactimer.Enabled = false;
+
+            timer.Elapsed += OnTimeEvent;
+            mactimer.Elapsed += OnMacro;
+
+            timer.AutoReset = true;
+            mactimer.AutoReset = false;
         }
         #endregion
         #region 보내기 버튼 묶음
@@ -773,4 +861,5 @@ namespace MultiTerminal
 
 
     }
+
 }
