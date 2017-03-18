@@ -43,21 +43,6 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.ReceiveBtn = new MetroFramework.Controls.MetroButton();
-            this.SendBtn = new MetroFramework.Controls.MetroButton();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
-            this.DisConBtn = new MetroFramework.Controls.MetroButton();
-            this.ConnectBtn = new MetroFramework.Controls.MetroButton();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-            this.BaudRate = new MetroFramework.Controls.MetroTextBox();
-            this.SeriPort = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
@@ -73,11 +58,27 @@
             this.Label_Se_Port = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
+            this.DisConBtn = new MetroFramework.Controls.MetroButton();
+            this.ConnectBtn = new MetroFramework.Controls.MetroButton();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
+            this.BaudRate = new MetroFramework.Controls.MetroTextBox();
+            this.SeriPort = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ReceiveWindowBox = new System.Windows.Forms.RichTextBox();
+            this.SendWindowBox = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Chk_Hexa = new System.Windows.Forms.CheckBox();
             this.metroPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -120,7 +121,6 @@
             this.Client_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Client_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Client_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.Client_Tile.Click += new System.EventHandler(this.Client_Tile_Click);
             // 
             // Server_Tile
             // 
@@ -136,7 +136,6 @@
             this.Server_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Server_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Server_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.Server_Tile.Click += new System.EventHandler(this.Server_Tile_Click);
             // 
             // Zigbee_Tile
             // 
@@ -187,7 +186,7 @@
             this.RF_Tile.Location = new System.Drawing.Point(3, 6);
             this.RF_Tile.Name = "RF_Tile";
             this.RF_Tile.Size = new System.Drawing.Size(115, 50);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
             this.RF_Tile.TabIndex = 4;
             this.RF_Tile.Text = "RF";
             this.RF_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -225,7 +224,6 @@
             // metroPanel2
             // 
             this.metroPanel2.Controls.Add(this.ReceiveBtn);
-            this.metroPanel2.Controls.Add(this.SendBtn);
             this.metroPanel2.Controls.Add(this.metroLabel6);
             this.metroPanel2.Controls.Add(this.metroTextBox6);
             this.metroPanel2.Controls.Add(this.DisConBtn);
@@ -260,14 +258,155 @@
             this.ReceiveBtn.Text = "받기";
             this.ReceiveBtn.Click += new System.EventHandler(this.ReceiveBtn_Click);
             // 
-            // SendBtn
+            // SerialPanel
             // 
-            this.SendBtn.Location = new System.Drawing.Point(173, 247);
-            this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(80, 32);
-            this.SendBtn.TabIndex = 16;
-            this.SendBtn.Text = "보내기";
-            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
+            this.SerialPanel.Controls.Add(this.Serial_Combo_FlowCon);
+            this.SerialPanel.Controls.Add(this.Serial_Combo_StopBit);
+            this.SerialPanel.Controls.Add(this.Serial_Combo_Parity);
+            this.SerialPanel.Controls.Add(this.Serial_Combo_Data);
+            this.SerialPanel.Controls.Add(this.Serial_Combo_Baud);
+            this.SerialPanel.Controls.Add(this.Serial_Combo_Port);
+            this.SerialPanel.Controls.Add(this.label6);
+            this.SerialPanel.Controls.Add(this.label5);
+            this.SerialPanel.Controls.Add(this.label4);
+            this.SerialPanel.Controls.Add(this.label3);
+            this.SerialPanel.Controls.Add(this.label2);
+            this.SerialPanel.Controls.Add(this.Label_Se_Port);
+            this.SerialPanel.Controls.Add(this.button2);
+            this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
+            this.SerialPanel.Location = new System.Drawing.Point(134, 82);
+            this.SerialPanel.Name = "SerialPanel";
+            this.SerialPanel.Size = new System.Drawing.Size(340, 286);
+            this.SerialPanel.TabIndex = 7;
+            this.SerialPanel.Visible = false;
+            // 
+            // Serial_Combo_FlowCon
+            // 
+            this.Serial_Combo_FlowCon.FormattingEnabled = true;
+            this.Serial_Combo_FlowCon.Location = new System.Drawing.Point(111, 176);
+            this.Serial_Combo_FlowCon.Name = "Serial_Combo_FlowCon";
+            this.Serial_Combo_FlowCon.Size = new System.Drawing.Size(121, 20);
+            this.Serial_Combo_FlowCon.TabIndex = 13;
+            this.Serial_Combo_FlowCon.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_FlowCon_SelectedIndexChanged);
+            // 
+            // Serial_Combo_StopBit
+            // 
+            this.Serial_Combo_StopBit.FormattingEnabled = true;
+            this.Serial_Combo_StopBit.Location = new System.Drawing.Point(111, 145);
+            this.Serial_Combo_StopBit.Name = "Serial_Combo_StopBit";
+            this.Serial_Combo_StopBit.Size = new System.Drawing.Size(121, 20);
+            this.Serial_Combo_StopBit.TabIndex = 12;
+            this.Serial_Combo_StopBit.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_StopBit_SelectedIndexChanged);
+            // 
+            // Serial_Combo_Parity
+            // 
+            this.Serial_Combo_Parity.FormattingEnabled = true;
+            this.Serial_Combo_Parity.Location = new System.Drawing.Point(111, 116);
+            this.Serial_Combo_Parity.Name = "Serial_Combo_Parity";
+            this.Serial_Combo_Parity.Size = new System.Drawing.Size(121, 20);
+            this.Serial_Combo_Parity.TabIndex = 11;
+            this.Serial_Combo_Parity.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Parity_SelectedIndexChanged);
+            // 
+            // Serial_Combo_Data
+            // 
+            this.Serial_Combo_Data.FormattingEnabled = true;
+            this.Serial_Combo_Data.Location = new System.Drawing.Point(111, 85);
+            this.Serial_Combo_Data.Name = "Serial_Combo_Data";
+            this.Serial_Combo_Data.Size = new System.Drawing.Size(121, 20);
+            this.Serial_Combo_Data.TabIndex = 10;
+            this.Serial_Combo_Data.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Data_SelectedIndexChanged);
+            // 
+            // Serial_Combo_Baud
+            // 
+            this.Serial_Combo_Baud.FormattingEnabled = true;
+            this.Serial_Combo_Baud.Location = new System.Drawing.Point(111, 54);
+            this.Serial_Combo_Baud.Name = "Serial_Combo_Baud";
+            this.Serial_Combo_Baud.Size = new System.Drawing.Size(121, 20);
+            this.Serial_Combo_Baud.TabIndex = 9;
+            this.Serial_Combo_Baud.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Baud_SelectedIndexChanged);
+            // 
+            // Serial_Combo_Port
+            // 
+            this.Serial_Combo_Port.FormattingEnabled = true;
+            this.Serial_Combo_Port.Location = new System.Drawing.Point(111, 22);
+            this.Serial_Combo_Port.Name = "Serial_Combo_Port";
+            this.Serial_Combo_Port.Size = new System.Drawing.Size(121, 20);
+            this.Serial_Combo_Port.TabIndex = 8;
+            this.Serial_Combo_Port.SelectedIndexChanged += new System.EventHandler(this.Serial_Combo_Port_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 179);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 12);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "흐름제어 (F) :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 148);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "스탑비트 (S) :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 119);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 12);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "패리티    (A) :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 12);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "데이터    (D) :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "속도       (B) :";
+            // 
+            // Label_Se_Port
+            // 
+            this.Label_Se_Port.AutoSize = true;
+            this.Label_Se_Port.Location = new System.Drawing.Point(18, 27);
+            this.Label_Se_Port.Name = "Label_Se_Port";
+            this.Label_Se_Port.Size = new System.Drawing.Size(83, 12);
+            this.Label_Se_Port.TabIndex = 2;
+            this.Label_Se_Port.Text = "포트       (P) :";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(250, 59);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Serial_Btn_OK
+            // 
+            this.Serial_Btn_OK.Location = new System.Drawing.Point(250, 22);
+            this.Serial_Btn_OK.Name = "Serial_Btn_OK";
+            this.Serial_Btn_OK.Size = new System.Drawing.Size(75, 23);
+            this.Serial_Btn_OK.TabIndex = 0;
+            this.Serial_Btn_OK.Text = "옵션적용";
+            this.Serial_Btn_OK.UseVisualStyleBackColor = true;
+            this.Serial_Btn_OK.Click += new System.EventHandler(this.Serial_Btn_OK_Click);
             // 
             // metroLabel6
             // 
@@ -390,151 +529,19 @@
             this.metroTextBox1.TabIndex = 2;
             this.metroTextBox1.Text = "metroTextBox1";
             // 
-            // SerialPanel
+            // SendBtn
             // 
-            this.SerialPanel.Controls.Add(this.Serial_Combo_FlowCon);
-            this.SerialPanel.Controls.Add(this.Serial_Combo_StopBit);
-            this.SerialPanel.Controls.Add(this.Serial_Combo_Parity);
-            this.SerialPanel.Controls.Add(this.Serial_Combo_Data);
-            this.SerialPanel.Controls.Add(this.Serial_Combo_Baud);
-            this.SerialPanel.Controls.Add(this.Serial_Combo_Port);
-            this.SerialPanel.Controls.Add(this.label6);
-            this.SerialPanel.Controls.Add(this.label5);
-            this.SerialPanel.Controls.Add(this.label4);
-            this.SerialPanel.Controls.Add(this.label3);
-            this.SerialPanel.Controls.Add(this.label2);
-            this.SerialPanel.Controls.Add(this.Label_Se_Port);
-            this.SerialPanel.Controls.Add(this.button2);
-            this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(592, 200);
-            this.SerialPanel.Name = "SerialPanel";
-            this.SerialPanel.Size = new System.Drawing.Size(337, 325);
-            this.SerialPanel.TabIndex = 7;
-            // 
-            // Serial_Combo_FlowCon
-            // 
-            this.Serial_Combo_FlowCon.FormattingEnabled = true;
-            this.Serial_Combo_FlowCon.Location = new System.Drawing.Point(111, 176);
-            this.Serial_Combo_FlowCon.Name = "Serial_Combo_FlowCon";
-            this.Serial_Combo_FlowCon.Size = new System.Drawing.Size(121, 20);
-            this.Serial_Combo_FlowCon.TabIndex = 13;
-            // 
-            // Serial_Combo_StopBit
-            // 
-            this.Serial_Combo_StopBit.FormattingEnabled = true;
-            this.Serial_Combo_StopBit.Location = new System.Drawing.Point(111, 145);
-            this.Serial_Combo_StopBit.Name = "Serial_Combo_StopBit";
-            this.Serial_Combo_StopBit.Size = new System.Drawing.Size(121, 20);
-            this.Serial_Combo_StopBit.TabIndex = 12;
-            // 
-            // Serial_Combo_Parity
-            // 
-            this.Serial_Combo_Parity.FormattingEnabled = true;
-            this.Serial_Combo_Parity.Location = new System.Drawing.Point(111, 116);
-            this.Serial_Combo_Parity.Name = "Serial_Combo_Parity";
-            this.Serial_Combo_Parity.Size = new System.Drawing.Size(121, 20);
-            this.Serial_Combo_Parity.TabIndex = 11;
-            // 
-            // Serial_Combo_Data
-            // 
-            this.Serial_Combo_Data.FormattingEnabled = true;
-            this.Serial_Combo_Data.Location = new System.Drawing.Point(111, 85);
-            this.Serial_Combo_Data.Name = "Serial_Combo_Data";
-            this.Serial_Combo_Data.Size = new System.Drawing.Size(121, 20);
-            this.Serial_Combo_Data.TabIndex = 10;
-            // 
-            // Serial_Combo_Baud
-            // 
-            this.Serial_Combo_Baud.FormattingEnabled = true;
-            this.Serial_Combo_Baud.Location = new System.Drawing.Point(111, 54);
-            this.Serial_Combo_Baud.Name = "Serial_Combo_Baud";
-            this.Serial_Combo_Baud.Size = new System.Drawing.Size(121, 20);
-            this.Serial_Combo_Baud.TabIndex = 9;
-            // 
-            // Serial_Combo_Port
-            // 
-            this.Serial_Combo_Port.FormattingEnabled = true;
-            this.Serial_Combo_Port.Location = new System.Drawing.Point(111, 22);
-            this.Serial_Combo_Port.Name = "Serial_Combo_Port";
-            this.Serial_Combo_Port.Size = new System.Drawing.Size(121, 20);
-            this.Serial_Combo_Port.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 179);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 12);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "흐름제어 (F) :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 12);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "스탑비트 (S) :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 119);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 12);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "패리티    (A) :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "데이터    (D) :";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "속도       (B) :";
-            // 
-            // Label_Se_Port
-            // 
-            this.Label_Se_Port.AutoSize = true;
-            this.Label_Se_Port.Location = new System.Drawing.Point(18, 27);
-            this.Label_Se_Port.Name = "Label_Se_Port";
-            this.Label_Se_Port.Size = new System.Drawing.Size(83, 12);
-            this.Label_Se_Port.TabIndex = 2;
-            this.Label_Se_Port.Text = "포트       (P) :";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(250, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // Serial_Btn_OK
-            // 
-            this.Serial_Btn_OK.Location = new System.Drawing.Point(250, 22);
-            this.Serial_Btn_OK.Name = "Serial_Btn_OK";
-            this.Serial_Btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.Serial_Btn_OK.TabIndex = 0;
-            this.Serial_Btn_OK.Text = "옵션적용";
-            this.Serial_Btn_OK.UseVisualStyleBackColor = true;
+            this.SendBtn.Location = new System.Drawing.Point(173, 247);
+            this.SendBtn.Name = "SendBtn";
+            this.SendBtn.Size = new System.Drawing.Size(80, 32);
+            this.SendBtn.TabIndex = 16;
+            this.SendBtn.Text = "보내기";
+            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
             // metroPanel4
             // 
             this.metroPanel4.Controls.Add(this.metroLabel7);
-            this.metroPanel4.Controls.Add(this.richTextBox2);
+            this.metroPanel4.Controls.Add(this.ReceiveWindowBox);
             this.metroPanel4.HorizontalScrollbarBarColor = true;
             this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel4.HorizontalScrollbarSize = 10;
@@ -555,51 +562,64 @@
             this.metroLabel7.TabIndex = 16;
             this.metroLabel7.Text = "로그";
             // 
-            // richTextBox2
+            // ReceiveWindowBox
             // 
-            this.richTextBox2.AcceptsTab = true;
-            this.richTextBox2.AutoWordSelection = true;
-            this.richTextBox2.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.richTextBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.richTextBox2.Location = new System.Drawing.Point(0, 24);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(443, 339);
-            this.richTextBox2.TabIndex = 3;
-            this.richTextBox2.TabStop = false;
-            this.richTextBox2.Text = "받기 :";
+            this.ReceiveWindowBox.AcceptsTab = true;
+            this.ReceiveWindowBox.AutoWordSelection = true;
+            this.ReceiveWindowBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.ReceiveWindowBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ReceiveWindowBox.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.ReceiveWindowBox.Location = new System.Drawing.Point(0, 24);
+            this.ReceiveWindowBox.Name = "ReceiveWindowBox";
+            this.ReceiveWindowBox.ReadOnly = true;
+            this.ReceiveWindowBox.Size = new System.Drawing.Size(443, 339);
+            this.ReceiveWindowBox.TabIndex = 3;
+            this.ReceiveWindowBox.TabStop = false;
+            this.ReceiveWindowBox.Text = "";
             // 
-            // richTextBox1
+            // SendWindowBox
             // 
-            this.richTextBox1.AcceptsTab = true;
-            this.richTextBox1.AutoWordSelection = true;
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.richTextBox1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.richTextBox1.Location = new System.Drawing.Point(490, 89);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(284, 246);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.TabStop = false;
-            this.richTextBox1.Text = "보내기 :";
+            this.SendWindowBox.AcceptsTab = true;
+            this.SendWindowBox.AutoWordSelection = true;
+            this.SendWindowBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.SendWindowBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.SendWindowBox.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.SendWindowBox.Location = new System.Drawing.Point(490, 89);
+            this.SendWindowBox.Name = "SendWindowBox";
+            this.SendWindowBox.Size = new System.Drawing.Size(284, 246);
+            this.SendWindowBox.TabIndex = 2;
+            this.SendWindowBox.TabStop = false;
+            this.SendWindowBox.Text = "";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // Chk_Hexa
+            // 
+            this.Chk_Hexa.AutoSize = true;
+            this.Chk_Hexa.Location = new System.Drawing.Point(269, 421);
+            this.Chk_Hexa.Name = "Chk_Hexa";
+            this.Chk_Hexa.Size = new System.Drawing.Size(72, 16);
+            this.Chk_Hexa.TabIndex = 8;
+            this.Chk_Hexa.Text = "16김진수";
+            this.Chk_Hexa.UseVisualStyleBackColor = true;
+            this.Chk_Hexa.CheckedChanged += new System.EventHandler(this.Chk_Hexa_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 768);
+            this.Controls.Add(this.Chk_Hexa);
             this.Controls.Add(this.metroPanel4);
+            this.Controls.Add(this.SendWindowBox);
             this.Controls.Add(this.SerialPanel);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.SendBtn);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(0, 60, 0, 0);
@@ -607,7 +627,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MultiTerminal";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -649,11 +668,11 @@
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private MetroFramework.Controls.MetroPanel metroPanel4;
         private MetroFramework.Controls.MetroLabel metroLabel7;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox ReceiveWindowBox;
         private MetroFramework.Controls.MetroTile Server_Tile;
         private MetroFramework.Controls.MetroTile Client_Tile;
         private MetroFramework.Controls.MetroButton SendBtn;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox SendWindowBox;
         private MetroFramework.Controls.MetroButton ReceiveBtn;
         private System.Windows.Forms.Panel SerialPanel;
         private System.Windows.Forms.ComboBox Serial_Combo_FlowCon;
@@ -671,6 +690,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Serial_Btn_OK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.CheckBox Chk_Hexa;
     }
 }
 
