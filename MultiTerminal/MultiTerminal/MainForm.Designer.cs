@@ -32,17 +32,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.Client_Tile = new MetroFramework.Controls.MetroTile();
-            this.Server_Tile = new MetroFramework.Controls.MetroTile();
-            this.Zigbee_Tile = new MetroFramework.Controls.MetroTile();
-            this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
-            this.UART_Tile = new MetroFramework.Controls.MetroTile();
-            this.RF_Tile = new MetroFramework.Controls.MetroTile();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
-            this.ReceiveBtn = new MetroFramework.Controls.MetroButton();
+            this.UdpPanel = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.TcpPanel = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.UDP_Tile = new MetroFramework.Controls.MetroTile();
+            this.TCP_Tile = new MetroFramework.Controls.MetroTile();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
@@ -58,40 +67,38 @@
             this.Label_Se_Port = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
-            this.DisConBtn = new MetroFramework.Controls.MetroButton();
-            this.ConnectBtn = new MetroFramework.Controls.MetroButton();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-            this.BaudRate = new MetroFramework.Controls.MetroTextBox();
-            this.SeriPort = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.Zigbee_Tile = new MetroFramework.Controls.MetroTile();
+            this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
+            this.UART_Tile = new MetroFramework.Controls.MetroTile();
+            this.RF_Tile = new MetroFramework.Controls.MetroTile();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
-            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.LogPanel = new MetroFramework.Controls.MetroPanel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.ReceiveWindowBox = new System.Windows.Forms.RichTextBox();
             this.SendWindowBox = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Chk_Hexa = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.metroPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.metroPanel2.SuspendLayout();
+            this.UdpPanel.SuspendLayout();
+            this.TcpPanel.SuspendLayout();
             this.SerialPanel.SuspendLayout();
-            this.metroPanel4.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.LogPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
             this.metroPanel1.AutoSize = true;
             this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.metroPanel1.Controls.Add(this.Client_Tile);
-            this.metroPanel1.Controls.Add(this.Server_Tile);
+            this.metroPanel1.Controls.Add(this.TcpPanel);
+            this.metroPanel1.Controls.Add(this.UdpPanel);
+            this.metroPanel1.Controls.Add(this.UDP_Tile);
+            this.metroPanel1.Controls.Add(this.TCP_Tile);
+            this.metroPanel1.Controls.Add(this.SerialPanel);
             this.metroPanel1.Controls.Add(this.Zigbee_Tile);
             this.metroPanel1.Controls.Add(this.WIFI_Tile);
             this.metroPanel1.Controls.Add(this.UART_Tile);
@@ -101,162 +108,221 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(124, 397);
+            this.metroPanel1.Size = new System.Drawing.Size(563, 703);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // Client_Tile
+            // UdpPanel
             // 
-            this.Client_Tile.BackColor = System.Drawing.Color.White;
-            this.Client_Tile.ForeColor = System.Drawing.SystemColors.Control;
-            this.Client_Tile.Location = new System.Drawing.Point(3, 286);
-            this.Client_Tile.Name = "Client_Tile";
-            this.Client_Tile.Size = new System.Drawing.Size(115, 50);
-            this.Client_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Client_Tile.TabIndex = 9;
-            this.Client_Tile.Text = "tcpclient";
-            this.Client_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Client_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Client_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.Client_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.UdpPanel.Controls.Add(this.checkBox2);
+            this.UdpPanel.Controls.Add(this.comboBox3);
+            this.UdpPanel.Controls.Add(this.comboBox4);
+            this.UdpPanel.Controls.Add(this.label9);
+            this.UdpPanel.Controls.Add(this.label10);
+            this.UdpPanel.Controls.Add(this.label11);
+            this.UdpPanel.Controls.Add(this.button4);
+            this.UdpPanel.Controls.Add(this.button5);
+            this.UdpPanel.Location = new System.Drawing.Point(107, 539);
+            this.UdpPanel.Name = "UdpPanel";
+            this.UdpPanel.Size = new System.Drawing.Size(340, 161);
+            this.UdpPanel.TabIndex = 15;
+            this.UdpPanel.Visible = false;
             // 
-            // Server_Tile
+            // checkBox2
             // 
-            this.Server_Tile.BackColor = System.Drawing.Color.White;
-            this.Server_Tile.ForeColor = System.Drawing.SystemColors.Control;
-            this.Server_Tile.Location = new System.Drawing.Point(3, 230);
-            this.Server_Tile.Name = "Server_Tile";
-            this.Server_Tile.Size = new System.Drawing.Size(115, 50);
-            this.Server_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Server_Tile.TabIndex = 8;
-            this.Server_Tile.Text = "tcpserver";
-            this.Server_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Server_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Server_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.Server_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(15, 83);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(88, 16);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "서버 활성화";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // Zigbee_Tile
+            // comboBox3
             // 
-            this.Zigbee_Tile.BackColor = System.Drawing.Color.White;
-            this.Zigbee_Tile.ForeColor = System.Drawing.SystemColors.Control;
-            this.Zigbee_Tile.Location = new System.Drawing.Point(3, 174);
-            this.Zigbee_Tile.Name = "Zigbee_Tile";
-            this.Zigbee_Tile.Size = new System.Drawing.Size(115, 50);
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.TabIndex = 7;
-            this.Zigbee_Tile.Text = "ZigBee";
-            this.Zigbee_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Zigbee_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Zigbee_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.Zigbee_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.Zigbee_Tile.Click += new System.EventHandler(this.Zigbee_Tile_Click);
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(109, 25);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 20);
+            this.comboBox3.TabIndex = 13;
             // 
-            // WIFI_Tile
+            // comboBox4
             // 
-            this.WIFI_Tile.Location = new System.Drawing.Point(3, 118);
-            this.WIFI_Tile.Name = "WIFI_Tile";
-            this.WIFI_Tile.Size = new System.Drawing.Size(115, 50);
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.WIFI_Tile.TabIndex = 6;
-            this.WIFI_Tile.Text = "WIFI";
-            this.WIFI_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WIFI_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WIFI_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.WIFI_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.WIFI_Tile.Click += new System.EventHandler(this.WIFI_Tile_Click);
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(109, 58);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 20);
+            this.comboBox4.TabIndex = 12;
             // 
-            // UART_Tile
+            // label9
             // 
-            this.UART_Tile.Location = new System.Drawing.Point(3, 62);
-            this.UART_Tile.Name = "UART_Tile";
-            this.UART_Tile.Size = new System.Drawing.Size(115, 50);
-            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.UART_Tile.TabIndex = 5;
-            this.UART_Tile.Text = "UART";
-            this.UART_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.UART_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.UART_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.UART_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.UART_Tile.Click += new System.EventHandler(this.UART_Tile_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(82, 12);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "포트       (F) :";
             // 
-            // RF_Tile
+            // label10
             // 
-            this.RF_Tile.Location = new System.Drawing.Point(3, 6);
-            this.RF_Tile.Name = "RF_Tile";
-            this.RF_Tile.Size = new System.Drawing.Size(115, 50);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
-            this.RF_Tile.TabIndex = 4;
-            this.RF_Tile.Text = "RF";
-            this.RF_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RF_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RF_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.RF_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.RF_Tile.Click += new System.EventHandler(this.RF_Tile_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(81, 12);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "IP           (I) :";
             // 
-            // menuStrip1
+            // label11
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.asdfasdfToolStripMenuItem,
-            this.ddfdfToolStripMenuItem});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 60);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(960, 19);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 12);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "UDP 설정";
             // 
-            // asdfasdfToolStripMenuItem
+            // button4
             // 
-            this.asdfasdfToolStripMenuItem.Name = "asdfasdfToolStripMenuItem";
-            this.asdfasdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
-            this.asdfasdfToolStripMenuItem.Text = "메인";
+            this.button4.Location = new System.Drawing.Point(250, 59);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // ddfdfToolStripMenuItem
+            // button5
             // 
-            this.ddfdfToolStripMenuItem.Name = "ddfdfToolStripMenuItem";
-            this.ddfdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
-            this.ddfdfToolStripMenuItem.Text = "설정";
+            this.button5.Location = new System.Drawing.Point(250, 22);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "옵션적용";
+            this.button5.UseVisualStyleBackColor = true;
             // 
-            // metroPanel2
+            // TcpPanel
             // 
-            this.metroPanel2.Controls.Add(this.ReceiveBtn);
-            this.metroPanel2.Controls.Add(this.metroLabel6);
-            this.metroPanel2.Controls.Add(this.metroTextBox6);
-            this.metroPanel2.Controls.Add(this.DisConBtn);
-            this.metroPanel2.Controls.Add(this.ConnectBtn);
-            this.metroPanel2.Controls.Add(this.metroLabel5);
-            this.metroPanel2.Controls.Add(this.metroLabel4);
-            this.metroPanel2.Controls.Add(this.metroLabel3);
-            this.metroPanel2.Controls.Add(this.metroLabel2);
-            this.metroPanel2.Controls.Add(this.metroLabel1);
-            this.metroPanel2.Controls.Add(this.metroTextBox5);
-            this.metroPanel2.Controls.Add(this.BaudRate);
-            this.metroPanel2.Controls.Add(this.SeriPort);
-            this.metroPanel2.Controls.Add(this.metroTextBox2);
-            this.metroPanel2.Controls.Add(this.metroTextBox1);
-            this.metroPanel2.HorizontalScrollbarBarColor = true;
-            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(133, 82);
-            this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(341, 284);
-            this.metroPanel2.TabIndex = 4;
-            this.metroPanel2.VerticalScrollbarBarColor = true;
-            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.VerticalScrollbarSize = 10;
+            this.TcpPanel.Controls.Add(this.textBox1);
+            this.TcpPanel.Controls.Add(this.checkBox1);
+            this.TcpPanel.Controls.Add(this.comboBox1);
+            this.TcpPanel.Controls.Add(this.comboBox2);
+            this.TcpPanel.Controls.Add(this.label1);
+            this.TcpPanel.Controls.Add(this.label7);
+            this.TcpPanel.Controls.Add(this.label8);
+            this.TcpPanel.Controls.Add(this.button1);
+            this.TcpPanel.Controls.Add(this.button3);
+            this.TcpPanel.Location = new System.Drawing.Point(23, 342);
+            this.TcpPanel.Name = "TcpPanel";
+            this.TcpPanel.Size = new System.Drawing.Size(340, 180);
+            this.TcpPanel.TabIndex = 14;
+            this.TcpPanel.Visible = false;
             // 
-            // ReceiveBtn
+            // checkBox1
             // 
-            this.ReceiveBtn.Location = new System.Drawing.Point(252, 247);
-            this.ReceiveBtn.Name = "ReceiveBtn";
-            this.ReceiveBtn.Size = new System.Drawing.Size(80, 32);
-            this.ReceiveBtn.TabIndex = 17;
-            this.ReceiveBtn.Text = "받기";
-            this.ReceiveBtn.Click += new System.EventHandler(this.ReceiveBtn_Click);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(11, 83);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(88, 16);
+            this.checkBox1.TabIndex = 16;
+            this.checkBox1.Text = "서버 활성화";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(109, 25);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 13;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(109, 58);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "포트       (F) :";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 12);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "IP           (I) :";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 8);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 12);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "TCP 설정";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(250, 59);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(250, 22);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "옵션적용";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // UDP_Tile
+            // 
+            this.UDP_Tile.BackColor = System.Drawing.Color.White;
+            this.UDP_Tile.ForeColor = System.Drawing.SystemColors.Control;
+            this.UDP_Tile.Location = new System.Drawing.Point(3, 286);
+            this.UDP_Tile.Name = "UDP_Tile";
+            this.UDP_Tile.Size = new System.Drawing.Size(115, 50);
+            this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.UDP_Tile.TabIndex = 9;
+            this.UDP_Tile.Text = "UDP";
+            this.UDP_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UDP_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UDP_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.UDP_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.UDP_Tile.Click += new System.EventHandler(this.UDP_Tile_Click);
+            // 
+            // TCP_Tile
+            // 
+            this.TCP_Tile.BackColor = System.Drawing.Color.White;
+            this.TCP_Tile.ForeColor = System.Drawing.SystemColors.Control;
+            this.TCP_Tile.Location = new System.Drawing.Point(3, 230);
+            this.TCP_Tile.Name = "TCP_Tile";
+            this.TCP_Tile.Size = new System.Drawing.Size(115, 50);
+            this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.TCP_Tile.TabIndex = 8;
+            this.TCP_Tile.Text = "TCP";
+            this.TCP_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TCP_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TCP_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.TCP_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.TCP_Tile.Click += new System.EventHandler(this.TCP_Tile_Click);
             // 
             // SerialPanel
             // 
@@ -274,7 +340,7 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.button2);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(134, 82);
+            this.SerialPanel.Location = new System.Drawing.Point(140, 6);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(340, 286);
             this.SerialPanel.TabIndex = 7;
@@ -408,126 +474,89 @@
             this.Serial_Btn_OK.UseVisualStyleBackColor = true;
             this.Serial_Btn_OK.Click += new System.EventHandler(this.Serial_Btn_OK_Click);
             // 
-            // metroLabel6
+            // Zigbee_Tile
             // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(4, 208);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel6.TabIndex = 15;
-            this.metroLabel6.Text = "metroLabel6";
+            this.Zigbee_Tile.BackColor = System.Drawing.Color.White;
+            this.Zigbee_Tile.ForeColor = System.Drawing.SystemColors.Control;
+            this.Zigbee_Tile.Location = new System.Drawing.Point(3, 174);
+            this.Zigbee_Tile.Name = "Zigbee_Tile";
+            this.Zigbee_Tile.Size = new System.Drawing.Size(115, 50);
+            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Zigbee_Tile.TabIndex = 7;
+            this.Zigbee_Tile.Text = "ZigBee";
+            this.Zigbee_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Zigbee_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Zigbee_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.Zigbee_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.Zigbee_Tile.Click += new System.EventHandler(this.Zigbee_Tile_Click);
             // 
-            // metroTextBox6
+            // WIFI_Tile
             // 
-            this.metroTextBox6.Location = new System.Drawing.Point(93, 208);
-            this.metroTextBox6.Name = "metroTextBox6";
-            this.metroTextBox6.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox6.TabIndex = 14;
-            this.metroTextBox6.Text = "metroTextBox6";
+            this.WIFI_Tile.Location = new System.Drawing.Point(3, 118);
+            this.WIFI_Tile.Name = "WIFI_Tile";
+            this.WIFI_Tile.Size = new System.Drawing.Size(115, 50);
+            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.WIFI_Tile.TabIndex = 6;
+            this.WIFI_Tile.Text = "WIFI";
+            this.WIFI_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WIFI_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WIFI_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.WIFI_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.WIFI_Tile.Click += new System.EventHandler(this.WIFI_Tile_Click);
             // 
-            // DisConBtn
+            // UART_Tile
             // 
-            this.DisConBtn.Location = new System.Drawing.Point(87, 247);
-            this.DisConBtn.Name = "DisConBtn";
-            this.DisConBtn.Size = new System.Drawing.Size(80, 32);
-            this.DisConBtn.TabIndex = 13;
-            this.DisConBtn.Text = "연결 끊기";
-            this.DisConBtn.Click += new System.EventHandler(this.DisConBtn_Click);
+            this.UART_Tile.Location = new System.Drawing.Point(3, 62);
+            this.UART_Tile.Name = "UART_Tile";
+            this.UART_Tile.Size = new System.Drawing.Size(115, 50);
+            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.UART_Tile.TabIndex = 5;
+            this.UART_Tile.Text = "UART";
+            this.UART_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UART_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UART_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.UART_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.UART_Tile.Click += new System.EventHandler(this.UART_Tile_Click);
             // 
-            // ConnectBtn
+            // RF_Tile
             // 
-            this.ConnectBtn.Location = new System.Drawing.Point(4, 247);
-            this.ConnectBtn.Name = "ConnectBtn";
-            this.ConnectBtn.Size = new System.Drawing.Size(78, 32);
-            this.ConnectBtn.Style = MetroFramework.MetroColorStyle.Orange;
-            this.ConnectBtn.TabIndex = 12;
-            this.ConnectBtn.Text = "연결";
+            this.RF_Tile.Location = new System.Drawing.Point(3, 6);
+            this.RF_Tile.Name = "RF_Tile";
+            this.RF_Tile.Size = new System.Drawing.Size(115, 50);
+            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
+            this.RF_Tile.TabIndex = 4;
+            this.RF_Tile.Text = "RF";
+            this.RF_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RF_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RF_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.RF_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.RF_Tile.Click += new System.EventHandler(this.RF_Tile_Click);
             // 
-            // metroLabel5
+            // menuStrip1
             // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(4, 168);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(67, 19);
-            this.metroLabel5.TabIndex = 11;
-            this.metroLabel5.Text = "ClientMsg";
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asdfasdfToolStripMenuItem,
+            this.ddfdfToolStripMenuItem});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 60);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(960, 19);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // metroLabel4
+            // asdfasdfToolStripMenuItem
             // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(3, 127);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel4.TabIndex = 10;
-            this.metroLabel4.Text = "BaudRate";
+            this.asdfasdfToolStripMenuItem.Name = "asdfasdfToolStripMenuItem";
+            this.asdfasdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
+            this.asdfasdfToolStripMenuItem.Text = "메인";
             // 
-            // metroLabel3
+            // ddfdfToolStripMenuItem
             // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 86);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel3.TabIndex = 9;
-            this.metroLabel3.Text = "포트넘버";
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(4, 45);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(62, 19);
-            this.metroLabel2.TabIndex = 8;
-            this.metroLabel2.Text = "Port주소";
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 7);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(48, 19);
-            this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "IP주소";
-            // 
-            // metroTextBox5
-            // 
-            this.metroTextBox5.Location = new System.Drawing.Point(93, 168);
-            this.metroTextBox5.Name = "metroTextBox5";
-            this.metroTextBox5.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox5.TabIndex = 6;
-            this.metroTextBox5.Text = "metroTextBox5";
-            // 
-            // BaudRate
-            // 
-            this.BaudRate.Location = new System.Drawing.Point(93, 127);
-            this.BaudRate.Name = "BaudRate";
-            this.BaudRate.Size = new System.Drawing.Size(239, 35);
-            this.BaudRate.TabIndex = 5;
-            this.BaudRate.Text = "9600";
-            // 
-            // SeriPort
-            // 
-            this.SeriPort.Location = new System.Drawing.Point(93, 86);
-            this.SeriPort.Name = "SeriPort";
-            this.SeriPort.Size = new System.Drawing.Size(239, 35);
-            this.SeriPort.Style = MetroFramework.MetroColorStyle.Pink;
-            this.SeriPort.TabIndex = 4;
-            this.SeriPort.Text = "포트넘버 입력";
-            // 
-            // metroTextBox2
-            // 
-            this.metroTextBox2.Location = new System.Drawing.Point(93, 45);
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox2.TabIndex = 3;
-            this.metroTextBox2.Text = "metroTextBox2";
-            // 
-            // metroTextBox1
-            // 
-            this.metroTextBox1.Location = new System.Drawing.Point(93, 4);
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox1.TabIndex = 2;
-            this.metroTextBox1.Text = "metroTextBox1";
+            this.ddfdfToolStripMenuItem.Name = "ddfdfToolStripMenuItem";
+            this.ddfdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
+            this.ddfdfToolStripMenuItem.Text = "설정";
             // 
             // SendBtn
             // 
@@ -538,20 +567,20 @@
             this.SendBtn.Text = "보내기";
             this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
-            // metroPanel4
+            // LogPanel
             // 
-            this.metroPanel4.Controls.Add(this.metroLabel7);
-            this.metroPanel4.Controls.Add(this.ReceiveWindowBox);
-            this.metroPanel4.HorizontalScrollbarBarColor = true;
-            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel4.HorizontalScrollbarSize = 10;
-            this.metroPanel4.Location = new System.Drawing.Point(351, 369);
-            this.metroPanel4.Name = "metroPanel4";
-            this.metroPanel4.Size = new System.Drawing.Size(442, 363);
-            this.metroPanel4.TabIndex = 6;
-            this.metroPanel4.VerticalScrollbarBarColor = true;
-            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel4.VerticalScrollbarSize = 10;
+            this.LogPanel.Controls.Add(this.metroLabel7);
+            this.LogPanel.Controls.Add(this.ReceiveWindowBox);
+            this.LogPanel.HorizontalScrollbarBarColor = true;
+            this.LogPanel.HorizontalScrollbarHighlightOnWheel = false;
+            this.LogPanel.HorizontalScrollbarSize = 10;
+            this.LogPanel.Location = new System.Drawing.Point(351, 369);
+            this.LogPanel.Name = "LogPanel";
+            this.LogPanel.Size = new System.Drawing.Size(442, 363);
+            this.LogPanel.TabIndex = 6;
+            this.LogPanel.VerticalScrollbarBarColor = true;
+            this.LogPanel.VerticalScrollbarHighlightOnWheel = false;
+            this.LogPanel.VerticalScrollbarSize = 10;
             // 
             // metroLabel7
             // 
@@ -601,11 +630,19 @@
             this.Chk_Hexa.AutoSize = true;
             this.Chk_Hexa.Location = new System.Drawing.Point(269, 421);
             this.Chk_Hexa.Name = "Chk_Hexa";
-            this.Chk_Hexa.Size = new System.Drawing.Size(72, 16);
+            this.Chk_Hexa.Size = new System.Drawing.Size(60, 16);
             this.Chk_Hexa.TabIndex = 8;
-            this.Chk_Hexa.Text = "16김진수";
+            this.Chk_Hexa.Text = "16진수";
             this.Chk_Hexa.UseVisualStyleBackColor = true;
             this.Chk_Hexa.CheckedChanged += new System.EventHandler(this.Chk_Hexa_CheckedChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(11, 113);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(258, 21);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // MainForm
             // 
@@ -613,10 +650,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 768);
             this.Controls.Add(this.Chk_Hexa);
-            this.Controls.Add(this.metroPanel4);
+            this.Controls.Add(this.LogPanel);
             this.Controls.Add(this.SendWindowBox);
-            this.Controls.Add(this.SerialPanel);
-            this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.SendBtn);
@@ -629,14 +664,16 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.metroPanel2.ResumeLayout(false);
-            this.metroPanel2.PerformLayout();
+            this.UdpPanel.ResumeLayout(false);
+            this.UdpPanel.PerformLayout();
+            this.TcpPanel.ResumeLayout(false);
+            this.TcpPanel.PerformLayout();
             this.SerialPanel.ResumeLayout(false);
             this.SerialPanel.PerformLayout();
-            this.metroPanel4.ResumeLayout(false);
-            this.metroPanel4.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.LogPanel.ResumeLayout(false);
+            this.LogPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -651,29 +688,13 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem asdfasdfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ddfdfToolStripMenuItem;
-        private MetroFramework.Controls.MetroPanel metroPanel2;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
-        private MetroFramework.Controls.MetroTextBox metroTextBox6;
-        private MetroFramework.Controls.MetroButton DisConBtn;
-        private MetroFramework.Controls.MetroButton ConnectBtn;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroTextBox metroTextBox5;
-        private MetroFramework.Controls.MetroTextBox BaudRate;
-        private MetroFramework.Controls.MetroTextBox SeriPort;
-        private MetroFramework.Controls.MetroTextBox metroTextBox2;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private MetroFramework.Controls.MetroPanel metroPanel4;
+        private MetroFramework.Controls.MetroPanel LogPanel;
         private MetroFramework.Controls.MetroLabel metroLabel7;
-        private System.Windows.Forms.RichTextBox ReceiveWindowBox;
-        private MetroFramework.Controls.MetroTile Server_Tile;
-        private MetroFramework.Controls.MetroTile Client_Tile;
+        public System.Windows.Forms.RichTextBox ReceiveWindowBox;
+        private MetroFramework.Controls.MetroTile TCP_Tile;
+        private MetroFramework.Controls.MetroTile UDP_Tile;
         private MetroFramework.Controls.MetroButton SendBtn;
         private System.Windows.Forms.RichTextBox SendWindowBox;
-        private MetroFramework.Controls.MetroButton ReceiveBtn;
         private System.Windows.Forms.Panel SerialPanel;
         private System.Windows.Forms.ComboBox Serial_Combo_FlowCon;
         private System.Windows.Forms.ComboBox Serial_Combo_StopBit;
@@ -691,6 +712,25 @@
         private System.Windows.Forms.Button Serial_Btn_OK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.CheckBox Chk_Hexa;
+        private System.Windows.Forms.Panel TcpPanel;
+        private System.Windows.Forms.Panel UdpPanel;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
