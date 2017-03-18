@@ -541,12 +541,6 @@ namespace MultiTerminal
         #endregion
 
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             double sec = double.Parse(textBox2.Text);
