@@ -86,13 +86,9 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.Btn_ASCII4 = new System.Windows.Forms.Button();
             this.Btn_AEAS4 = new System.Windows.Forms.Button();
-            this.Btn_ASCII3 = new System.Windows.Forms.Button();
             this.Btn_AEAS3 = new System.Windows.Forms.Button();
-            this.Btn_ASCII2 = new System.Windows.Forms.Button();
             this.Btn_AEAS2 = new System.Windows.Forms.Button();
-            this.Btn_ASCII1 = new System.Windows.Forms.Button();
             this.Btn_AEAS1 = new System.Windows.Forms.Button();
             this.Btn_Send3 = new System.Windows.Forms.Button();
             this.SendBox3 = new System.Windows.Forms.RichTextBox();
@@ -665,13 +661,9 @@
             this.panel3.Controls.Add(this.textBox3);
             this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.checkBox3);
-            this.panel3.Controls.Add(this.Btn_ASCII4);
             this.panel3.Controls.Add(this.Btn_AEAS4);
-            this.panel3.Controls.Add(this.Btn_ASCII3);
             this.panel3.Controls.Add(this.Btn_AEAS3);
-            this.panel3.Controls.Add(this.Btn_ASCII2);
             this.panel3.Controls.Add(this.Btn_AEAS2);
-            this.panel3.Controls.Add(this.Btn_ASCII1);
             this.panel3.Controls.Add(this.Btn_AEAS1);
             this.panel3.Controls.Add(this.Btn_Send3);
             this.panel3.Controls.Add(this.SendBox3);
@@ -731,21 +723,10 @@
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged_1);
             // 
-            // Btn_ASCII4
-            // 
-            this.Btn_ASCII4.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_ASCII4.Location = new System.Drawing.Point(496, 206);
-            this.Btn_ASCII4.Name = "Btn_ASCII4";
-            this.Btn_ASCII4.Size = new System.Drawing.Size(39, 47);
-            this.Btn_ASCII4.TabIndex = 35;
-            this.Btn_ASCII4.Text = "ASCII";
-            this.Btn_ASCII4.UseVisualStyleBackColor = true;
-            this.Btn_ASCII4.Click += new System.EventHandler(this.Btn_ASCII4_Click);
-            // 
             // Btn_AEAS4
             // 
             this.Btn_AEAS4.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_AEAS4.Location = new System.Drawing.Point(459, 206);
+            this.Btn_AEAS4.Location = new System.Drawing.Point(504, 206);
             this.Btn_AEAS4.Name = "Btn_AEAS4";
             this.Btn_AEAS4.Size = new System.Drawing.Size(31, 47);
             this.Btn_AEAS4.TabIndex = 34;
@@ -753,21 +734,10 @@
             this.Btn_AEAS4.UseVisualStyleBackColor = true;
             this.Btn_AEAS4.Click += new System.EventHandler(this.Btn_AEAS4_Click);
             // 
-            // Btn_ASCII3
-            // 
-            this.Btn_ASCII3.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_ASCII3.Location = new System.Drawing.Point(496, 177);
-            this.Btn_ASCII3.Name = "Btn_ASCII3";
-            this.Btn_ASCII3.Size = new System.Drawing.Size(39, 25);
-            this.Btn_ASCII3.TabIndex = 33;
-            this.Btn_ASCII3.Text = "ASCII";
-            this.Btn_ASCII3.UseVisualStyleBackColor = true;
-            this.Btn_ASCII3.Click += new System.EventHandler(this.Btn_ASCII3_Click);
-            // 
             // Btn_AEAS3
             // 
             this.Btn_AEAS3.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_AEAS3.Location = new System.Drawing.Point(459, 177);
+            this.Btn_AEAS3.Location = new System.Drawing.Point(504, 177);
             this.Btn_AEAS3.Name = "Btn_AEAS3";
             this.Btn_AEAS3.Size = new System.Drawing.Size(31, 25);
             this.Btn_AEAS3.TabIndex = 32;
@@ -775,21 +745,10 @@
             this.Btn_AEAS3.UseVisualStyleBackColor = true;
             this.Btn_AEAS3.Click += new System.EventHandler(this.Btn_AEAS3_Click);
             // 
-            // Btn_ASCII2
-            // 
-            this.Btn_ASCII2.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_ASCII2.Location = new System.Drawing.Point(496, 147);
-            this.Btn_ASCII2.Name = "Btn_ASCII2";
-            this.Btn_ASCII2.Size = new System.Drawing.Size(39, 25);
-            this.Btn_ASCII2.TabIndex = 31;
-            this.Btn_ASCII2.Text = "ASCII";
-            this.Btn_ASCII2.UseVisualStyleBackColor = true;
-            this.Btn_ASCII2.Click += new System.EventHandler(this.Btn_ASCII2_Click);
-            // 
             // Btn_AEAS2
             // 
             this.Btn_AEAS2.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_AEAS2.Location = new System.Drawing.Point(459, 147);
+            this.Btn_AEAS2.Location = new System.Drawing.Point(504, 147);
             this.Btn_AEAS2.Name = "Btn_AEAS2";
             this.Btn_AEAS2.Size = new System.Drawing.Size(31, 25);
             this.Btn_AEAS2.TabIndex = 30;
@@ -797,21 +756,10 @@
             this.Btn_AEAS2.UseVisualStyleBackColor = true;
             this.Btn_AEAS2.Click += new System.EventHandler(this.Btn_AEAS2_Click);
             // 
-            // Btn_ASCII1
-            // 
-            this.Btn_ASCII1.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_ASCII1.Location = new System.Drawing.Point(496, 117);
-            this.Btn_ASCII1.Name = "Btn_ASCII1";
-            this.Btn_ASCII1.Size = new System.Drawing.Size(39, 25);
-            this.Btn_ASCII1.TabIndex = 29;
-            this.Btn_ASCII1.Text = "ASCII";
-            this.Btn_ASCII1.UseVisualStyleBackColor = true;
-            this.Btn_ASCII1.Click += new System.EventHandler(this.Btn_ASCII1_Click);
-            // 
             // Btn_AEAS1
             // 
             this.Btn_AEAS1.Font = new System.Drawing.Font("굴림", 7F);
-            this.Btn_AEAS1.Location = new System.Drawing.Point(459, 117);
+            this.Btn_AEAS1.Location = new System.Drawing.Point(504, 117);
             this.Btn_AEAS1.Name = "Btn_AEAS1";
             this.Btn_AEAS1.Size = new System.Drawing.Size(31, 25);
             this.Btn_AEAS1.TabIndex = 28;
@@ -821,7 +769,7 @@
             // 
             // Btn_Send3
             // 
-            this.Btn_Send3.Location = new System.Drawing.Point(399, 176);
+            this.Btn_Send3.Location = new System.Drawing.Point(444, 176);
             this.Btn_Send3.Name = "Btn_Send3";
             this.Btn_Send3.Size = new System.Drawing.Size(53, 25);
             this.Btn_Send3.TabIndex = 27;
@@ -838,14 +786,14 @@
             this.SendBox3.ImeMode = System.Windows.Forms.ImeMode.On;
             this.SendBox3.Location = new System.Drawing.Point(6, 177);
             this.SendBox3.Name = "SendBox3";
-            this.SendBox3.Size = new System.Drawing.Size(395, 24);
+            this.SendBox3.Size = new System.Drawing.Size(432, 24);
             this.SendBox3.TabIndex = 26;
             this.SendBox3.TabStop = false;
             this.SendBox3.Text = "";
             // 
             // Btn_Send4
             // 
-            this.Btn_Send4.Location = new System.Drawing.Point(399, 205);
+            this.Btn_Send4.Location = new System.Drawing.Point(444, 205);
             this.Btn_Send4.Name = "Btn_Send4";
             this.Btn_Send4.Size = new System.Drawing.Size(53, 48);
             this.Btn_Send4.TabIndex = 25;
@@ -855,7 +803,7 @@
             // 
             // Btn_Send2
             // 
-            this.Btn_Send2.Location = new System.Drawing.Point(399, 146);
+            this.Btn_Send2.Location = new System.Drawing.Point(444, 146);
             this.Btn_Send2.Name = "Btn_Send2";
             this.Btn_Send2.Size = new System.Drawing.Size(53, 25);
             this.Btn_Send2.TabIndex = 24;
@@ -872,14 +820,14 @@
             this.SendBox4.ImeMode = System.Windows.Forms.ImeMode.On;
             this.SendBox4.Location = new System.Drawing.Point(6, 206);
             this.SendBox4.Name = "SendBox4";
-            this.SendBox4.Size = new System.Drawing.Size(395, 47);
+            this.SendBox4.Size = new System.Drawing.Size(432, 47);
             this.SendBox4.TabIndex = 23;
             this.SendBox4.TabStop = false;
             this.SendBox4.Text = "";
             // 
             // Btn_Send1
             // 
-            this.Btn_Send1.Location = new System.Drawing.Point(399, 117);
+            this.Btn_Send1.Location = new System.Drawing.Point(444, 117);
             this.Btn_Send1.Name = "Btn_Send1";
             this.Btn_Send1.Size = new System.Drawing.Size(53, 25);
             this.Btn_Send1.TabIndex = 1;
@@ -896,7 +844,7 @@
             this.SendBox2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.SendBox2.Location = new System.Drawing.Point(6, 147);
             this.SendBox2.Name = "SendBox2";
-            this.SendBox2.Size = new System.Drawing.Size(395, 24);
+            this.SendBox2.Size = new System.Drawing.Size(432, 24);
             this.SendBox2.TabIndex = 22;
             this.SendBox2.TabStop = false;
             this.SendBox2.Text = "";
@@ -927,7 +875,7 @@
             this.SendBox1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.SendBox1.Location = new System.Drawing.Point(6, 118);
             this.SendBox1.Name = "SendBox1";
-            this.SendBox1.Size = new System.Drawing.Size(395, 24);
+            this.SendBox1.Size = new System.Drawing.Size(432, 24);
             this.SendBox1.TabIndex = 2;
             this.SendBox1.TabStop = false;
             this.SendBox1.Text = "";
@@ -946,6 +894,7 @@
             this.Zigbee_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Zigbee_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Zigbee_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.Zigbee_Tile.Visible = false;
             this.Zigbee_Tile.Click += new System.EventHandler(this.Zigbee_Tile_Click);
             // 
             // WIFI_Tile
@@ -960,6 +909,7 @@
             this.WIFI_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.WIFI_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.WIFI_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.WIFI_Tile.Visible = false;
             this.WIFI_Tile.Click += new System.EventHandler(this.WIFI_Tile_Click);
             // 
             // RF_Tile
@@ -974,6 +924,7 @@
             this.RF_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RF_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.RF_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.RF_Tile.Visible = false;
             this.RF_Tile.Click += new System.EventHandler(this.RF_Tile_Click);
             // 
             // menuStrip1
@@ -1129,10 +1080,6 @@
         private System.Windows.Forms.Button Btn_StopLog;
         private System.Windows.Forms.Button Btn_UseLog;
         private System.Windows.Forms.Button Btn_Clear;
-        private System.Windows.Forms.Button Btn_ASCII4;
-        private System.Windows.Forms.Button Btn_ASCII3;
-        private System.Windows.Forms.Button Btn_ASCII2;
-        private System.Windows.Forms.Button Btn_ASCII1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox3;

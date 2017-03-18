@@ -62,6 +62,25 @@ namespace MultiTerminal
             if(connectType == 2)
             {
                 ///여기에 시리얼 센드부분
+                try
+                {
+                    if (Flag_AEAS[0] == 0)
+                    {
+                        serial.SerialSend(this.SendBox1.Text);
+                    }
+                    else if (Flag_AEAS[0] == 1)
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
+                    }
+                    else
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message);
+                }
             }
             if (connectType == 5)
             {
@@ -90,7 +109,6 @@ namespace MultiTerminal
             // 초당 10번이면 100/1000
             // 초당 5번 이면 50/1000
             mactimer.Interval = perSec*1000/Count;
-            mactimer.Elapsed += OnMacro;
             mactimer.Enabled = true;
 
 
@@ -510,17 +528,20 @@ namespace MultiTerminal
 
         private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
         {
-            double sec = double.Parse(textBox2.Text);
+
+            int sec = Int32.Parse(textBox2.Text);
             int count = Int32.Parse(textBox3.Text);
             Thread macroThread = new Thread(() => SetMacroTime(count,sec));
             if (checkBox3.CheckState == CheckState.Checked)
             {
+                mactimer.Enabled = true;
                 mactimer.Elapsed += OnMacro;
                 macroThread.Start();
 
             }
             else
-            { 
+            {
+                mactimer.Enabled = false;
                 mactimer.Elapsed -= OnMacro;
                 macroThread.Abort();
             }
@@ -663,6 +684,7 @@ namespace MultiTerminal
                 //MessageBox.Show(ex.Message);
             }
         }
+
         #endregion
 
         #region 보내기 옵션들 묶음
@@ -757,83 +779,7 @@ namespace MultiTerminal
             }
         }
 
-        private void Btn_ASCII1_Click(object sender, EventArgs e)
-        {
-            if(Flag_ASCII[0] == 1)
-            {
-                Flag_ASCII[0] = -1;
-            }
-
-            Flag_ASCII[0]++;
-            switch (Flag_ASCII[0])
-            {
-                case 0:
-                    this.Btn_ASCII1.Text = "ASCII";
-                    break;
-                case 1:
-                    this.Btn_ASCII1.Text = "HEX";
-                    break;
-            }
-        }
-
-        private void Btn_ASCII2_Click(object sender, EventArgs e)
-        {
-            if (Flag_ASCII[1] == 1)
-            {
-                Flag_ASCII[1] = -1;
-            }
-
-            Flag_ASCII[1]++;
-            switch (Flag_ASCII[1])
-            {
-                case 0:
-                    this.Btn_ASCII2.Text = "ASCII";
-                    break;
-                case 1:
-                    this.Btn_ASCII2.Text = "HEX";
-                    break;
-            }
-        }
-
-        private void Btn_ASCII3_Click(object sender, EventArgs e)
-        {
-            if (Flag_ASCII[2] == 1)
-            {
-                Flag_ASCII[2] = -1;
-            }
-
-            Flag_ASCII[2]++;
-            switch (Flag_ASCII[2])
-            {
-                case 0:
-                    this.Btn_ASCII3.Text = "ASCII";
-                    break;
-                case 1:
-                    this.Btn_ASCII3.Text = "HEX";
-                    break;
-            }
-
-        }
-
-        private void Btn_ASCII4_Click(object sender, EventArgs e)
-        {
-            if (Flag_ASCII[3] == 1)
-            {
-                Flag_ASCII[3] = -1;
-            }
-
-            Flag_ASCII[3]++;
-            switch (Flag_ASCII[3])
-            {
-                case 0:
-                    this.Btn_ASCII4.Text = "ASCII";
-                    break;
-                case 1:
-                    this.Btn_ASCII4.Text = "HEX";
-                    break;
-            }
-
-        }
+        
         #endregion
 
         #region 수신 옵션들 묶음
