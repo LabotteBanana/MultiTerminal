@@ -59,19 +59,23 @@ namespace MultiTerminal
 
         private  void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
         {
-            if (isServ == true && tserv.client.Connected == true)
+            if(connectType == 1)
             {
-                tserv.SendMsg(textBox1.Text);
-                SendWindowBox.Text += textBox1.Text;
-                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                ///여기에 시리얼 센드부분
             }
-            if (isServ == false && tcla.client.Connected == true)
+            if (connectType == 5)
             {
-                tcla.SendMsg(textBox1.Text);
-                SendWindowBox.Text += textBox1.Text;
-                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                if (isServ == true && tserv.client.Connected == true)
+                {
+                    tserv.SendMsg(textBox1.Text);
+                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                }
+                if (isServ == false && tcla.client.Connected == true)
+                {
+                    tcla.SendMsg(textBox1.Text);
+                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                }
             }
-
 
         }
         public string GetTimer()
@@ -188,7 +192,7 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            Point Loc = new Point(140, 6);
+            Point Loc = new Point(0, 4);
             switch (OptionNumber)
             {
                 case 1:
@@ -482,7 +486,6 @@ namespace MultiTerminal
                     {
                         tserv.SendMsg(textBox1.Text);
 
-                        SendWindowBox.Text += textBox1.Text;
                         ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
 
                     }
@@ -493,7 +496,6 @@ namespace MultiTerminal
                     {
                         tcla.SendMsg(textBox1.Text);
 
-                        SendWindowBox.Text += textBox1.Text;
                         ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
 
                     }
@@ -565,18 +567,35 @@ namespace MultiTerminal
         {
             try
             {
-                if (Flag_AEAS[0] == 0)
+                if (connectType == 1)
                 {
-                    serial.SerialSend(this.SendBox1.Text);
+                    if (Flag_AEAS[0] == 0)
+                    {
+                        serial.SerialSend(this.SendBox1.Text);
+                    }
+                    else if (Flag_AEAS[0] == 1)
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
+                    }
+                    else
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
+                    }
                 }
-                else if (Flag_AEAS[0] == 1)
+                if (connectType == 5)
                 {
-                    serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
+                    if (isServ == true && tserv.client.Connected == true)
+                    {
+                        tserv.SendMsg(SendBox1.Text);
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    }
+                    if (isServ == false && tcla.client.Connected == true)
+                    {
+                        tcla.SendMsg(SendBox1.Text);
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    }
                 }
-                else
-                {
-                    serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
-                }               
+
             }
             catch (Exception ex)
             {
@@ -857,9 +876,8 @@ namespace MultiTerminal
                 Chk_AS_Flag = 0;
         }
 
+
         #endregion
-
-
     }
 
 }

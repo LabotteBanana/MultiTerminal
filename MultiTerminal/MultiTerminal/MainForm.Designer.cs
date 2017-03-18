@@ -81,6 +81,11 @@
             this.TCP_Tile = new MetroFramework.Controls.MetroTile();
             this.UART_Tile = new MetroFramework.Controls.MetroTile();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.Btn_ASCII4 = new System.Windows.Forms.Button();
             this.Btn_AEAS4 = new System.Windows.Forms.Button();
             this.Btn_ASCII3 = new System.Windows.Forms.Button();
@@ -320,7 +325,6 @@
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
             this.TcpPanel.Visible = false;
-            this.TcpPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TcpPanel_Paint);
             // 
             // checkBox1
             // 
@@ -384,7 +388,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -657,6 +660,11 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.textBox3);
+            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.checkBox3);
             this.panel3.Controls.Add(this.Btn_ASCII4);
             this.panel3.Controls.Add(this.Btn_AEAS4);
             this.panel3.Controls.Add(this.Btn_ASCII3);
@@ -679,6 +687,49 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(542, 267);
             this.panel3.TabIndex = 21;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(272, 96);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 12);
+            this.label16.TabIndex = 40;
+            this.label16.Text = "반복";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(158, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(17, 12);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "초";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(192, 90);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(74, 21);
+            this.textBox3.TabIndex = 38;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(78, 90);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(74, 21);
+            this.textBox2.TabIndex = 37;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(21, 93);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(60, 16);
+            this.checkBox3.TabIndex = 36;
+            this.checkBox3.Text = "매크로";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged_1);
             // 
             // Btn_ASCII4
             // 
@@ -1082,6 +1133,11 @@
         private System.Windows.Forms.Button Btn_ASCII3;
         private System.Windows.Forms.Button Btn_ASCII2;
         private System.Windows.Forms.Button Btn_ASCII1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 
