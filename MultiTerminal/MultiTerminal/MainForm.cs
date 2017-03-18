@@ -44,15 +44,13 @@ namespace MultiTerminal
             timer = new System.Timers.Timer();
             mactimer = new System.Timers.Timer();
             timer.Interval = 0.0001; // 1000==>1초 0.0001==>1000만분의1
-
             timer.Enabled = true;
             mactimer.Enabled = false;
 
             timer.Elapsed += OnTimeEvent;
-            mactimer.Elapsed += OnMacro;
 
             timer.AutoReset = true;
-            mactimer.AutoReset = false;
+            mactimer.AutoReset = true;
 
 
         }
@@ -86,19 +84,12 @@ namespace MultiTerminal
             return now;
         }
 
-        public void SetMacroTime(int perSec)
+        public void SetMacroTime(int count, double perSec)
         {
-            // 초당 10번이면 100/1000
-            // 초당 5번 이면 50/1000
-            bool btrue = true;
-            mactimer.Interval = 10000000;
-            if (btrue == false)
-            {
-                mactimer.Elapsed += OnMacro;
-            }
-                mactimer.Enabled = true;
-
-
+            mactimer.Interval = 1000*perSec/count; //perSec당 한번 보내기
+            //Interval이 커져야 천천히감
+            mactimer.Elapsed += OnMacro;
+            mactimer.Enabled = true;
         }
         #endregion
 
@@ -193,7 +184,7 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            Point Loc = new Point(140, 6);
+            Point Loc = new Point(0, 3);
             switch (OptionNumber)
             {
                 case 1:
@@ -467,6 +458,8 @@ namespace MultiTerminal
                 if (this.SendWindowBox.Text != null)
                 {
                     serial.SerialSend(SendWindowBox.Text);
+                    ReceiveWindowBox.ScrollToCaret();
+
                 }
             }
         }
@@ -548,25 +541,30 @@ namespace MultiTerminal
         #endregion
 
 
-        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            int value = Int32.Parse(textBox2.Text);
-            Thread macroThread = new Thread(() => SetMacroTime(value));
-            if (checkBox3.Checked == true)
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            double sec = double.Parse(textBox2.Text);
+            int count = int.Parse(textBox3.Text);
+            Thread macroThread = new Thread(() => SetMacroTime(count,sec));
+
+            if (checkBox3.CheckState == CheckState.Checked)
             {
-                if (macroThread.IsAlive == false)
-                    macroThread.Start();
-                else
-                    macroThread.Resume();
+                    if (macroThread.IsAlive == false)
+                        macroThread.Start();
             }
             else
             {
-                if (macroThread.IsAlive == true)
-                {
-                    macroThread.Suspend();
-                }
+                //mactimer.Stop();
+                mactimer.Elapsed -= OnMacro;
+                mactimer.Enabled = false;
+                //macroThread.Abort();
             }
-
 
         }
     } 
