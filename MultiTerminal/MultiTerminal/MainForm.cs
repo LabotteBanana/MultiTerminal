@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
+using System.Management;
 
 namespace MultiTerminal
 {
@@ -150,7 +151,9 @@ namespace MultiTerminal
                     {
                         connectType = 2;
                         SerialPanel.Location = Loc;
-                        this.SerialPanel.Visible = true;    // 시리얼 패널 보이기
+                        SerialPanel.Visible = true;    // 시리얼 패널 보이기
+                        TcpPanel.Visible = false;
+                        UdpPanel.Visible = false;
                         Serial_Combo_Init();
                     }
                     break;
@@ -177,6 +180,7 @@ namespace MultiTerminal
                     {
                         connectType = 6;
                         UdpPanel.Location = Loc;
+                        SerialPanel.Visible = false;
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = true;
                         //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
@@ -288,13 +292,28 @@ namespace MultiTerminal
             this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDown;
             this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDown;
 
-            List<string> data = new List<string>();
-            foreach (string s in SerialPort.GetPortNames())
+            using (var searcher = new ManagementObjectSearcher
+               ("SELECT * FROM WIN32_SerialPort"))
             {
-                data.Add(s);
+                string[] portnames = SerialPort.GetPortNames();
+                var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
+                var tList = (from n in portnames
+                             join p in ports on n equals p["DeviceID"].ToString()
+                             select n + " - " + p["Caption"]).ToList();
+                foreach (string s in tList)
+                {
+                    Serial_Combo_Port.Items.Add(s);
+                }
             }
-            Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
-            Serial_Combo_Port.SelectedIndex = 0;
+
+            //List<string> data = new List<string>();
+            //foreach (string s in SerialPort.GetPortNames())
+            //{
+            //    data.Add(s);
+            //}
+            //Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
+            if(Serial_Combo_Port.Items.Count != 0)
+                Serial_Combo_Port.SelectedIndex = 0;
 
             List<string> data2 = new List<string>();
             string[] Baud = { "4800", "9600", "14400", "19200" };
