@@ -43,21 +43,6 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.ReceiveBtn = new MetroFramework.Controls.MetroButton();
-            this.SendBtn = new MetroFramework.Controls.MetroButton();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
-            this.DisConBtn = new MetroFramework.Controls.MetroButton();
-            this.ConnectBtn = new MetroFramework.Controls.MetroButton();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-            this.BaudRate = new MetroFramework.Controls.MetroTextBox();
-            this.SeriPort = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
@@ -73,6 +58,21 @@
             this.Label_Se_Port = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
+            this.DisConBtn = new MetroFramework.Controls.MetroButton();
+            this.ConnectBtn = new MetroFramework.Controls.MetroButton();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
+            this.BaudRate = new MetroFramework.Controls.MetroTextBox();
+            this.SeriPort = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.ReceiveWindowBox = new System.Windows.Forms.RichTextBox();
@@ -258,136 +258,6 @@
             this.ReceiveBtn.Text = "받기";
             this.ReceiveBtn.Click += new System.EventHandler(this.ReceiveBtn_Click);
             // 
-            // SendBtn
-            // 
-            this.SendBtn.Location = new System.Drawing.Point(173, 247);
-            this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(80, 32);
-            this.SendBtn.TabIndex = 16;
-            this.SendBtn.Text = "보내기";
-            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(4, 208);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel6.TabIndex = 15;
-            this.metroLabel6.Text = "metroLabel6";
-            // 
-            // metroTextBox6
-            // 
-            this.metroTextBox6.Location = new System.Drawing.Point(93, 208);
-            this.metroTextBox6.Name = "metroTextBox6";
-            this.metroTextBox6.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox6.TabIndex = 14;
-            this.metroTextBox6.Text = "metroTextBox6";
-            // 
-            // DisConBtn
-            // 
-            this.DisConBtn.Location = new System.Drawing.Point(87, 247);
-            this.DisConBtn.Name = "DisConBtn";
-            this.DisConBtn.Size = new System.Drawing.Size(80, 32);
-            this.DisConBtn.TabIndex = 13;
-            this.DisConBtn.Text = "연결 끊기";
-            this.DisConBtn.Click += new System.EventHandler(this.DisConBtn_Click);
-            // 
-            // ConnectBtn
-            // 
-            this.ConnectBtn.Location = new System.Drawing.Point(4, 247);
-            this.ConnectBtn.Name = "ConnectBtn";
-            this.ConnectBtn.Size = new System.Drawing.Size(78, 32);
-            this.ConnectBtn.Style = MetroFramework.MetroColorStyle.Orange;
-            this.ConnectBtn.TabIndex = 12;
-            this.ConnectBtn.Text = "연결";
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(4, 168);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(67, 19);
-            this.metroLabel5.TabIndex = 11;
-            this.metroLabel5.Text = "ClientMsg";
-            // 
-            // metroLabel4
-            // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(3, 127);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel4.TabIndex = 10;
-            this.metroLabel4.Text = "BaudRate";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 86);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel3.TabIndex = 9;
-            this.metroLabel3.Text = "포트넘버";
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(4, 45);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(62, 19);
-            this.metroLabel2.TabIndex = 8;
-            this.metroLabel2.Text = "Port주소";
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 7);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(48, 19);
-            this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "IP주소";
-            // 
-            // metroTextBox5
-            // 
-            this.metroTextBox5.Location = new System.Drawing.Point(93, 168);
-            this.metroTextBox5.Name = "metroTextBox5";
-            this.metroTextBox5.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox5.TabIndex = 6;
-            this.metroTextBox5.Text = "metroTextBox5";
-            // 
-            // BaudRate
-            // 
-            this.BaudRate.Location = new System.Drawing.Point(93, 127);
-            this.BaudRate.Name = "BaudRate";
-            this.BaudRate.Size = new System.Drawing.Size(239, 35);
-            this.BaudRate.TabIndex = 5;
-            this.BaudRate.Text = "9600";
-            // 
-            // SeriPort
-            // 
-            this.SeriPort.Location = new System.Drawing.Point(93, 86);
-            this.SeriPort.Name = "SeriPort";
-            this.SeriPort.Size = new System.Drawing.Size(239, 35);
-            this.SeriPort.Style = MetroFramework.MetroColorStyle.Pink;
-            this.SeriPort.TabIndex = 4;
-            this.SeriPort.Text = "포트넘버 입력";
-            // 
-            // metroTextBox2
-            // 
-            this.metroTextBox2.Location = new System.Drawing.Point(93, 45);
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox2.TabIndex = 3;
-            this.metroTextBox2.Text = "metroTextBox2";
-            // 
-            // metroTextBox1
-            // 
-            this.metroTextBox1.Location = new System.Drawing.Point(93, 4);
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.Size = new System.Drawing.Size(239, 35);
-            this.metroTextBox1.TabIndex = 2;
-            this.metroTextBox1.Text = "metroTextBox1";
-            // 
             // SerialPanel
             // 
             this.SerialPanel.Controls.Add(this.Serial_Combo_FlowCon);
@@ -404,10 +274,11 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.button2);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(607, 102);
+            this.SerialPanel.Location = new System.Drawing.Point(134, 82);
             this.SerialPanel.Name = "SerialPanel";
-            this.SerialPanel.Size = new System.Drawing.Size(337, 325);
+            this.SerialPanel.Size = new System.Drawing.Size(340, 286);
             this.SerialPanel.TabIndex = 7;
+            this.SerialPanel.Visible = false;
             // 
             // Serial_Combo_FlowCon
             // 
@@ -537,6 +408,136 @@
             this.Serial_Btn_OK.UseVisualStyleBackColor = true;
             this.Serial_Btn_OK.Click += new System.EventHandler(this.Serial_Btn_OK_Click);
             // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(4, 208);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel6.TabIndex = 15;
+            this.metroLabel6.Text = "metroLabel6";
+            // 
+            // metroTextBox6
+            // 
+            this.metroTextBox6.Location = new System.Drawing.Point(93, 208);
+            this.metroTextBox6.Name = "metroTextBox6";
+            this.metroTextBox6.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox6.TabIndex = 14;
+            this.metroTextBox6.Text = "metroTextBox6";
+            // 
+            // DisConBtn
+            // 
+            this.DisConBtn.Location = new System.Drawing.Point(87, 247);
+            this.DisConBtn.Name = "DisConBtn";
+            this.DisConBtn.Size = new System.Drawing.Size(80, 32);
+            this.DisConBtn.TabIndex = 13;
+            this.DisConBtn.Text = "연결 끊기";
+            this.DisConBtn.Click += new System.EventHandler(this.DisConBtn_Click);
+            // 
+            // ConnectBtn
+            // 
+            this.ConnectBtn.Location = new System.Drawing.Point(4, 247);
+            this.ConnectBtn.Name = "ConnectBtn";
+            this.ConnectBtn.Size = new System.Drawing.Size(78, 32);
+            this.ConnectBtn.Style = MetroFramework.MetroColorStyle.Orange;
+            this.ConnectBtn.TabIndex = 12;
+            this.ConnectBtn.Text = "연결";
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(4, 168);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel5.TabIndex = 11;
+            this.metroLabel5.Text = "ClientMsg";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(3, 127);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(65, 19);
+            this.metroLabel4.TabIndex = 10;
+            this.metroLabel4.Text = "BaudRate";
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(4, 86);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(65, 19);
+            this.metroLabel3.TabIndex = 9;
+            this.metroLabel3.Text = "포트넘버";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(4, 45);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(62, 19);
+            this.metroLabel2.TabIndex = 8;
+            this.metroLabel2.Text = "Port주소";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(3, 7);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(48, 19);
+            this.metroLabel1.TabIndex = 7;
+            this.metroLabel1.Text = "IP주소";
+            // 
+            // metroTextBox5
+            // 
+            this.metroTextBox5.Location = new System.Drawing.Point(93, 168);
+            this.metroTextBox5.Name = "metroTextBox5";
+            this.metroTextBox5.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox5.TabIndex = 6;
+            this.metroTextBox5.Text = "metroTextBox5";
+            // 
+            // BaudRate
+            // 
+            this.BaudRate.Location = new System.Drawing.Point(93, 127);
+            this.BaudRate.Name = "BaudRate";
+            this.BaudRate.Size = new System.Drawing.Size(239, 35);
+            this.BaudRate.TabIndex = 5;
+            this.BaudRate.Text = "9600";
+            // 
+            // SeriPort
+            // 
+            this.SeriPort.Location = new System.Drawing.Point(93, 86);
+            this.SeriPort.Name = "SeriPort";
+            this.SeriPort.Size = new System.Drawing.Size(239, 35);
+            this.SeriPort.Style = MetroFramework.MetroColorStyle.Pink;
+            this.SeriPort.TabIndex = 4;
+            this.SeriPort.Text = "포트넘버 입력";
+            // 
+            // metroTextBox2
+            // 
+            this.metroTextBox2.Location = new System.Drawing.Point(93, 45);
+            this.metroTextBox2.Name = "metroTextBox2";
+            this.metroTextBox2.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox2.TabIndex = 3;
+            this.metroTextBox2.Text = "metroTextBox2";
+            // 
+            // metroTextBox1
+            // 
+            this.metroTextBox1.Location = new System.Drawing.Point(93, 4);
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.Size = new System.Drawing.Size(239, 35);
+            this.metroTextBox1.TabIndex = 2;
+            this.metroTextBox1.Text = "metroTextBox1";
+            // 
+            // SendBtn
+            // 
+            this.SendBtn.Location = new System.Drawing.Point(173, 247);
+            this.SendBtn.Name = "SendBtn";
+            this.SendBtn.Size = new System.Drawing.Size(80, 32);
+            this.SendBtn.TabIndex = 16;
+            this.SendBtn.Text = "보내기";
+            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
+            // 
             // metroPanel4
             // 
             this.metroPanel4.Controls.Add(this.metroLabel7);
@@ -613,8 +614,8 @@
             this.ClientSize = new System.Drawing.Size(960, 768);
             this.Controls.Add(this.Chk_Hexa);
             this.Controls.Add(this.metroPanel4);
-            this.Controls.Add(this.SerialPanel);
             this.Controls.Add(this.SendWindowBox);
+            this.Controls.Add(this.SerialPanel);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
