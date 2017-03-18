@@ -151,6 +151,8 @@ namespace MultiTerminal
                         connectType = 2;
                         SerialPanel.Location = Loc;
                         this.SerialPanel.Visible = true;    // 시리얼 패널 보이기
+                        TcpPanel.Visible = false;
+                        UdpPanel.Visible = false;
                         Serial_Combo_Init();
                     }
                     break;
@@ -177,6 +179,7 @@ namespace MultiTerminal
                     {
                         connectType = 6;
                         UdpPanel.Location = Loc;
+                        SerialPanel.Visible = false;
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = true;
                         //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
