@@ -101,14 +101,15 @@ namespace MultiTerminal
         // MainForm에서 사용하는 데이터 송신 함수
         public void SerialSend(string msg)
         {
-
+            byte[] aaa = Encoding.UTF8.GetBytes(msg);
+            int aasize = aaa.Length;
             sPort.Write(Encoding.UTF8.GetBytes(msg), 0 , Encoding.UTF8.GetBytes(msg).Length);
-
         }
 
         public void SerialHexSend(byte[] bytesenddata, int msg, int count)
         {
-            sPort.Write(bytesenddata, msg, count);
+
+            sPort.Write(bytesenddata, 0, count);
         }
         /*
         void sPort_DataReceivedHandle(object sender, SerialDataReceivedEventArgs e)
@@ -166,17 +167,18 @@ namespace MultiTerminal
                 for (int iTemp = 0; iTemp < intRecSize; iTemp++)
                 {
                     if (MainForm.Chk_Hexa_Flag == 1)    // 16진수인 경우...
-                    { strRecData += buff[iTemp].ToString("X2") + " "; }
-                    else
-                    { strRecData += Convert.ToChar(buff[iTemp]); }  // 최종 변수에 buff 내용 대입
+                    { strRecData += buff[iTemp].ToString("X2") + ""; }
                 }
 
                 //receivedata += strRecData;
-                if (MainForm.Chk_Hexa_Flag == 1)
-                    Global.globalVar += strRecData;
+                if (MainForm.Chk_Hexa_Flag == 1 )
+                { Global.globalVar += strRecData; }
                 else
-                    Global.globalVar += Encoding.UTF8.GetString(buff);
-
+                { Global.globalVar += Encoding.UTF8.GetString(buff); }
+                if (MainForm.CHK_AE_Flag == 1)
+                { Global.globalVar +=  "\n"; }
+                if (MainForm.Chk_AS_Flag == 1)
+                { Global.globalVar += " "; }
             }
 
         }

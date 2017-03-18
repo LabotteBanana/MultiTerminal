@@ -16,10 +16,15 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         public bool isServ = false;
-        static int connectType = 1;
+        public int connectType = 1;
         public Tserv tserv = null;
         public Tserv tcla = null;
+
+        // 체크박스 부분
         static public int Chk_Hexa_Flag = 0;
+        static public int Chk_AS_Flag = 0;
+        static public int CHK_AE_Flag = 0;
+
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
         public System.Timers.Timer timer = null;
@@ -38,19 +43,9 @@ namespace MultiTerminal
         private void MainForm_Load(object sender, EventArgs e)  // 폼 열렸을 때
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            TcpPanel.Visible = false;
-            UdpPanel.Visible = false;
-            SerialPanel.Visible = false;
-            timer = new System.Timers.Timer();
-            mactimer = new System.Timers.Timer();
-            timer.Interval = 0.0001; // 1000==>1초 0.0001==>1000만분의1
-            timer.Enabled = true;
-            mactimer.Enabled = false;
 
-            timer.Elapsed += OnTimeEvent;
+            UI_Init();
 
-            timer.AutoReset = true;
-            mactimer.AutoReset = true;
 
 
         }
@@ -63,17 +58,22 @@ namespace MultiTerminal
 
         private  void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
         {
-            if (isServ == true && tserv.client.Connected == true)
+            if(connectType == 2)
             {
-                tserv.SendMsg(textBox1.Text);
-                SendWindowBox.Text += textBox1.Text;
-                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                ///여기에 시리얼 센드부분
             }
-            if (isServ == false && tcla.client.Connected == true)
+            if (connectType == 5)
             {
-                tcla.SendMsg(textBox1.Text);
-                SendWindowBox.Text += textBox1.Text;
-                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                if (isServ == true && tserv.client.Connected == true)
+                {
+                    tserv.SendMsg(SendBox1.Text);
+                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                }
+                if (isServ == false && tcla.client.Connected == true)
+                {
+                    tcla.SendMsg(SendBox1.Text);
+                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                }
             }
 
         }
@@ -84,12 +84,14 @@ namespace MultiTerminal
             return now;
         }
 
+
         public void SetMacroTime(int count, double perSec)
         {
             mactimer.Interval = 1000*perSec/count; //perSec당 한번 보내기
             //Interval이 커져야 천천히감
             mactimer.Elapsed += OnMacro;
             mactimer.Enabled = true;
+
         }
         #endregion
 
@@ -184,7 +186,9 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
+
             Point Loc = new Point(0, 3);
+
             switch (OptionNumber)
             {
                 case 1:
@@ -276,46 +280,7 @@ namespace MultiTerminal
             }
         }
 
-        // 임시 보내기 버튼
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-            byte[] byteSendData = new byte[200];
-            int SendCount = 0;
-            try
-            {
-                if (true == Chk_Hexa.Checked)
-                {
-                    foreach (string s in SendWindowBox.Text.Split(' '))
-                    {
-                        if (s != null && s != "")
-                        {
-                            byteSendData[SendCount++] = Convert.ToByte(s, 16);
-                        }
-                    }
-                    serial.SerialHexSend(byteSendData, 0, SendCount);
-
-                }
-                else
-                {
-                    serial.SerialSend(this.SendWindowBox.Text);
-
-                }
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void Chk_Hexa_CheckedChanged(object sender, EventArgs e)
-        {
-            if (true == Chk_Hexa.Checked)
-                Chk_Hexa_Flag = 1;
-            else
-                Chk_Hexa_Flag = 0;
-
-        }
 
         #endregion
 
@@ -331,12 +296,14 @@ namespace MultiTerminal
         {
 
             // 시리얼 옵션 콤보박스 초기화
-            this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDown;
+
+            this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDownList;
+
 
             List<string> data = new List<string>();
             foreach (string s in SerialPort.GetPortNames())
@@ -443,8 +410,8 @@ namespace MultiTerminal
             {
                 this.Invoke(new Action(() =>
                 {
-                    this.ReceiveWindowBox.Text = Global.globalVar;
-                    this.ReceiveWindowBox.ScrollToCaret();
+                        this.ReceiveWindowBox.Text = Global.globalVar;
+                        this.ReceiveWindowBox.ScrollToCaret();
                 }));
             }));
             thread.Start();
@@ -455,10 +422,10 @@ namespace MultiTerminal
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (this.SendWindowBox.Text != null)
+                if (this.SendBox1.Text != null)
                 {
-                    serial.SerialSend(SendWindowBox.Text);
-                    ReceiveWindowBox.ScrollToCaret();
+
+                    serial.SerialSend(SendBox1.Text);
 
                 }
             }
@@ -515,18 +482,20 @@ namespace MultiTerminal
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        tserv.SendMsg(textBox1.Text);
-                        SendWindowBox.Text += textBox1.Text;
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                        tserv.SendMsg(SendBox1.Text);
+
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+
                     }
                 }
                 else if (isServ == false && tcla.client.Connected == true)
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        tcla.SendMsg(textBox1.Text);
-                        SendWindowBox.Text += textBox1.Text;
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                        tcla.SendMsg(SendBox1.Text);
+
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+
                     }
 
                 }
@@ -544,6 +513,7 @@ namespace MultiTerminal
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             double sec = double.Parse(textBox2.Text);
+
             int count = int.Parse(textBox3.Text);
             Thread macroThread = new Thread(() => SetMacroTime(count,sec));
 
@@ -551,15 +521,365 @@ namespace MultiTerminal
             {
                     if (macroThread.IsAlive == false)
                         macroThread.Start();
+
             }
             else
-            {
-                //mactimer.Stop();
+            { 
                 mactimer.Elapsed -= OnMacro;
-                mactimer.Enabled = false;
-                //macroThread.Abort();
+                macroThread.Abort();
+            }
+
+
+        }
+
+        #region UI 초기화
+        private void UI_Init()
+        {
+            TcpPanel.Visible = false;
+            UdpPanel.Visible = false;
+            SerialPanel.Visible = false;
+
+            for (int i = 0; i < 4; i++) { 
+                Flag_AEAS[i] = 0;
+                Flag_ASCII[i] = 0;
+            }
+                        TcpPanel.Visible = false;
+            
+            timer = new System.Timers.Timer();
+            mactimer = new System.Timers.Timer();
+            timer.Interval = 0.0001; // 1000==>1초 0.0001==>1000만분의1
+
+            timer.Enabled = true;
+            mactimer.Enabled = true;
+
+            timer.AutoReset = true;
+            mactimer.AutoReset = true;
+            
+
+            timer.Elapsed += OnTimeEvent; 
+        }
+        #endregion
+        #region 보내기 버튼 묶음
+
+        private void Btn_Send1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (connectType == 2)
+                {
+                    if (Flag_AEAS[0] == 0)
+                    {
+                        serial.SerialSend(this.SendBox1.Text);
+                    }
+                    else if (Flag_AEAS[0] == 1)
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
+                    }
+                    else
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
+                    }
+                }
+                if (connectType == 5)
+                {
+                    if (isServ == true && tserv.client.Connected == true)
+                    {
+                        tserv.SendMsg(SendBox1.Text);
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    }
+                    if (isServ == false && tcla.client.Connected == true)
+                    {
+                        tcla.SendMsg(SendBox1.Text);
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Btn_Send2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (Flag_AEAS[1] == 0)
+                {
+                    serial.SerialSend(this.SendBox2.Text);
+                }
+                else if (Flag_AEAS[1] == 1)
+                {
+                    serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, "\n"));
+                }
+                else
+                {
+                    serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, " "));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void Btn_Send3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Flag_AEAS[2] == 0)
+                {
+                    serial.SerialSend(this.SendBox3.Text);
+                }
+                else if (Flag_AEAS[2] == 1)
+                {
+                    serial.SerialSend(SendBox3.Text.Insert(SendBox3.Text.Length, "\n"));
+                }
+                else
+                {
+                    serial.SerialSend(SendBox3.Text.Insert(SendBox3.Text.Length, " "));
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void Btn_Send4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Flag_AEAS[3] == 0)
+                {
+                    serial.SerialSend(this.SendBox4.Text);
+                }
+                else if (Flag_AEAS[3] == 1)
+                {
+                    serial.SerialSend(SendBox4.Text.Insert(SendBox4.Text.Length, "\n"));
+                }
+                else
+                {
+                    serial.SerialSend(SendBox4.Text.Insert(SendBox4.Text.Length, " "));
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #region 보내기 옵션들 묶음
+        private int[] Flag_AEAS = new int[4];           
+        private int[] Flag_ASCII = new int[4];
+
+        private void Btn_AEAS1_Click(object sender, EventArgs e)
+        {
+            if (Flag_AEAS[0] == 2)
+            {
+                Flag_AEAS[0] = -1;
+            }
+
+            Flag_AEAS[0]++;
+            switch (Flag_AEAS[0])
+            {
+                case 0:
+                    this.Btn_AEAS1.Text = "No";
+                    break;
+                case 1:
+                    this.Btn_AEAS1.Text = "A/E";
+                    break;
+                case 2:
+                    this.Btn_AEAS1.Text = "A/S";
+                    break;          
+            }
+        }
+
+        private void Btn_AEAS2_Click(object sender, EventArgs e)
+        {
+            if (Flag_AEAS[1] == 2)
+            {
+                Flag_AEAS[1] = -1;
+            }
+
+            Flag_AEAS[1]++;
+            switch (Flag_AEAS[1])
+            {
+                case 0:
+                    this.Btn_AEAS2.Text = "No";
+                    break;
+                case 1:
+                    this.Btn_AEAS2.Text = "A/E";
+                    break;
+                case 2:
+                    this.Btn_AEAS2.Text = "A/S";
+                    break;
+            }
+        }
+
+        private void Btn_AEAS3_Click(object sender, EventArgs e)
+        {
+            if (Flag_AEAS[2] == 2)
+            {
+                Flag_AEAS[2] = -1;
+            }
+
+            Flag_AEAS[2]++;
+            switch (Flag_AEAS[2])
+            {
+                case 0:
+                    this.Btn_AEAS3.Text = "No";
+                    break;
+                case 1:
+                    this.Btn_AEAS3.Text = "A/E";
+                    break;
+                case 2:
+                    this.Btn_AEAS3.Text = "A/S";
+                    break;
+            }
+        }
+
+        private void Btn_AEAS4_Click(object sender, EventArgs e)
+        {
+            if (Flag_AEAS[3] == 2)
+            {
+                Flag_AEAS[3] = -1;
+            }
+
+            Flag_AEAS[3]++;
+            switch (Flag_AEAS[3])
+            {
+                case 0:
+                    this.Btn_AEAS4.Text = "No";
+                    break;
+                case 1:
+                    this.Btn_AEAS4.Text = "A/E";
+                    break;
+                case 2:
+                    this.Btn_AEAS4.Text = "A/S";
+                    break;
+            }
+        }
+
+        private void Btn_ASCII1_Click(object sender, EventArgs e)
+        {
+            if(Flag_ASCII[0] == 1)
+            {
+                Flag_ASCII[0] = -1;
+            }
+
+            Flag_ASCII[0]++;
+            switch (Flag_ASCII[0])
+            {
+                case 0:
+                    this.Btn_ASCII1.Text = "ASCII";
+                    break;
+                case 1:
+                    this.Btn_ASCII1.Text = "HEX";
+                    break;
+            }
+        }
+
+        private void Btn_ASCII2_Click(object sender, EventArgs e)
+        {
+            if (Flag_ASCII[1] == 1)
+            {
+                Flag_ASCII[1] = -1;
+            }
+
+            Flag_ASCII[1]++;
+            switch (Flag_ASCII[1])
+            {
+                case 0:
+                    this.Btn_ASCII2.Text = "ASCII";
+                    break;
+                case 1:
+                    this.Btn_ASCII2.Text = "HEX";
+                    break;
+            }
+        }
+
+        private void Btn_ASCII3_Click(object sender, EventArgs e)
+        {
+            if (Flag_ASCII[2] == 1)
+            {
+                Flag_ASCII[2] = -1;
+            }
+
+            Flag_ASCII[2]++;
+            switch (Flag_ASCII[2])
+            {
+                case 0:
+                    this.Btn_ASCII3.Text = "ASCII";
+                    break;
+                case 1:
+                    this.Btn_ASCII3.Text = "HEX";
+                    break;
             }
 
         }
-    } 
+
+        private void Btn_ASCII4_Click(object sender, EventArgs e)
+        {
+            if (Flag_ASCII[3] == 1)
+            {
+                Flag_ASCII[3] = -1;
+            }
+
+            Flag_ASCII[3]++;
+            switch (Flag_ASCII[3])
+            {
+                case 0:
+                    this.Btn_ASCII4.Text = "ASCII";
+                    break;
+                case 1:
+                    this.Btn_ASCII4.Text = "HEX";
+                    break;
+            }
+
+        }
+        #endregion
+
+        #region 수신 옵션들 묶음
+        private void Btn_Clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Chk_Hexa_CheckedChanged(object sender, EventArgs e)
+        {
+            if( Chk_Hexa.CheckState == CheckState.Checked)
+                Chk_Hexa_Flag = 1;
+            else
+                Chk_Hexa_Flag = 0;
+
+        }
+
+        private void Chk_AE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Chk_AE.CheckState == CheckState.Checked)
+                CHK_AE_Flag = 1;
+            else
+                CHK_AE_Flag = 0;
+        }
+
+        private void Chk_AS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Chk_AS.CheckState == CheckState.Checked)
+                Chk_AS_Flag = 1;
+            else
+                Chk_AS_Flag = 0;
+        }
+
+
+        #endregion
+    }
+
 }
