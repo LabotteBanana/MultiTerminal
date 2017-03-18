@@ -44,7 +44,6 @@ namespace MultiTerminal
         {
             this.Style = MetroFramework.MetroColorStyle.Yellow;
 
-
             UI_Init();
 
 
@@ -104,13 +103,14 @@ namespace MultiTerminal
             return now;
         }
 
-        public void SetMacroTime(int Count, double perSec)
+
+        public void SetMacroTime(int count, double perSec)
         {
             // 초당 10번이면 100/1000
             // 초당 5번 이면 50/1000
             mactimer.Interval = perSec*1000/Count;
+            mactimer.Elapsed += OnMacro;
             mactimer.Enabled = true;
-
 
         }
         #endregion
@@ -206,7 +206,9 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            Point Loc = new Point(0, 4);
+
+            Point Loc = new Point(0, 3);
+
             switch (OptionNumber)
             {
                 case 1:
@@ -442,7 +444,9 @@ namespace MultiTerminal
             {
                 if (this.SendBox1.Text != null)
                 {
+
                     serial.SerialSend(SendBox1.Text);
+
                 }
             }
         }
@@ -526,15 +530,14 @@ namespace MultiTerminal
         #endregion
 
 
-        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-
-            int sec = Int32.Parse(textBox2.Text);
+            double sec = double.Parse(textBox2.Text);
             int count = Int32.Parse(textBox3.Text);
             Thread macroThread = new Thread(() => SetMacroTime(count,sec));
+
             if (checkBox3.CheckState == CheckState.Checked)
             {
-                mactimer.Enabled = true;
                 mactimer.Elapsed += OnMacro;
                 macroThread.Start();
 
@@ -571,6 +574,9 @@ namespace MultiTerminal
 
             timer.AutoReset = true;
             mactimer.AutoReset = true;
+            
+
+            timer.Elapsed += OnTimeEvent; 
         }
         #endregion
         #region 보내기 버튼 묶음
@@ -619,6 +625,7 @@ namespace MultiTerminal
         {
             try
             {
+
                 if (Flag_AEAS[1] == 0)
                 {
                     serial.SerialSend(this.SendBox2.Text);
@@ -631,12 +638,14 @@ namespace MultiTerminal
                 {
                     serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, " "));
                 }
+
             }
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.Message);
             }
         }
+
 
         private void Btn_Send3_Click(object sender, EventArgs e)
         {
@@ -659,6 +668,7 @@ namespace MultiTerminal
             {
                 //MessageBox.Show(ex.Message);
             }
+
 
         }
 
