@@ -170,6 +170,8 @@ namespace MultiTerminal
                 {
                     string msg = sr.ReadLine();
                     main.ReceiveWindowBox.Text += "수신 : "+ main.GetTimer()+ msg + "\n";
+                    main.ReceiveWindowBox.ScrollToCaret();
+
 
                 }
             }
