@@ -16,7 +16,7 @@ namespace MultiTerminal
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         public bool isServ = false;
-        static int connectType = 1;
+        public int connectType = 1;
         public Tserv tserv = null;
         public Tserv tcla = null;
 
@@ -59,7 +59,7 @@ namespace MultiTerminal
 
         private  void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
         {
-            if(connectType == 1)
+            if(connectType == 2)
             {
                 ///여기에 시리얼 센드부분
             }
@@ -67,13 +67,13 @@ namespace MultiTerminal
             {
                 if (isServ == true && tserv.client.Connected == true)
                 {
-                    tserv.SendMsg(textBox1.Text);
-                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                    tserv.SendMsg(SendBox1.Text);
+                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                 }
                 if (isServ == false && tcla.client.Connected == true)
                 {
-                    tcla.SendMsg(textBox1.Text);
-                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                    tcla.SendMsg(SendBox1.Text);
+                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                 }
             }
 
@@ -85,17 +85,13 @@ namespace MultiTerminal
             return now;
         }
 
-        public void SetMacroTime(int perSec)
+        public void SetMacroTime(int Count, double perSec)
         {
             // 초당 10번이면 100/1000
             // 초당 5번 이면 50/1000
-            bool btrue = true;
-            mactimer.Interval = 10000000;
-            if (btrue == false)
-            {
-                mactimer.Elapsed += OnMacro;
-            }
-                mactimer.Enabled = true;
+            mactimer.Interval = perSec*1000/Count;
+            mactimer.Elapsed += OnMacro;
+            mactimer.Enabled = true;
 
 
         }
@@ -484,9 +480,9 @@ namespace MultiTerminal
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        tserv.SendMsg(textBox1.Text);
+                        tserv.SendMsg(SendBox1.Text);
 
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
 
                     }
                 }
@@ -494,9 +490,9 @@ namespace MultiTerminal
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        tcla.SendMsg(textBox1.Text);
+                        tcla.SendMsg(SendBox1.Text);
 
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
 
                     }
 
@@ -514,21 +510,19 @@ namespace MultiTerminal
 
         private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
         {
-            int value = Int32.Parse(textBox2.Text);
-            Thread macroThread = new Thread(() => SetMacroTime(value));
-            if (checkBox3.Checked == true)
+            double sec = double.Parse(textBox2.Text);
+            int count = Int32.Parse(textBox3.Text);
+            Thread macroThread = new Thread(() => SetMacroTime(count,sec));
+            if (checkBox3.CheckState == CheckState.Checked)
             {
-                if (macroThread.IsAlive == false)
-                    macroThread.Start();
-                else
-                    macroThread.Resume();
+                mactimer.Elapsed += OnMacro;
+                macroThread.Start();
+
             }
             else
-            {
-                if (macroThread.IsAlive == true)
-                {
-                    macroThread.Suspend();
-                }
+            { 
+                mactimer.Elapsed -= OnMacro;
+                macroThread.Abort();
             }
 
 
@@ -552,13 +546,10 @@ namespace MultiTerminal
             timer.Interval = 0.0001; // 1000==>1초 0.0001==>1000만분의1
 
             timer.Enabled = true;
-            mactimer.Enabled = false;
-
-            timer.Elapsed += OnTimeEvent;
-            mactimer.Elapsed += OnMacro;
+            mactimer.Enabled = true;
 
             timer.AutoReset = true;
-            mactimer.AutoReset = false;
+            mactimer.AutoReset = true;
         }
         #endregion
         #region 보내기 버튼 묶음
@@ -567,7 +558,7 @@ namespace MultiTerminal
         {
             try
             {
-                if (connectType == 1)
+                if (connectType == 2)
                 {
                     if (Flag_AEAS[0] == 0)
                     {
