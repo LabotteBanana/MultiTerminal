@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bluetooth.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Ethernet.cs" />
     <Compile Include="EthernetClient.cs" />
