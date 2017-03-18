@@ -108,7 +108,7 @@ namespace MultiTerminal
         {
             // 초당 10번이면 100/1000
             // 초당 5번 이면 50/1000
-            mactimer.Interval = perSec*1000/Count;
+            mactimer.Interval = perSec*1000/count;
             mactimer.Elapsed += OnMacro;
             mactimer.Enabled = true;
 

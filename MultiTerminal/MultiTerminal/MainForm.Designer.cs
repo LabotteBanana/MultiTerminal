@@ -108,6 +108,7 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.metroPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SerialPanel.SuspendLayout();
@@ -123,6 +124,7 @@
             // 
             this.metroPanel1.AutoSize = true;
             this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.metroPanel1.Controls.Add(this.SerialPanel);
             this.metroPanel1.Controls.Add(this.panel4);
             this.metroPanel1.Controls.Add(this.panel2);
             this.metroPanel1.Controls.Add(this.LogPanel);
@@ -135,7 +137,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(720, 611);
+            this.metroPanel1.Size = new System.Drawing.Size(720, 671);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -143,7 +145,6 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.SerialPanel);
             this.panel4.Controls.Add(this.TcpPanel);
             this.panel4.Controls.Add(this.UdpPanel);
             this.panel4.Location = new System.Drawing.Point(5, 101);
@@ -167,7 +168,7 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
             this.SerialPanel.Controls.Add(this.F5);
-            this.SerialPanel.Location = new System.Drawing.Point(3, 3);
+            this.SerialPanel.Location = new System.Drawing.Point(52, 392);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(150, 276);
             this.SerialPanel.TabIndex = 7;
@@ -308,6 +309,7 @@
             // 
             // TcpPanel
             // 
+            this.TcpPanel.Controls.Add(this.comboBox5);
             this.TcpPanel.Controls.Add(this.checkBox1);
             this.TcpPanel.Controls.Add(this.comboBox1);
             this.TcpPanel.Controls.Add(this.comboBox2);
@@ -721,7 +723,6 @@
             this.checkBox3.TabIndex = 36;
             this.checkBox3.Text = "매크로";
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged_1);
             // 
             // Btn_AEAS4
             // 
@@ -868,11 +869,8 @@
             // 
             // SendBox1
             // 
-            this.SendBox1.AcceptsTab = true;
-            this.SendBox1.AutoWordSelection = true;
             this.SendBox1.BackColor = System.Drawing.SystemColors.HighlightText;
             this.SendBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.SendBox1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.SendBox1.Location = new System.Drawing.Point(6, 118);
             this.SendBox1.Name = "SendBox1";
             this.SendBox1.Size = new System.Drawing.Size(432, 24);
@@ -967,6 +965,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(18, 115);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 20);
+            this.comboBox5.TabIndex = 17;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1049,7 +1055,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
@@ -1085,6 +1090,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox5;
     }
 }
 
