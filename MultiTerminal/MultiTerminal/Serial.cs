@@ -8,22 +8,34 @@ using System.Windows.Forms;
 
 namespace MultiTerminal
 {
-    class Serial
+
+    public class Serial
     {
-        SerialPort sPort;
-        private RichTextBox serialRichtextbox2;
+        
+        public SerialPort sPort = null;
         public string receivedata = null;   // 시리얼 데이터 받기위한 임시 전역 변수...
 
-        public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT, RichTextBox serialRichtextbox2)
+        public Serial()
+        {
+          
+        }
+
+        public int IsOpen()
+        {
+            
+            if (sPort.IsOpen) return 0;
+            else return 1;
+        }
+        public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT)
         {
 
             try
             {
                 if (null == sPort)
                 {
-                    this.serialRichtextbox2 = serialRichtextbox2;
                     sPort = new SerialPort();
-                    sPort.DataReceived += new SerialDataReceivedEventHandler(sPort_DataReceived);   // 데이터 리시브 반응 이벤트 함수. 데이터가 들어올때마다 구동됨.
+                    sPort.DataReceived += new SerialDataReceivedEventHandler(sPort_DataReceivedHandle);   // 데이터 리시브 반응 이벤트 함수. 데이터가 들어올때마다 구동됨.
+                                                                                                          //+= new SerialDataReceivedEventHandler(UpdateWindowText);
                     WT = "500";
                     RT = "500";
 
@@ -31,16 +43,22 @@ namespace MultiTerminal
                     sPort.BaudRate = Convert.ToInt32(Baud);
                     sPort.DataBits = Convert.ToInt32(Data);
 
-                    switch (parity) {
-                        case "none": sPort.Parity = Parity.None;
+                    switch (parity)
+                    {
+                        case "none":
+                            sPort.Parity = Parity.None;
                             break;
-                        case "odd": sPort.Parity = Parity.Odd;
+                        case "odd":
+                            sPort.Parity = Parity.Odd;
                             break;
-                        case "even": sPort.Parity = Parity.Even;
+                        case "even":
+                            sPort.Parity = Parity.Even;
                             break;
-                        case "mark": sPort.Parity = Parity.Mark;
+                        case "mark":
+                            sPort.Parity = Parity.Mark;
                             break;
-                        case "space":sPort.Parity = Parity.Space;
+                        case "space":
+                            sPort.Parity = Parity.Space;
                             break;
                     }
 
@@ -67,7 +85,7 @@ namespace MultiTerminal
                 }
                 else
                 {
-                    MessageBox.Show("시리얼 포트 연결에 실패했습니다.");
+                    MessageBox.Show("시리얼 포트를 연결했습니다.");
                 }
             }
             catch (System.Exception ex)
@@ -77,37 +95,45 @@ namespace MultiTerminal
 
         }
 
-        public string SerialSend(string msg)    // MainForm에서 사용하는 데이터 송신 함수
+        // 시리얼이 들어올때마다 리치박스에 데이터 표현하기 위한 이벤트핸들러
+
+
+        // MainForm에서 사용하는 데이터 송신 함수
+        public void SerialSend(string msg)
         {
-            byte[] byteSendData = new byte[200];
-            sPort.Write(msg);
-            return msg;
+
+            sPort.Write(Encoding.UTF8.GetBytes(msg), 0 , Encoding.UTF8.GetBytes(msg).Length);
+
         }
 
-        void sPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public void SerialHexSend(byte[] bytesenddata, int msg, int count)
+        {
+            sPort.Write(bytesenddata, msg, count);
+        }
+        /*
+        void sPort_DataReceivedHandle(object sender, SerialDataReceivedEventArgs e)
         {
             int intRecSize = sPort.BytesToRead; // 들어온 데이터의 크기에 따라 사이즈 초기화
             string strRecData;  // 최종 데이터 저장 변수
-            int chkRecHexa = 0; // 16진수 여부...
+
 
             if (intRecSize != 0)    // 들어온 데이터 사이즈가 0 이상이면...
             {
                 strRecData = "";
                 byte[] buff = new byte[intRecSize]; // 데이터 사이즈에 따른 버퍼 생성
                 sPort.Read(buff, 0, intRecSize);    // buff에 시리얼 데이터 Read...!
-
+                
                 for (int iTemp = 0; iTemp < intRecSize; iTemp++)
                 {
-                    if (chkRecHexa == 1)    // 16진수인 경우...
+                    if ( MainForm.Chk_Hexa_Flag == 1)    // 16진수인 경우...
                     { strRecData += buff[iTemp].ToString("X2") + " "; }
                     else
                     { strRecData += Convert.ToChar(buff[iTemp]); }  // 최종 변수에 buff 내용 대입
                 }
 
-                receivedata += strRecData;
-                serialRichtextbox2.Text += receivedata;
             }
         }
+        */
 
 
 
@@ -122,6 +148,37 @@ namespace MultiTerminal
                     sPort = null;
                 }
             }
+        }
+
+
+        public void sPort_DataReceivedHandle(object sender, SerialDataReceivedEventArgs e)
+        {
+            int intRecSize = sPort.BytesToRead; // 들어온 데이터의 크기에 따라 사이즈 초기화
+            string strRecData;  // 최종 데이터 저장 변수
+
+
+            if (intRecSize != 0)    // 들어온 데이터 사이즈가 0 이상이면...
+            {
+                strRecData = "";
+                byte[] buff = new byte[intRecSize]; // 데이터 사이즈에 따른 버퍼 생성
+                sPort.Read(buff, 0, intRecSize);    // buff에 시리얼 데이터 Read...!
+
+                for (int iTemp = 0; iTemp < intRecSize; iTemp++)
+                {
+                    if (MainForm.Chk_Hexa_Flag == 1)    // 16진수인 경우...
+                    { strRecData += buff[iTemp].ToString("X2") + " "; }
+                    else
+                    { strRecData += Convert.ToChar(buff[iTemp]); }  // 최종 변수에 buff 내용 대입
+                }
+
+                //receivedata += strRecData;
+                if (MainForm.Chk_Hexa_Flag == 1)
+                    Global.globalVar += strRecData;
+                else
+                    Global.globalVar += Encoding.UTF8.GetString(buff);
+
+            }
+
         }
 
 
