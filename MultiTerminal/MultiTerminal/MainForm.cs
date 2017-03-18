@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
-
+using System.Timers;
 namespace MultiTerminal
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
@@ -22,7 +22,9 @@ namespace MultiTerminal
         static public int Chk_Hexa_Flag = 0;
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
-
+        public System.Timers.Timer timer = null;
+        public static System.Timers.Timer mactimer = null;
+        private DateTime nowTime;
 
 
 
@@ -39,14 +41,66 @@ namespace MultiTerminal
             TcpPanel.Visible = false;
             UdpPanel.Visible = false;
             SerialPanel.Visible = false;
+            timer = new System.Timers.Timer();
+            mactimer = new System.Timers.Timer();
+            timer.Interval = 0.0001; // 1000==>1초 0.0001==>1000만분의1
 
-            //rich.KeyUp += Enter_Rich;
-            //rich.Parent = this;
+            timer.Enabled = true;
+            mactimer.Enabled = false;
+
+            timer.Elapsed += OnTimeEvent;
+            mactimer.Elapsed += OnMacro;
+
+            timer.AutoReset = true;
+            mactimer.AutoReset = false;
 
 
         }
 
+        #region Timer(타임스탬프)
+        private void OnTimeEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            nowTime = e.SignalTime;
+        }
 
+        private  void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
+        {
+            if (isServ == true && tserv.client.Connected == true)
+            {
+                tserv.SendMsg(textBox1.Text);
+                SendWindowBox.Text += textBox1.Text;
+                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+            }
+            if (isServ == false && tcla.client.Connected == true)
+            {
+                tcla.SendMsg(textBox1.Text);
+                SendWindowBox.Text += textBox1.Text;
+                ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
+            }
+
+        }
+        public string GetTimer()
+        {
+            string now = null;
+            now = "[ " + nowTime.Hour + "::" + nowTime.Minute + "::" + nowTime.Second + "::" + nowTime.Millisecond + "]";
+            return now;
+        }
+
+        public void SetMacroTime(int perSec)
+        {
+            // 초당 10번이면 100/1000
+            // 초당 5번 이면 50/1000
+            bool btrue = true;
+            mactimer.Interval = 10000000;
+            if (btrue == false)
+            {
+                mactimer.Elapsed += OnMacro;
+            }
+                mactimer.Enabled = true;
+
+
+        }
+        #endregion
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)  // 메인폼 닫혔을 때 
         {
@@ -114,7 +168,9 @@ namespace MultiTerminal
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Pink;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
-
+        private void CheckMacro()
+        {
+        }
         private void UDP_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(6);
@@ -151,6 +207,8 @@ namespace MultiTerminal
                         connectType = 2;
                         SerialPanel.Location = Loc;
                         this.SerialPanel.Visible = true;    // 시리얼 패널 보이기
+                        TcpPanel.Visible = false;
+                        UdpPanel.Visible = false;
                         Serial_Combo_Init();
                     }
                     break;
@@ -177,6 +235,7 @@ namespace MultiTerminal
                     {
                         connectType = 6;
                         UdpPanel.Location = Loc;
+                        SerialPanel.Visible = false;
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = true;
                         //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
@@ -417,6 +476,7 @@ namespace MultiTerminal
 
         #endregion
 
+        #region TCP UI
         private void button3_Click(object sender, EventArgs e)
         {
             //comboBox5 -> IP, comboBox6 -> Port
@@ -435,7 +495,7 @@ namespace MultiTerminal
                 tcla.Connect();
             }
         }
-
+        #region TCP서버여부
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
@@ -451,12 +511,9 @@ namespace MultiTerminal
             }
 
         }
+        #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region TCP 로그
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -467,7 +524,7 @@ namespace MultiTerminal
                     {
                         tserv.SendMsg(textBox1.Text);
                         SendWindowBox.Text += textBox1.Text;
-                        ReceiveWindowBox.Text += "송신 : " + textBox1.Text + "\n";
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
                     }
                 }
                 else if (isServ == false && tcla.client.Connected == true)
@@ -476,7 +533,7 @@ namespace MultiTerminal
                     {
                         tcla.SendMsg(textBox1.Text);
                         SendWindowBox.Text += textBox1.Text;
-                        ReceiveWindowBox.Text += "송신 : " + textBox1.Text + "\n";
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + textBox1.Text + "\n";
                     }
 
                 }
@@ -486,5 +543,31 @@ namespace MultiTerminal
                 MessageBox.Show(ex.ToString());
             }
         }
-    }
+        #endregion
+
+        #endregion
+
+
+        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
+        {
+            int value = Int32.Parse(textBox2.Text);
+            Thread macroThread = new Thread(() => SetMacroTime(value));
+            if (checkBox3.Checked == true)
+            {
+                if (macroThread.IsAlive == false)
+                    macroThread.Start();
+                else
+                    macroThread.Resume();
+            }
+            else
+            {
+                if (macroThread.IsAlive == true)
+                {
+                    macroThread.Suspend();
+                }
+            }
+
+
+        }
+    } 
 }
