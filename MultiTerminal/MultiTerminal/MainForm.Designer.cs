@@ -395,7 +395,7 @@
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
             this.TcpPanel.Visible = false;
-            this.TcpPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TcpPanel_Paint);
+            //this.TcpPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TcpPanel_Paint);
             // 
             // checkBox1
             // 

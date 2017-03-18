@@ -138,7 +138,7 @@ namespace MultiTerminal
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
         {
-            Point Loc = new Point(140, 6);
+            Point Loc = new Point(3, 0);
             switch (OptionNumber)
             {
                 case 1:
@@ -285,12 +285,20 @@ namespace MultiTerminal
         {
 
             // 시리얼 옵션 콤보박스 초기화
-            this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDown;
-            this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDown;
+            this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Data.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_FlowCon.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
+            List<string> data = new List<string>();
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                data.Add(s);
+            }
+            Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
 
             using (var searcher = new ManagementObjectSearcher
                ("SELECT * FROM WIN32_SerialPort"))
@@ -299,19 +307,29 @@ namespace MultiTerminal
                 var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
                 var tList = (from n in portnames
                              join p in ports on n equals p["DeviceID"].ToString()
-                             select n + " - " + p["Caption"]).ToList();
+                             select " - " + p["Caption"]).ToList();
+                var cmpList = (from n in portnames
+                               join p in ports on n equals p["DeviceID"].ToString()
+                               select n).ToList();
+                foreach (string s in cmpList)
+                {
+                    for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
+                    {
+                        try
+                        {
+                            int a = Serial_Combo_Port.Items.IndexOf(s);
+                            Serial_Combo_Port.Items[a] += tList[i];
+                        }
+                        catch (ArgumentException e) {
+
+                        }
+                    }
+                }/*
                 foreach (string s in tList)
                 {
                     Serial_Combo_Port.Items.Add(s);
-                }
+                }*/
             }
-
-            //List<string> data = new List<string>();
-            //foreach (string s in SerialPort.GetPortNames())
-            //{
-            //    data.Add(s);
-            //}
-            //Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
             if(Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
 
