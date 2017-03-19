@@ -24,6 +24,184 @@ namespace MultiTerminal
         private NetworkStream ns = null;
         private StreamReader sr = null;
         private StreamWriter sw = null;
+            
+
+        public Tserv(MainForm Main,int Port) //서버로 만들때
+        {
+            main = Main;
+            port = Port;
+        }
+
+        public Tserv(MainForm Main,string IP,int Port) //클라로 만들때
+        {
+            main = Main;
+            port = Port;
+            ip = IP;
+        }
+
+        #region Server
+        public void ServerStart()
+        {
+            try
+            {
+                IPEndPoint ipep = new IPEndPoint(IPAddress.Any, port);
+                server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+                server.Bind(ipep);
+                server.Listen(30);//30초대기
+
+                client = server.Accept();
+
+                IPEndPoint claIP = (IPEndPoint)client.RemoteEndPoint;
+                client_ip = claIP.Address.ToString();
+
+                ns = new NetworkStream(client);
+                sr = new StreamReader(ns);
+                sw = new StreamWriter(ns);
+
+                th = new Thread(new ThreadStart(RecvMsg)); //상대 문자열 수신 쓰레드 가동
+                th.Start();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+        }
+        //채팅 서버 프로그램 중지
+        public void ServerStop()
+        {
+            try
+            {
+                if (ns != null) ns.Close();
+                if (sw != null) sw.Close();
+                if (sr != null) sr.Close();
+                if (client != null) client.Close();
+                if ((th != null) && (th.IsAlive)) th.Abort();
+
+                server.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion 
+
+        #region Client
+        //채팅 서버와 연결 시도
+        public bool Connect()
+        {
+            try
+            {
+
+                IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(ip), port);
+                client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                client.Connect(ipep);
+                client_ip = ip;
+
+                ns = new NetworkStream(client);
+                sr = new StreamReader(ns);
+                sw = new StreamWriter(ns);
+
+                th = new Thread(new ThreadStart(RecvMsg));
+                th.Start();
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                return false;
+            }
+        }
+        //채팅 서버와의 연결 종료
+        public void DisConnect()
+        {
+            try
+            {
+                if (client != null)
+                {
+                    if (client.Connected)
+                    {
+                        if (ns != null) ns.Close();
+                        if (sw != null) sw.Close();
+                        if (sr != null) sr.Close();
+                        client.Close();
+
+                        if (th.IsAlive)
+                            th.Abort();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+
+        #region SendMsg,RecvMsg
+        public void SendMsg(string msg)
+        {
+            try
+            {
+                if (client.Connected)
+                {
+                    sw.WriteLine(msg);
+                    sw.Flush();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("전송 실패");
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+
+            }
+        }
+        public void RecvMsg()
+        {
+            try
+            {
+                while (client.Connected)
+                {
+                    string msg = sr.ReadLine();
+                    main.ReceiveWindowBox.Text += "수신 : "+ main.GetTimer()+ msg + "\n";
+                    main.ReceiveWindowBox.ScrollToCaret();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+        #endregion
+
+        #region Socket State
+        public void GetState()
+        {
+
+        }
+        public void SetState()
+        {
+
+        }
+        public void SetDelay(int timer)
+        {
+            this.server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, timer);
+        }
+        public string Get_MyIP()
+        {
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+            string myip = host.AddressList[0].ToString();
+            return myip;
+        }
         public void DisplayNetworkInfo()
         {
             foreach (NetworkInterface adapter in adapters)
@@ -63,176 +241,7 @@ namespace MultiTerminal
 
             }
         }
-            
 
-        public Tserv(MainForm Main,int Port) //서버로 만들때
-        {
-            main = Main;
-            port = Port;
-        }
-
-        public Tserv(MainForm Main,string IP,int Port) //클라로 만들때
-        {
-            main = Main;
-            port = Port;
-            ip = IP;
-        }
-
-        public void ServerStart()
-        {
-            try
-            {
-                IPEndPoint ipep = new IPEndPoint(IPAddress.Any, port);
-                server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                server.Bind(ipep);
-                server.Listen(30);//30초대기
-
-                client = server.Accept();
-
-                IPEndPoint claIP = (IPEndPoint)client.RemoteEndPoint;
-                client_ip = claIP.Address.ToString();
-
-                ns = new NetworkStream(client);
-                sr = new StreamReader(ns);
-                sw = new StreamWriter(ns);
-
-                th = new Thread(new ThreadStart(RecvMsg)); //상대 문자열 수신 쓰레드 가동
-                th.Start();
-            }
-            catch(Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
-            }
-        }
-
-        public string Get_MyIP()
-        {
-            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
-            string myip = host.AddressList[0].ToString();
-            return myip;
-        }
-
-        //채팅 서버와 연결 시도
-        public bool Connect()
-        {
-            try
-            {
-
-                IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(ip), port);
-                client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                client.Connect(ipep);
-                client_ip = ip;
-
-                ns = new NetworkStream(client);
-                sr = new StreamReader(ns);
-                sw = new StreamWriter(ns);
-
-                th = new Thread(new ThreadStart(RecvMsg));
-                th.Start();
-
-                return true;
-            }
-            catch(Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
-                return false;
-            }
-        }
-
-        //채팅 서버 프로그램 중지
-        public void ServerStop()
-        {
-            try
-            {
-                if (ns != null) ns.Close();
-                if (sw != null) sw.Close();
-                if (sr != null) sr.Close();
-                if (client != null) client.Close();
-                if ((th != null) && (th.IsAlive)) th.Abort();
-
-                server.Close();
-            }
-            catch(Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
-
-        //채팅 서버와의 연결 종료
-        public void DisConnect()
-        {
-            try
-            {
-                if (client != null)
-                {
-                    if (client.Connected)
-                    {
-                        if (ns != null) ns.Close();
-                        if (sw != null) sw.Close();
-                        if (sr != null) sr.Close();
-                        client.Close();
-
-                        if (th.IsAlive)
-                            th.Abort();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void SendMsg(string msg)
-        {
-            try
-            {
-                if (client.Connected)
-                {
-                    sw.WriteLine(msg);
-                    sw.Flush();
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("전송 실패");
-                }
-            }
-            catch(Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
-
-            }
-        }
-        public void RecvMsg()
-        {
-            try
-            {
-                while (client.Connected)
-                {
-                    string msg = sr.ReadLine();
-                    main.ReceiveWindowBox.Text += "수신 : "+ msg + "\n";
-
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-        public void GetState()
-        {
-
-        }
-        public void SetState()
-        {
-
-        }
-        public void SetDelay(int timer)
-        {
-            this.server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, timer);
-        }
-
+        #endregion
     }
 }

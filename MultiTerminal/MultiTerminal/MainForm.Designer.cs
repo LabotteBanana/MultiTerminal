@@ -46,8 +46,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Label_Se_Port = new System.Windows.Forms.Label();
-            this.F5 = new System.Windows.Forms.Button();
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
+            this.F5 = new System.Windows.Forms.Button();
             this.TcpPanel = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -67,20 +67,39 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Btn_StopLog = new System.Windows.Forms.Button();
+            this.Btn_UseLog = new System.Windows.Forms.Button();
+            this.Btn_Clear = new System.Windows.Forms.Button();
+            this.Chk_AS = new System.Windows.Forms.CheckBox();
+            this.Chk_AE = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Chk_Hexa = new System.Windows.Forms.CheckBox();
             this.LogPanel = new MetroFramework.Controls.MetroPanel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.ReceiveWindowBox = new System.Windows.Forms.RichTextBox();
-            this.Chk_Hexa = new System.Windows.Forms.CheckBox();
-            this.SendWindowBox = new System.Windows.Forms.RichTextBox();
             this.UDP_Tile = new MetroFramework.Controls.MetroTile();
             this.TCP_Tile = new MetroFramework.Controls.MetroTile();
             this.UART_Tile = new MetroFramework.Controls.MetroTile();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.Btn_AEAS4 = new System.Windows.Forms.Button();
+            this.Btn_AEAS3 = new System.Windows.Forms.Button();
+            this.Btn_AEAS2 = new System.Windows.Forms.Button();
+            this.Btn_AEAS1 = new System.Windows.Forms.Button();
+            this.Btn_Send3 = new System.Windows.Forms.Button();
+            this.SendBox3 = new System.Windows.Forms.RichTextBox();
+            this.Btn_Send4 = new System.Windows.Forms.Button();
+            this.Btn_Send2 = new System.Windows.Forms.Button();
+            this.SendBox4 = new System.Windows.Forms.RichTextBox();
+            this.Btn_Send1 = new System.Windows.Forms.Button();
+            this.SendBox2 = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SendBox1 = new System.Windows.Forms.RichTextBox();
             this.Zigbee_Tile = new MetroFramework.Controls.MetroTile();
             this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
             this.RF_Tile = new MetroFramework.Controls.MetroTile();
@@ -89,13 +108,13 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.metroPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SerialPanel.SuspendLayout();
             this.TcpPanel.SuspendLayout();
             this.UdpPanel.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.LogPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -105,13 +124,10 @@
             // 
             this.metroPanel1.AutoSize = true;
             this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.metroPanel1.Controls.Add(this.SerialPanel);
             this.metroPanel1.Controls.Add(this.panel4);
             this.metroPanel1.Controls.Add(this.panel2);
-            this.metroPanel1.Controls.Add(this.panel1);
-            this.metroPanel1.Controls.Add(this.textBox1);
             this.metroPanel1.Controls.Add(this.LogPanel);
-            this.metroPanel1.Controls.Add(this.Chk_Hexa);
-            this.metroPanel1.Controls.Add(this.SendWindowBox);
             this.metroPanel1.Controls.Add(this.UDP_Tile);
             this.metroPanel1.Controls.Add(this.TCP_Tile);
             this.metroPanel1.Controls.Add(this.UART_Tile);
@@ -121,7 +137,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 82);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(816, 703);
+            this.metroPanel1.Size = new System.Drawing.Size(720, 671);
             this.metroPanel1.TabIndex = 2;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -129,7 +145,6 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.SerialPanel);
             this.panel4.Controls.Add(this.TcpPanel);
             this.panel4.Controls.Add(this.UdpPanel);
             this.panel4.Location = new System.Drawing.Point(5, 101);
@@ -151,9 +166,9 @@
             this.SerialPanel.Controls.Add(this.label3);
             this.SerialPanel.Controls.Add(this.label2);
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
-            this.SerialPanel.Controls.Add(this.F5);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
-            this.SerialPanel.Location = new System.Drawing.Point(3, 3);
+            this.SerialPanel.Controls.Add(this.F5);
+            this.SerialPanel.Location = new System.Drawing.Point(52, 392);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(150, 276);
             this.SerialPanel.TabIndex = 7;
@@ -275,16 +290,6 @@
             this.Label_Se_Port.TabIndex = 2;
             this.Label_Se_Port.Text = "포트 :";
             // 
-            // F5
-            // 
-            this.F5.Location = new System.Drawing.Point(9, 219);
-            this.F5.Name = "F5";
-            this.F5.Size = new System.Drawing.Size(62, 23);
-            this.F5.TabIndex = 1;
-            this.F5.Text = "새로고침";
-            this.F5.UseVisualStyleBackColor = true;
-            this.F5.Click += new System.EventHandler(this.button2_Click);
-            // 
             // Serial_Btn_OK
             // 
             this.Serial_Btn_OK.Location = new System.Drawing.Point(79, 219);
@@ -295,8 +300,18 @@
             this.Serial_Btn_OK.UseVisualStyleBackColor = true;
             this.Serial_Btn_OK.Click += new System.EventHandler(this.Serial_Btn_OK_Click);
             // 
+            // F5
+            // 
+            this.F5.Location = new System.Drawing.Point(10, 219);
+            this.F5.Name = "F5";
+            this.F5.Size = new System.Drawing.Size(62, 23);
+            this.F5.TabIndex = 14;
+            this.F5.Text = "새로고침";
+            this.F5.UseVisualStyleBackColor = true;
+            // 
             // TcpPanel
             // 
+            this.TcpPanel.Controls.Add(this.comboBox5);
             this.TcpPanel.Controls.Add(this.checkBox1);
             this.TcpPanel.Controls.Add(this.comboBox1);
             this.TcpPanel.Controls.Add(this.comboBox2);
@@ -373,7 +388,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -474,11 +488,69 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.Btn_StopLog);
+            this.panel2.Controls.Add(this.Btn_UseLog);
+            this.panel2.Controls.Add(this.Btn_Clear);
+            this.panel2.Controls.Add(this.Chk_AS);
+            this.panel2.Controls.Add(this.Chk_AE);
             this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.Chk_Hexa);
             this.panel2.Location = new System.Drawing.Point(585, 287);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 363);
+            this.panel2.Size = new System.Drawing.Size(127, 309);
             this.panel2.TabIndex = 19;
+            // 
+            // Btn_StopLog
+            // 
+            this.Btn_StopLog.Location = new System.Drawing.Point(17, 91);
+            this.Btn_StopLog.Name = "Btn_StopLog";
+            this.Btn_StopLog.Size = new System.Drawing.Size(103, 29);
+            this.Btn_StopLog.TabIndex = 26;
+            this.Btn_StopLog.Text = "StopUsingFact";
+            this.Btn_StopLog.UseVisualStyleBackColor = true;
+            // 
+            // Btn_UseLog
+            // 
+            this.Btn_UseLog.Location = new System.Drawing.Point(57, 47);
+            this.Btn_UseLog.Name = "Btn_UseLog";
+            this.Btn_UseLog.Size = new System.Drawing.Size(63, 23);
+            this.Btn_UseLog.TabIndex = 25;
+            this.Btn_UseLog.Text = "UseLog";
+            this.Btn_UseLog.UseVisualStyleBackColor = true;
+            // 
+            // Btn_Clear
+            // 
+            this.Btn_Clear.Location = new System.Drawing.Point(58, 21);
+            this.Btn_Clear.Name = "Btn_Clear";
+            this.Btn_Clear.Size = new System.Drawing.Size(63, 23);
+            this.Btn_Clear.TabIndex = 24;
+            this.Btn_Clear.Text = "Clear";
+            this.Btn_Clear.UseVisualStyleBackColor = true;
+            this.Btn_Clear.Click += new System.EventHandler(this.Btn_Clear_Click);
+            // 
+            // Chk_AS
+            // 
+            this.Chk_AS.AutoSize = true;
+            this.Chk_AS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Chk_AS.Location = new System.Drawing.Point(6, 69);
+            this.Chk_AS.Name = "Chk_AS";
+            this.Chk_AS.Size = new System.Drawing.Size(46, 16);
+            this.Chk_AS.TabIndex = 23;
+            this.Chk_AS.Text = "A/S";
+            this.Chk_AS.UseVisualStyleBackColor = true;
+            this.Chk_AS.CheckStateChanged += new System.EventHandler(this.Chk_AS_CheckedChanged);
+            // 
+            // Chk_AE
+            // 
+            this.Chk_AE.AutoSize = true;
+            this.Chk_AE.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Chk_AE.Location = new System.Drawing.Point(6, 47);
+            this.Chk_AE.Name = "Chk_AE";
+            this.Chk_AE.Size = new System.Drawing.Size(46, 16);
+            this.Chk_AE.TabIndex = 22;
+            this.Chk_AE.Text = "A/E";
+            this.Chk_AE.UseVisualStyleBackColor = true;
+            this.Chk_AE.CheckStateChanged += new System.EventHandler(this.Chk_AE_CheckedChanged);
             // 
             // label13
             // 
@@ -489,30 +561,17 @@
             this.label13.TabIndex = 21;
             this.label13.Text = "수신옵션";
             // 
-            // panel1
+            // Chk_Hexa
             // 
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Location = new System.Drawing.Point(585, 14);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 267);
-            this.panel1.TabIndex = 18;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 6);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 12);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "송신옵션";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(188, 100);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(382, 21);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.Chk_Hexa.AutoSize = true;
+            this.Chk_Hexa.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Chk_Hexa.Location = new System.Drawing.Point(5, 25);
+            this.Chk_Hexa.Name = "Chk_Hexa";
+            this.Chk_Hexa.Size = new System.Drawing.Size(47, 16);
+            this.Chk_Hexa.TabIndex = 8;
+            this.Chk_Hexa.Text = "HeX";
+            this.Chk_Hexa.UseVisualStyleBackColor = true;
+            this.Chk_Hexa.CheckStateChanged += new System.EventHandler(this.Chk_Hexa_CheckedChanged);
             // 
             // LogPanel
             // 
@@ -552,31 +611,6 @@
             this.ReceiveWindowBox.TabIndex = 3;
             this.ReceiveWindowBox.TabStop = false;
             this.ReceiveWindowBox.Text = "";
-            // 
-            // Chk_Hexa
-            // 
-            this.Chk_Hexa.AutoSize = true;
-            this.Chk_Hexa.Location = new System.Drawing.Point(90, 392);
-            this.Chk_Hexa.Name = "Chk_Hexa";
-            this.Chk_Hexa.Size = new System.Drawing.Size(60, 16);
-            this.Chk_Hexa.TabIndex = 8;
-            this.Chk_Hexa.Text = "16진수";
-            this.Chk_Hexa.UseVisualStyleBackColor = true;
-            this.Chk_Hexa.CheckedChanged += new System.EventHandler(this.Chk_Hexa_CheckedChanged);
-            // 
-            // SendWindowBox
-            // 
-            this.SendWindowBox.AcceptsTab = true;
-            this.SendWindowBox.AutoWordSelection = true;
-            this.SendWindowBox.BackColor = System.Drawing.SystemColors.MenuText;
-            this.SendWindowBox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.SendWindowBox.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.SendWindowBox.Location = new System.Drawing.Point(188, 70);
-            this.SendWindowBox.Name = "SendWindowBox";
-            this.SendWindowBox.Size = new System.Drawing.Size(382, 24);
-            this.SendWindowBox.TabIndex = 2;
-            this.SendWindowBox.TabStop = false;
-            this.SendWindowBox.Text = "";
             // 
             // UDP_Tile
             // 
@@ -626,11 +660,197 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.textBox3);
+            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.checkBox3);
+            this.panel3.Controls.Add(this.Btn_AEAS4);
+            this.panel3.Controls.Add(this.Btn_AEAS3);
+            this.panel3.Controls.Add(this.Btn_AEAS2);
+            this.panel3.Controls.Add(this.Btn_AEAS1);
+            this.panel3.Controls.Add(this.Btn_Send3);
+            this.panel3.Controls.Add(this.SendBox3);
+            this.panel3.Controls.Add(this.Btn_Send4);
+            this.panel3.Controls.Add(this.Btn_Send2);
+            this.panel3.Controls.Add(this.SendBox4);
+            this.panel3.Controls.Add(this.Btn_Send1);
+            this.panel3.Controls.Add(this.SendBox2);
             this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.SendBox1);
             this.panel3.Location = new System.Drawing.Point(170, 14);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(409, 267);
+            this.panel3.Size = new System.Drawing.Size(542, 267);
             this.panel3.TabIndex = 21;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(272, 96);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 12);
+            this.label16.TabIndex = 40;
+            this.label16.Text = "반복";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(158, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(17, 12);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "초";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(192, 90);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(74, 21);
+            this.textBox3.TabIndex = 38;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(78, 90);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(74, 21);
+            this.textBox2.TabIndex = 37;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(21, 93);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(60, 16);
+            this.checkBox3.TabIndex = 36;
+            this.checkBox3.Text = "매크로";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // Btn_AEAS4
+            // 
+            this.Btn_AEAS4.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS4.Location = new System.Drawing.Point(504, 206);
+            this.Btn_AEAS4.Name = "Btn_AEAS4";
+            this.Btn_AEAS4.Size = new System.Drawing.Size(31, 47);
+            this.Btn_AEAS4.TabIndex = 34;
+            this.Btn_AEAS4.Text = "No";
+            this.Btn_AEAS4.UseVisualStyleBackColor = true;
+            this.Btn_AEAS4.Click += new System.EventHandler(this.Btn_AEAS4_Click);
+            // 
+            // Btn_AEAS3
+            // 
+            this.Btn_AEAS3.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS3.Location = new System.Drawing.Point(504, 177);
+            this.Btn_AEAS3.Name = "Btn_AEAS3";
+            this.Btn_AEAS3.Size = new System.Drawing.Size(31, 25);
+            this.Btn_AEAS3.TabIndex = 32;
+            this.Btn_AEAS3.Text = "No";
+            this.Btn_AEAS3.UseVisualStyleBackColor = true;
+            this.Btn_AEAS3.Click += new System.EventHandler(this.Btn_AEAS3_Click);
+            // 
+            // Btn_AEAS2
+            // 
+            this.Btn_AEAS2.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS2.Location = new System.Drawing.Point(504, 147);
+            this.Btn_AEAS2.Name = "Btn_AEAS2";
+            this.Btn_AEAS2.Size = new System.Drawing.Size(31, 25);
+            this.Btn_AEAS2.TabIndex = 30;
+            this.Btn_AEAS2.Text = "No";
+            this.Btn_AEAS2.UseVisualStyleBackColor = true;
+            this.Btn_AEAS2.Click += new System.EventHandler(this.Btn_AEAS2_Click);
+            // 
+            // Btn_AEAS1
+            // 
+            this.Btn_AEAS1.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS1.Location = new System.Drawing.Point(504, 117);
+            this.Btn_AEAS1.Name = "Btn_AEAS1";
+            this.Btn_AEAS1.Size = new System.Drawing.Size(31, 25);
+            this.Btn_AEAS1.TabIndex = 28;
+            this.Btn_AEAS1.Text = "No";
+            this.Btn_AEAS1.UseVisualStyleBackColor = true;
+            this.Btn_AEAS1.Click += new System.EventHandler(this.Btn_AEAS1_Click);
+            // 
+            // Btn_Send3
+            // 
+            this.Btn_Send3.Location = new System.Drawing.Point(444, 176);
+            this.Btn_Send3.Name = "Btn_Send3";
+            this.Btn_Send3.Size = new System.Drawing.Size(53, 25);
+            this.Btn_Send3.TabIndex = 27;
+            this.Btn_Send3.Text = "송신";
+            this.Btn_Send3.UseVisualStyleBackColor = true;
+            this.Btn_Send3.Click += new System.EventHandler(this.Btn_Send3_Click);
+            // 
+            // SendBox3
+            // 
+            this.SendBox3.AcceptsTab = true;
+            this.SendBox3.AutoWordSelection = true;
+            this.SendBox3.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.SendBox3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.SendBox3.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.SendBox3.Location = new System.Drawing.Point(6, 177);
+            this.SendBox3.Name = "SendBox3";
+            this.SendBox3.Size = new System.Drawing.Size(432, 24);
+            this.SendBox3.TabIndex = 26;
+            this.SendBox3.TabStop = false;
+            this.SendBox3.Text = "";
+            // 
+            // Btn_Send4
+            // 
+            this.Btn_Send4.Location = new System.Drawing.Point(444, 205);
+            this.Btn_Send4.Name = "Btn_Send4";
+            this.Btn_Send4.Size = new System.Drawing.Size(53, 48);
+            this.Btn_Send4.TabIndex = 25;
+            this.Btn_Send4.Text = "송신";
+            this.Btn_Send4.UseVisualStyleBackColor = true;
+            this.Btn_Send4.Click += new System.EventHandler(this.Btn_Send4_Click);
+            // 
+            // Btn_Send2
+            // 
+            this.Btn_Send2.Location = new System.Drawing.Point(444, 146);
+            this.Btn_Send2.Name = "Btn_Send2";
+            this.Btn_Send2.Size = new System.Drawing.Size(53, 25);
+            this.Btn_Send2.TabIndex = 24;
+            this.Btn_Send2.Text = "송신";
+            this.Btn_Send2.UseVisualStyleBackColor = true;
+            this.Btn_Send2.Click += new System.EventHandler(this.Btn_Send2_Click);
+            // 
+            // SendBox4
+            // 
+            this.SendBox4.AcceptsTab = true;
+            this.SendBox4.AutoWordSelection = true;
+            this.SendBox4.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.SendBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.SendBox4.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.SendBox4.Location = new System.Drawing.Point(6, 206);
+            this.SendBox4.Name = "SendBox4";
+            this.SendBox4.Size = new System.Drawing.Size(432, 47);
+            this.SendBox4.TabIndex = 23;
+            this.SendBox4.TabStop = false;
+            this.SendBox4.Text = "";
+            // 
+            // Btn_Send1
+            // 
+            this.Btn_Send1.Location = new System.Drawing.Point(444, 117);
+            this.Btn_Send1.Name = "Btn_Send1";
+            this.Btn_Send1.Size = new System.Drawing.Size(53, 25);
+            this.Btn_Send1.TabIndex = 1;
+            this.Btn_Send1.Text = "송신";
+            this.Btn_Send1.UseVisualStyleBackColor = true;
+            this.Btn_Send1.Click += new System.EventHandler(this.Btn_Send1_Click);
+            // 
+            // SendBox2
+            // 
+            this.SendBox2.AcceptsTab = true;
+            this.SendBox2.AutoWordSelection = true;
+            this.SendBox2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.SendBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.SendBox2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.SendBox2.Location = new System.Drawing.Point(6, 147);
+            this.SendBox2.Name = "SendBox2";
+            this.SendBox2.Size = new System.Drawing.Size(432, 24);
+            this.SendBox2.TabIndex = 22;
+            this.SendBox2.TabStop = false;
+            this.SendBox2.Text = "";
             // 
             // label14
             // 
@@ -640,6 +860,25 @@
             this.label14.Size = new System.Drawing.Size(29, 12);
             this.label14.TabIndex = 20;
             this.label14.Text = "송신";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(249, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(89, 21);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // SendBox1
+            // 
+            this.SendBox1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.SendBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.SendBox1.Location = new System.Drawing.Point(6, 118);
+            this.SendBox1.Name = "SendBox1";
+            this.SendBox1.Size = new System.Drawing.Size(432, 24);
+            this.SendBox1.TabIndex = 2;
+            this.SendBox1.TabStop = false;
+            this.SendBox1.Text = "";
             // 
             // Zigbee_Tile
             // 
@@ -655,6 +894,7 @@
             this.Zigbee_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Zigbee_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.Zigbee_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.Zigbee_Tile.Visible = false;
             this.Zigbee_Tile.Click += new System.EventHandler(this.Zigbee_Tile_Click);
             // 
             // WIFI_Tile
@@ -669,6 +909,7 @@
             this.WIFI_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.WIFI_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.WIFI_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.WIFI_Tile.Visible = false;
             this.WIFI_Tile.Click += new System.EventHandler(this.WIFI_Tile_Click);
             // 
             // RF_Tile
@@ -683,6 +924,7 @@
             this.RF_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RF_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.RF_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.RF_Tile.Visible = false;
             this.RF_Tile.Click += new System.EventHandler(this.RF_Tile_Click);
             // 
             // menuStrip1
@@ -695,7 +937,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(960, 19);
+            this.menuStrip1.Size = new System.Drawing.Size(737, 19);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -725,11 +967,19 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(18, 115);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 20);
+            this.comboBox5.TabIndex = 17;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 768);
+            this.ClientSize = new System.Drawing.Size(737, 697);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.SendBtn);
@@ -745,7 +995,6 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
-            this.metroPanel1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.SerialPanel.ResumeLayout(false);
             this.SerialPanel.PerformLayout();
@@ -755,8 +1004,6 @@
             this.UdpPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.LogPanel.ResumeLayout(false);
             this.LogPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -783,7 +1030,7 @@
         private MetroFramework.Controls.MetroTile TCP_Tile;
         private MetroFramework.Controls.MetroTile UDP_Tile;
         private MetroFramework.Controls.MetroButton SendBtn;
-        private System.Windows.Forms.RichTextBox SendWindowBox;
+        private System.Windows.Forms.RichTextBox SendBox1;
         private System.Windows.Forms.Panel SerialPanel;
         private System.Windows.Forms.ComboBox Serial_Combo_FlowCon;
         private System.Windows.Forms.ComboBox Serial_Combo_StopBit;
@@ -797,7 +1044,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Label_Se_Port;
-        private System.Windows.Forms.Button F5;
+        private System.Windows.Forms.Button Btn_Send1;
         private System.Windows.Forms.Button Serial_Btn_OK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.CheckBox Chk_Hexa;
@@ -810,7 +1057,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
@@ -821,12 +1067,33 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.RichTextBox SendBox4;
+        private System.Windows.Forms.RichTextBox SendBox2;
+        private System.Windows.Forms.Button F5;
+        private System.Windows.Forms.Button Btn_Send2;
+        private System.Windows.Forms.Button Btn_Send3;
+        private System.Windows.Forms.RichTextBox SendBox3;
+        private System.Windows.Forms.Button Btn_Send4;
+        private System.Windows.Forms.CheckBox Chk_AS;
+        private System.Windows.Forms.CheckBox Chk_AE;
+        private System.Windows.Forms.Button Btn_AEAS3;
+        private System.Windows.Forms.Button Btn_AEAS2;
+        private System.Windows.Forms.Button Btn_AEAS1;
+        private System.Windows.Forms.Button Btn_AEAS4;
+        private System.Windows.Forms.Button Btn_StopLog;
+        private System.Windows.Forms.Button Btn_UseLog;
+        private System.Windows.Forms.Button Btn_Clear;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox5;
     }
 }
 
