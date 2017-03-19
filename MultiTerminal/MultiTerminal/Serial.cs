@@ -85,7 +85,7 @@ namespace MultiTerminal
                 }
                 else
                 {
-                    MessageBox.Show("시리얼 포트를 연결했습니다.");
+                    MessageBox.Show("시리얼 포트 연결에 실패했습니다.");
                 }
             }
             catch (System.Exception ex)
