@@ -22,11 +22,13 @@ namespace MultiTerminal
         public Tserv tserv = null;
         public Tserv tcla = null;
 
+
+        public delegate void TRecvCallBack();
         // 체크박스 부분
         static public int Chk_Hexa_Flag = 0;
         static public int Chk_AS_Flag = 0;
         static public int CHK_AE_Flag = 0;
-
+         
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
         public System.Timers.Timer timer = null;
@@ -34,7 +36,32 @@ namespace MultiTerminal
         private DateTime nowTime;
 
 
+        public void TRecvMsg()
+        {
+            if(ReceiveWindowBox.InvokeRequired)
+            {
+                if (tserv != null && tserv.client.Connected)
+                {
+                    TRecvCallBack trecvCallBack = new TRecvCallBack(tserv.RecvMsg);
+                    this.Invoke(trecvCallBack);
+                }
+                else if (tcla != null && tcla.client.Connected)
+                {
+                    TRecvCallBack trecvCallBack = new TRecvCallBack(tcla.RecvMsg);
+                    this.Invoke(trecvCallBack);
+                }
 
+            }
+            else
+            {
+                if (tserv != null && tserv.client.Connected)
+                    tserv.RecvMsg();
+                else if (tcla != null && tcla.client.Connected)
+                    tcla.RecvMsg();
+
+
+            }
+        }
         public MainForm()
         {
 
@@ -231,6 +258,11 @@ namespace MultiTerminal
                     {
                         connectType = 1;
                         this.SerialPanel.Visible = false;
+                        if(tserv!=null)
+                        tserv.ServerStop();
+                        if(tcla!=null)
+                        tcla.DisConnect();
+
                         break;
                     }
                 case 2:
@@ -241,16 +273,31 @@ namespace MultiTerminal
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = false;
                         Serial_Combo_Init();
+                        if (tserv != null)
+                            tserv.ServerStop();
+                        if (tcla != null)
+                            tcla.DisConnect();
+
                     }
                     break;
                 case 3:
                     {
                         connectType = 3;
+                        if (tserv != null)
+                            tserv.ServerStop();
+                        if (tcla != null)
+                            tcla.DisConnect();
+
                         break;
                     }
                 case 4:
                     {
                         connectType = 4;
+                        if (tserv != null)
+                            tserv.ServerStop();
+                        if (tcla != null)
+                            tcla.DisConnect();
+
                         break;
                     }
                 case 5:
@@ -269,6 +316,11 @@ namespace MultiTerminal
                         SerialPanel.Visible = false;
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = true;
+                        if (tserv != null)
+                            tserv.ServerStop();
+                        if (tcla != null)
+                            tcla.DisConnect();
+
                         //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
@@ -507,17 +559,17 @@ namespace MultiTerminal
         private void button3_Click(object sender, EventArgs e)
         {
             //comboBox5 -> IP, comboBox6 -> Port
-            if (checkBox1.Checked == true)
+            if (ServerCheck.Checked == true)
             {
-                int port = Int32.Parse(comboBox1.Text);
+                int port = Int32.Parse(PortNumber.Text);
                 tserv = new Tserv(this, port);
                 tserv.ServerStart();
 
             }
             else
             {
-                int port = Int32.Parse(comboBox1.Text);
-                string ip = comboBox2.Text;
+                int port = Int32.Parse(PortNumber.Text);
+                string ip = IpNumber.Text;
                 tcla = new Tserv(this, ip, port);
                 tcla.Connect();
             }
@@ -525,15 +577,15 @@ namespace MultiTerminal
         #region TCP서버여부
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
+            if (ServerCheck.Checked == true)
             {
-                comboBox2.Enabled = false;
+                IpNumber.Enabled = false;
                 isServ = true;
 
             }
             else
             {
-                comboBox2.Enabled = true;
+                IpNumber.Enabled = true;
                 isServ = false;
             }
 
@@ -579,11 +631,11 @@ namespace MultiTerminal
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            double sec = double.Parse(textBox2.Text);
-            int count = Int32.Parse(textBox3.Text);
+            double sec = double.Parse(MacroSec.Text);
+            int count = Int32.Parse(MacroCount.Text);
             Thread macroThread = new Thread(() => SetMacroTime(count,sec));
 
-            if (checkBox3.CheckState == CheckState.Checked)
+            if (MacroCheck.CheckState == CheckState.Checked)
             {
                 mactimer.Elapsed += OnMacro;
                 macroThread.Start();
@@ -872,6 +924,17 @@ namespace MultiTerminal
 
 
         #endregion
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tserv != null)
+                tserv.ServerStop();
+            if (tcla != null)
+                tcla.DisConnect();
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
+
+        }
     }
 
 }

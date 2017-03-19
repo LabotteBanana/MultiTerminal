@@ -34,15 +34,14 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.TcpPanel = new System.Windows.Forms.Panel();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ServerCheck = new System.Windows.Forms.CheckBox();
+            this.PortNumber = new System.Windows.Forms.ComboBox();
+            this.IpNumber = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Connect = new System.Windows.Forms.Button();
             this.UdpPanel = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -84,9 +83,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.MacroCount = new System.Windows.Forms.TextBox();
+            this.MacroSec = new System.Windows.Forms.TextBox();
+            this.MacroCheck = new System.Windows.Forms.CheckBox();
             this.Btn_AEAS4 = new System.Windows.Forms.Button();
             this.Btn_AEAS3 = new System.Windows.Forms.Button();
             this.Btn_AEAS2 = new System.Windows.Forms.Button();
@@ -99,7 +98,6 @@
             this.Btn_Send1 = new System.Windows.Forms.Button();
             this.SendBox2 = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SendBox1 = new System.Windows.Forms.RichTextBox();
             this.Zigbee_Tile = new MetroFramework.Controls.MetroTile();
             this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
@@ -154,55 +152,46 @@
             // 
             // TcpPanel
             // 
-            this.TcpPanel.Controls.Add(this.comboBox5);
-            this.TcpPanel.Controls.Add(this.checkBox1);
-            this.TcpPanel.Controls.Add(this.comboBox1);
-            this.TcpPanel.Controls.Add(this.comboBox2);
+            this.TcpPanel.Controls.Add(this.ServerCheck);
+            this.TcpPanel.Controls.Add(this.PortNumber);
+            this.TcpPanel.Controls.Add(this.IpNumber);
             this.TcpPanel.Controls.Add(this.label1);
             this.TcpPanel.Controls.Add(this.label7);
             this.TcpPanel.Controls.Add(this.label8);
             this.TcpPanel.Controls.Add(this.button1);
-            this.TcpPanel.Controls.Add(this.button3);
+            this.TcpPanel.Controls.Add(this.Connect);
             this.TcpPanel.Location = new System.Drawing.Point(3, 3);
             this.TcpPanel.Name = "TcpPanel";
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
             this.TcpPanel.Visible = false;
             // 
-            // comboBox5
+            // ServerCheck
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(18, 115);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 20);
-            this.comboBox5.TabIndex = 17;
+            this.ServerCheck.AutoSize = true;
+            this.ServerCheck.Location = new System.Drawing.Point(47, 85);
+            this.ServerCheck.Name = "ServerCheck";
+            this.ServerCheck.Size = new System.Drawing.Size(88, 16);
+            this.ServerCheck.TabIndex = 16;
+            this.ServerCheck.Text = "서버 활성화";
+            this.ServerCheck.UseVisualStyleBackColor = true;
+            this.ServerCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox1
+            // PortNumber
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(47, 85);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(88, 16);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "서버 활성화";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.PortNumber.FormattingEnabled = true;
+            this.PortNumber.Location = new System.Drawing.Point(59, 27);
+            this.PortNumber.Name = "PortNumber";
+            this.PortNumber.Size = new System.Drawing.Size(87, 20);
+            this.PortNumber.TabIndex = 13;
             // 
-            // comboBox1
+            // IpNumber
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(59, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(87, 20);
-            this.comboBox1.TabIndex = 13;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(50, 59);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(96, 20);
-            this.comboBox2.TabIndex = 12;
+            this.IpNumber.FormattingEnabled = true;
+            this.IpNumber.Location = new System.Drawing.Point(50, 59);
+            this.IpNumber.Name = "IpNumber";
+            this.IpNumber.Size = new System.Drawing.Size(96, 20);
+            this.IpNumber.TabIndex = 12;
             // 
             // label1
             // 
@@ -237,18 +226,18 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(62, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "옵션저장";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // Connect
             // 
-            this.button3.Location = new System.Drawing.Point(79, 219);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(62, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "옵션적용";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.Connect.Location = new System.Drawing.Point(79, 219);
+            this.Connect.Name = "Connect";
+            this.Connect.Size = new System.Drawing.Size(62, 23);
+            this.Connect.TabIndex = 0;
+            this.Connect.Text = "옵션적용";
+            this.Connect.UseVisualStyleBackColor = true;
+            this.Connect.Click += new System.EventHandler(this.button3_Click);
             // 
             // UdpPanel
             // 
@@ -670,9 +659,9 @@
             // 
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.textBox3);
-            this.panel3.Controls.Add(this.textBox2);
-            this.panel3.Controls.Add(this.checkBox3);
+            this.panel3.Controls.Add(this.MacroCount);
+            this.panel3.Controls.Add(this.MacroSec);
+            this.panel3.Controls.Add(this.MacroCheck);
             this.panel3.Controls.Add(this.Btn_AEAS4);
             this.panel3.Controls.Add(this.Btn_AEAS3);
             this.panel3.Controls.Add(this.Btn_AEAS2);
@@ -685,7 +674,6 @@
             this.panel3.Controls.Add(this.Btn_Send1);
             this.panel3.Controls.Add(this.SendBox2);
             this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.SendBox1);
             this.panel3.Location = new System.Drawing.Point(170, 14);
             this.panel3.Name = "panel3";
@@ -710,30 +698,30 @@
             this.label15.TabIndex = 39;
             this.label15.Text = "초";
             // 
-            // textBox3
+            // MacroCount
             // 
-            this.textBox3.Location = new System.Drawing.Point(192, 90);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(74, 21);
-            this.textBox3.TabIndex = 38;
+            this.MacroCount.Location = new System.Drawing.Point(192, 90);
+            this.MacroCount.Name = "MacroCount";
+            this.MacroCount.Size = new System.Drawing.Size(74, 21);
+            this.MacroCount.TabIndex = 38;
             // 
-            // textBox2
+            // MacroSec
             // 
-            this.textBox2.Location = new System.Drawing.Point(78, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(74, 21);
-            this.textBox2.TabIndex = 37;
+            this.MacroSec.Location = new System.Drawing.Point(78, 90);
+            this.MacroSec.Name = "MacroSec";
+            this.MacroSec.Size = new System.Drawing.Size(74, 21);
+            this.MacroSec.TabIndex = 37;
             // 
-            // checkBox3
+            // MacroCheck
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(21, 93);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(60, 16);
-            this.checkBox3.TabIndex = 36;
-            this.checkBox3.Text = "매크로";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.MacroCheck.AutoSize = true;
+            this.MacroCheck.Location = new System.Drawing.Point(21, 93);
+            this.MacroCheck.Name = "MacroCheck";
+            this.MacroCheck.Size = new System.Drawing.Size(60, 16);
+            this.MacroCheck.TabIndex = 36;
+            this.MacroCheck.Text = "매크로";
+            this.MacroCheck.UseVisualStyleBackColor = true;
+            this.MacroCheck.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Btn_AEAS4
             // 
@@ -870,14 +858,6 @@
             this.label14.TabIndex = 20;
             this.label14.Text = "송신";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(249, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(89, 21);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            // 
             // SendBox1
             // 
             this.SendBox1.BackColor = System.Drawing.SystemColors.HighlightText;
@@ -994,6 +974,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MultiTerminal";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -1058,15 +1039,14 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox IpNumber;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button Connect;
+        private System.Windows.Forms.CheckBox ServerCheck;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel3;
@@ -1090,11 +1070,10 @@
         private System.Windows.Forms.Button Btn_Clear;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.TextBox MacroCount;
+        private System.Windows.Forms.TextBox MacroSec;
+        private System.Windows.Forms.CheckBox MacroCheck;
+        private System.Windows.Forms.ComboBox PortNumber;
     }
 }
 
