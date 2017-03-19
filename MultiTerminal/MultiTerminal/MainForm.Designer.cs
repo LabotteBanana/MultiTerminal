@@ -82,9 +82,7 @@
             this.UART_Tile = new MetroFramework.Controls.MetroTile();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.MacroCount = new System.Windows.Forms.TextBox();
-            this.MacroSec = new System.Windows.Forms.TextBox();
             this.MacroCheck = new System.Windows.Forms.CheckBox();
             this.Btn_AEAS4 = new System.Windows.Forms.Button();
             this.Btn_AEAS3 = new System.Windows.Forms.Button();
@@ -658,9 +656,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.MacroCount);
-            this.panel3.Controls.Add(this.MacroSec);
             this.panel3.Controls.Add(this.MacroCheck);
             this.panel3.Controls.Add(this.Btn_AEAS4);
             this.panel3.Controls.Add(this.Btn_AEAS3);
@@ -683,34 +679,18 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(272, 96);
+            this.label16.Location = new System.Drawing.Point(167, 93);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 12);
+            this.label16.Size = new System.Drawing.Size(51, 12);
             this.label16.TabIndex = 40;
-            this.label16.Text = "반복";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(158, 96);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(17, 12);
-            this.label15.TabIndex = 39;
-            this.label15.Text = "초";
+            this.label16.Text = "ms 반복";
             // 
             // MacroCount
             // 
-            this.MacroCount.Location = new System.Drawing.Point(192, 90);
+            this.MacroCount.Location = new System.Drawing.Point(87, 89);
             this.MacroCount.Name = "MacroCount";
             this.MacroCount.Size = new System.Drawing.Size(74, 21);
             this.MacroCount.TabIndex = 38;
-            // 
-            // MacroSec
-            // 
-            this.MacroSec.Location = new System.Drawing.Point(78, 90);
-            this.MacroSec.Name = "MacroSec";
-            this.MacroSec.Size = new System.Drawing.Size(74, 21);
-            this.MacroSec.TabIndex = 37;
             // 
             // MacroCheck
             // 
@@ -1069,9 +1049,7 @@
         private System.Windows.Forms.Button Btn_UseLog;
         private System.Windows.Forms.Button Btn_Clear;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox MacroCount;
-        private System.Windows.Forms.TextBox MacroSec;
         private System.Windows.Forms.CheckBox MacroCheck;
         private System.Windows.Forms.ComboBox PortNumber;
     }

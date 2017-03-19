@@ -160,12 +160,12 @@ namespace MultiTerminal
         }
 
 
-        public void SetMacroTime(int count, double perSec)
+        public void SetMacroTime(int count)
         {
             // 초당 10번이면 100/1000
             // 초당 5번 이면 50/1000
             mactimer.Enabled = true;
-            mactimer.Interval = perSec*1000/count;
+            mactimer.Interval = count;
 
         }
 
@@ -652,47 +652,21 @@ namespace MultiTerminal
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            bool bEvent = false;
-            if (sw.IsRunning == false)
-            {
-                sw.Reset();
-                sw.Start();
-            }
-            double sec = double.Parse(MacroSec.Text); //3초
             int count = Int32.Parse(MacroCount.Text);
 
             if (MacroCheck.CheckState == CheckState.Checked)
             {
-                bEvent = true;
+                macroThread = new Thread(() => SetMacroTime(count));
+
+                mactimer.Elapsed += OnMacro;
+                mactimer.Enabled = false;
+                macroThread.Start();
             }
+
+        
             else
             {
-                bEvent = false;
-            }
-            if(bEvent == true)
-            {
-                macroThread = new Thread(() => SetMacroTime(count, sec));
-                bEvent = false;
-
-                if (sw.Elapsed.TotalSeconds < sec)
-                {
-                    mactimer.Elapsed += OnMacro;
-                    mactimer.Enabled = false;
-                    macroThread.Start();
-                }
-                else if(sw.Elapsed.TotalSeconds >sec)
-                {
-                    sw.Reset();
-                    sw.Stop();
-                    mactimer.Elapsed -= OnMacro;
-                    mactimer.Enabled = false;
-                }
-                ///x초뒤 종료하기
-            }
-            else if(bEvent ==false)
-            {
                 MacroCheck.CheckState = CheckState.Unchecked;
-                bEvent = false;
                 sw.Stop();
                 mactimer.Enabled = false;
                 mactimer.Elapsed -= OnMacro;
