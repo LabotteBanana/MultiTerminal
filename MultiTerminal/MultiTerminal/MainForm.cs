@@ -11,6 +11,8 @@ using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 using System.Timers;
+using System.Management;
+
 namespace MultiTerminal
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
@@ -331,6 +333,37 @@ namespace MultiTerminal
                 data.Add(s);
             }
             Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
+
+            using (var searcher = new ManagementObjectSearcher
+               ("SELECT * FROM WIN32_SerialPort"))
+            {
+                string[] portnames = SerialPort.GetPortNames();
+                var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
+                var tList = (from n in portnames
+                             join p in ports on n equals p["DeviceID"].ToString()
+                             select " - " + p["Caption"]).ToList();
+                var cmpList = (from n in portnames
+                               join p in ports on n equals p["DeviceID"].ToString()
+                               select n).ToList();
+                foreach (string s in cmpList)
+                {
+                    for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
+                    {
+                        try
+                        {
+                            int a = Serial_Combo_Port.Items.IndexOf(s);
+                            Serial_Combo_Port.Items[a] += tList[i];
+                        }
+                        catch (ArgumentException e)
+                        {
+
+                        }
+                    }
+                }
+            }
+            if (Serial_Combo_Port.Items.Count != 0)
+                Serial_Combo_Port.SelectedIndex = 0;
+
             Serial_Combo_Port.SelectedIndex = 0;
 
             List<string> data2 = new List<string>();

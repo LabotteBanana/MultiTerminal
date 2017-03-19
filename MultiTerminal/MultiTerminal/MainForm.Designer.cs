@@ -32,7 +32,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
@@ -48,7 +47,9 @@
             this.Label_Se_Port = new System.Windows.Forms.Label();
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
             this.F5 = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.TcpPanel = new System.Windows.Forms.Panel();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -108,10 +109,9 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.metroPanel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SerialPanel.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.TcpPanel.SuspendLayout();
             this.UdpPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -124,7 +124,6 @@
             // 
             this.metroPanel1.AutoSize = true;
             this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.metroPanel1.Controls.Add(this.SerialPanel);
             this.metroPanel1.Controls.Add(this.panel4);
             this.metroPanel1.Controls.Add(this.panel2);
             this.metroPanel1.Controls.Add(this.LogPanel);
@@ -143,15 +142,6 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.TcpPanel);
-            this.panel4.Controls.Add(this.UdpPanel);
-            this.panel4.Location = new System.Drawing.Point(5, 101);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(159, 285);
-            this.panel4.TabIndex = 17;
-            // 
             // SerialPanel
             // 
             this.SerialPanel.Controls.Add(this.Serial_Combo_FlowCon);
@@ -168,7 +158,7 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
             this.SerialPanel.Controls.Add(this.F5);
-            this.SerialPanel.Location = new System.Drawing.Point(52, 392);
+            this.SerialPanel.Location = new System.Drawing.Point(3, 0);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(150, 276);
             this.SerialPanel.TabIndex = 7;
@@ -309,6 +299,16 @@
             this.F5.Text = "새로고침";
             this.F5.UseVisualStyleBackColor = true;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.TcpPanel);
+            this.panel4.Controls.Add(this.UdpPanel);
+            this.panel4.Controls.Add(this.SerialPanel);
+            this.panel4.Location = new System.Drawing.Point(5, 101);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(159, 285);
+            this.panel4.TabIndex = 17;
+            // 
             // TcpPanel
             // 
             this.TcpPanel.Controls.Add(this.comboBox5);
@@ -325,6 +325,14 @@
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
             this.TcpPanel.Visible = false;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(18, 115);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 20);
+            this.comboBox5.TabIndex = 17;
             // 
             // checkBox1
             // 
@@ -728,7 +736,7 @@
             // 
             // Btn_AEAS4
             // 
-            this.Btn_AEAS4.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS4.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS4.Location = new System.Drawing.Point(504, 206);
             this.Btn_AEAS4.Name = "Btn_AEAS4";
             this.Btn_AEAS4.Size = new System.Drawing.Size(31, 47);
@@ -739,7 +747,7 @@
             // 
             // Btn_AEAS3
             // 
-            this.Btn_AEAS3.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS3.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS3.Location = new System.Drawing.Point(504, 177);
             this.Btn_AEAS3.Name = "Btn_AEAS3";
             this.Btn_AEAS3.Size = new System.Drawing.Size(31, 25);
@@ -750,7 +758,7 @@
             // 
             // Btn_AEAS2
             // 
-            this.Btn_AEAS2.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS2.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS2.Location = new System.Drawing.Point(504, 147);
             this.Btn_AEAS2.Name = "Btn_AEAS2";
             this.Btn_AEAS2.Size = new System.Drawing.Size(31, 25);
@@ -761,7 +769,7 @@
             // 
             // Btn_AEAS1
             // 
-            this.Btn_AEAS1.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS1.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS1.Location = new System.Drawing.Point(504, 117);
             this.Btn_AEAS1.Name = "Btn_AEAS1";
             this.Btn_AEAS1.Size = new System.Drawing.Size(31, 25);
@@ -967,14 +975,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(18, 115);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 20);
-            this.comboBox5.TabIndex = 17;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -995,9 +995,9 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.SerialPanel.ResumeLayout(false);
             this.SerialPanel.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.TcpPanel.ResumeLayout(false);
             this.TcpPanel.PerformLayout();
             this.UdpPanel.ResumeLayout(false);
