@@ -721,7 +721,7 @@
             this.MacroCheck.TabIndex = 36;
             this.MacroCheck.Text = "매크로";
             this.MacroCheck.UseVisualStyleBackColor = true;
-            this.MacroCheck.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.MacroCheck.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Btn_AEAS4
             // 
