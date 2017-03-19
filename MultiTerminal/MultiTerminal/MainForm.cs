@@ -21,6 +21,8 @@ namespace MultiTerminal
         public int connectType = 1;
         public Tserv tserv = null;
         public Tserv tcla = null;
+        public Tserv userv = null;
+        public Tserv ucla = null;
         public static Thread macroThread;
         public static Thread SendThread;
         public delegate void TRecvCallBack();
@@ -28,42 +30,16 @@ namespace MultiTerminal
         static public int Chk_Hexa_Flag = 0;
         static public int Chk_AS_Flag = 0;
         static public int CHK_AE_Flag = 0;
-         
+
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
         public System.Timers.Timer timer = null;
         System.Diagnostics.Stopwatch sw = new Stopwatch();
 
         public static System.Timers.Timer mactimer = null;
-        public  System.Timers.Timer aftertimer = null;
+        public System.Timers.Timer aftertimer = null;
         private DateTime nowTime;
 
-        public void TRecvMsg()
-        {
-            if(ReceiveWindowBox.InvokeRequired)
-            {
-                if (tserv != null && tserv.client.Connected)
-                {
-                    TRecvCallBack trecvCallBack = new TRecvCallBack(tserv.RecvMsg);
-                    this.Invoke(trecvCallBack);
-                }
-                else if (tcla != null && tcla.client.Connected)
-                {
-                    TRecvCallBack trecvCallBack = new TRecvCallBack(tcla.RecvMsg);
-                    this.Invoke(trecvCallBack);
-                }
-
-            }
-            else
-            {
-                if (tserv != null && tserv.client.Connected)
-                    tserv.RecvMsg();
-                else if (tcla != null && tcla.client.Connected)
-                    tcla.RecvMsg();
-
-
-            }
-        }
         public MainForm()
         {
 
@@ -89,7 +65,7 @@ namespace MultiTerminal
 
         private void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
         {
-            if(connectType == 2)
+            if (connectType == 2)
             {
                 ///여기에 시리얼 센드부분
                 try
@@ -116,32 +92,38 @@ namespace MultiTerminal
             {
                 try
                 {
-                    if (isServ == true && tserv.client.Connected == true)
+                    if (tserv != null)
                     {
-                        SendThread = new Thread(new ThreadStart(delegate ()
+                        if (isServ == true && tserv.client.Connected == true)
                         {
-                            this.Invoke(new Action(() =>
+                            SendThread = new Thread(new ThreadStart(delegate ()
                             {
-                                tserv.SendMsg(SendBox1.Text);
+                                this.Invoke(new Action(() =>
+                                {
+                                    tserv.SendMsg(SendBox1.Text);
 
-                                ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                }));
                             }));
-                        }));
-                        SendThread.Start();
+                            SendThread.Start();
 
+                        }
                     }
-                    if (isServ == false && tcla.client.Connected == true)
+                    if (tcla != null)
                     {
-                        SendThread = new Thread(new ThreadStart(delegate ()
+                        if (isServ == false && tcla.client.Connected == true)
                         {
-                            this.Invoke(new Action(() =>
+                            SendThread = new Thread(new ThreadStart(delegate ()
                             {
-                                tcla.SendMsg(SendBox1.Text);
+                                this.Invoke(new Action(() =>
+                                {
+                                    tcla.SendMsg(SendBox1.Text);
 
-                                ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                }));
                             }));
-                        }));
-                        SendThread.Start();
+                            SendThread.Start();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -149,7 +131,49 @@ namespace MultiTerminal
                     MessageBox.Show(ex.ToString());
                 }
             }
+            if (connectType == 6)
+            {
+                try
+                {
+                    if (userv != null)
+                    {
+                        if (isServ == true && userv.client.Connected == true)
+                        {
+                            SendThread = new Thread(new ThreadStart(delegate ()
+                            {
+                                this.Invoke(new Action(() =>
+                                {
+                                    userv.SendMsg(SendBox1.Text);
 
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                }));
+                            }));
+                            SendThread.Start();
+
+                        }
+                    }
+                    if (ucla != null)
+                    {
+                        if (isServ == false && ucla.client.Connected == true)
+                        {
+                            SendThread = new Thread(new ThreadStart(delegate ()
+                            {
+                                this.Invoke(new Action(() =>
+                                {
+                                    ucla.SendMsg(SendBox1.Text);
+
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                }));
+                            }));
+                            SendThread.Start();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
         public string GetTimer()
         {
@@ -280,10 +304,15 @@ namespace MultiTerminal
                     {
                         connectType = 1;
                         this.SerialPanel.Visible = false;
-                        if(tserv!=null)
-                        tserv.ServerStop();
-                        if(tcla!=null)
-                        tcla.DisConnect();
+                        if (tserv != null)
+                            tserv.ServerStop();
+                        if (tcla != null)
+                            tcla.DisConnect();
+                        if (userv != null)
+                            userv.ServerStop();
+                        if (ucla != null)
+                            ucla.DisConnect();
+
 
                         break;
                     }
@@ -299,6 +328,11 @@ namespace MultiTerminal
                             tserv.ServerStop();
                         if (tcla != null)
                             tcla.DisConnect();
+                        if (userv != null)
+                            userv.ServerStop();
+                        if (ucla != null)
+                            ucla.DisConnect();
+
 
                     }
                     break;
@@ -309,6 +343,11 @@ namespace MultiTerminal
                             tserv.ServerStop();
                         if (tcla != null)
                             tcla.DisConnect();
+                        if (userv != null)
+                            userv.ServerStop();
+                        if (ucla != null)
+                            ucla.DisConnect();
+
 
                         break;
                     }
@@ -319,6 +358,11 @@ namespace MultiTerminal
                             tserv.ServerStop();
                         if (tcla != null)
                             tcla.DisConnect();
+                        if (userv != null)
+                            userv.ServerStop();
+                        if (ucla != null)
+                            ucla.DisConnect();
+
 
                         break;
                     }
@@ -329,6 +373,11 @@ namespace MultiTerminal
                         TcpPanel.Visible = true;
                         SerialPanel.Visible = false;
                         UdpPanel.Visible = false;
+                        if (userv != null)
+                            userv.ServerStop();
+                        if (ucla != null)
+                            ucla.DisConnect();
+
                     }
                     break;
                 case 6:
@@ -551,8 +600,8 @@ namespace MultiTerminal
             {
                 this.Invoke(new Action(() =>
                 {
-                        this.ReceiveWindowBox.Text = Global.globalVar;
-                        this.ReceiveWindowBox.ScrollToCaret();
+                    this.ReceiveWindowBox.Text = Global.globalVar;
+                    this.ReceiveWindowBox.ScrollToCaret();
                 }));
             }));
             thread.Start();
@@ -663,7 +712,7 @@ namespace MultiTerminal
                 macroThread.Start();
             }
 
-        
+
             else
             {
                 MacroCheck.CheckState = CheckState.Unchecked;
@@ -685,12 +734,13 @@ namespace MultiTerminal
             UdpPanel.Visible = false;
             SerialPanel.Visible = false;
 
-            for (int i = 0; i < 4; i++) { 
+            for (int i = 0; i < 4; i++)
+            {
                 Flag_AEAS[i] = 0;
                 Flag_ASCII[i] = 0;
             }
-                        TcpPanel.Visible = false;
-            
+            TcpPanel.Visible = false;
+
             timer = new System.Timers.Timer();
             mactimer = new System.Timers.Timer();
             aftertimer = new System.Timers.Timer();
@@ -702,7 +752,7 @@ namespace MultiTerminal
 
             aftertimer.Enabled = true;
             aftertimer.AutoReset = true;
-            timer.Elapsed += OnTimeEvent; 
+            timer.Elapsed += OnTimeEvent;
         }
         #endregion
         #region 보내기 버튼 묶음
@@ -739,7 +789,20 @@ namespace MultiTerminal
                         ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                     }
                 }
+                if (connectType == 6)
+                {
+                    if (isServ == true && userv.client.Connected == true)
+                    {
+                        userv.SendMsg(SendBox1.Text);
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    }
+                    if (isServ == false && ucla.client.Connected == true)
+                    {
+                        ucla.SendMsg(SendBox1.Text);
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    }
 
+                }
             }
             catch (Exception ex)
             {
@@ -824,7 +887,7 @@ namespace MultiTerminal
         #endregion
 
         #region 보내기 옵션들 묶음
-        private int[] Flag_AEAS = new int[4];           
+        private int[] Flag_AEAS = new int[4];
         private int[] Flag_ASCII = new int[4];
 
         private void Btn_AEAS1_Click(object sender, EventArgs e)
@@ -845,7 +908,7 @@ namespace MultiTerminal
                     break;
                 case 2:
                     this.Btn_AEAS1.Text = "A/S";
-                    break;          
+                    break;
             }
         }
 
@@ -915,7 +978,7 @@ namespace MultiTerminal
             }
         }
 
-        
+
         #endregion
 
         #region 수신 옵션들 묶음
@@ -926,7 +989,7 @@ namespace MultiTerminal
 
         private void Chk_Hexa_CheckedChanged(object sender, EventArgs e)
         {
-            if( Chk_Hexa.CheckState == CheckState.Checked)
+            if (Chk_Hexa.CheckState == CheckState.Checked)
                 Chk_Hexa_Flag = 1;
             else
                 Chk_Hexa_Flag = 0;
@@ -958,8 +1021,47 @@ namespace MultiTerminal
                 tserv.ServerStop();
             if (tcla != null)
                 tcla.DisConnect();
+            if (userv != null)
+                userv.ServerStop();
+            if (ucla != null)
+                ucla.DisConnect();
             Process currentProcess = Process.GetCurrentProcess();
             currentProcess.Kill();
+
+        }
+
+        private void UServerCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UServerCheck.Checked == true)
+            {
+                UIPNumber.Enabled = false;
+                isServ = true;
+
+            }
+            else
+            {
+                UIPNumber.Enabled = true;
+                isServ = false;
+            }
+
+        }
+
+        private void Udp_Connect_Click(object sender, EventArgs e)
+        {
+            if (UServerCheck.Checked == true)
+            {
+                int port = Int32.Parse(UPortNumber.Text);
+                userv = new Tserv(this, port);
+                userv.ServerStart();
+
+            }
+            else
+            {
+                int port = Int32.Parse(UPortNumber.Text);
+                string ip = UIPNumber.Text;
+                ucla = new Tserv(this, ip, port);
+                ucla.Connect();
+            }
 
         }
     }
