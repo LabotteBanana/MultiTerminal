@@ -88,12 +88,27 @@ namespace MultiTerminal
                 if (isServ == true && tserv.client.Connected == true)
                 {
                     tserv.SendMsg(SendBox1.Text);
-                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    Thread thread = new Thread(new ThreadStart(delegate ()
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        }));
+                    }));
+                    thread.Start();
+                    
                 }
                 if (isServ == false && tcla.client.Connected == true)
                 {
                     tcla.SendMsg(SendBox1.Text);
-                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                    Thread thread = new Thread(new ThreadStart(delegate ()
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        }));
+                    }));
+                    thread.Start();
                 }
             }
 
@@ -111,7 +126,6 @@ namespace MultiTerminal
             // 초당 10번이면 100/1000
             // 초당 5번 이면 50/1000
             mactimer.Interval = perSec*1000/count;
-            mactimer.Elapsed += OnMacro;
             mactimer.Enabled = true;
 
         }
