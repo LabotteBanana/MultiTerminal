@@ -33,15 +33,6 @@
             this.components = new System.ComponentModel.Container();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.UdpPanel = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
@@ -66,6 +57,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.UdpPanel = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -91,9 +91,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.metroPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.UdpPanel.SuspendLayout();
             this.SerialPanel.SuspendLayout();
             this.TcpPanel.SuspendLayout();
+            this.UdpPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.LogPanel.SuspendLayout();
@@ -136,93 +136,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(159, 285);
             this.panel4.TabIndex = 17;
-            // 
-            // UdpPanel
-            // 
-            this.UdpPanel.Controls.Add(this.checkBox2);
-            this.UdpPanel.Controls.Add(this.comboBox3);
-            this.UdpPanel.Controls.Add(this.comboBox4);
-            this.UdpPanel.Controls.Add(this.label9);
-            this.UdpPanel.Controls.Add(this.label10);
-            this.UdpPanel.Controls.Add(this.label11);
-            this.UdpPanel.Controls.Add(this.button4);
-            this.UdpPanel.Controls.Add(this.button5);
-            this.UdpPanel.Location = new System.Drawing.Point(3, 3);
-            this.UdpPanel.Name = "UdpPanel";
-            this.UdpPanel.Size = new System.Drawing.Size(150, 276);
-            this.UdpPanel.TabIndex = 15;
-            this.UdpPanel.Visible = false;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(18, 86);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(88, 16);
-            this.checkBox2.TabIndex = 17;
-            this.checkBox2.Text = "서버 활성화";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(59, 27);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(87, 20);
-            this.comboBox3.TabIndex = 13;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(50, 59);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(96, 20);
-            this.comboBox4.TabIndex = 12;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 30);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 12);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "포트 :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 12);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "IP :";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(17, 8);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 12);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "UDP 설정";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(250, 59);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(250, 22);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "옵션적용";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // SerialPanel
             // 
@@ -299,7 +212,9 @@
             // Serial_Combo_Port
             // 
             this.Serial_Combo_Port.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Serial_Combo_Port.DropDownWidth = 270;
             this.Serial_Combo_Port.FormattingEnabled = true;
+            this.Serial_Combo_Port.IntegralHeight = false;
             this.Serial_Combo_Port.Location = new System.Drawing.Point(70, 22);
             this.Serial_Combo_Port.Name = "Serial_Combo_Port";
             this.Serial_Combo_Port.Size = new System.Drawing.Size(76, 20);
@@ -395,7 +310,6 @@
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
             this.TcpPanel.Visible = false;
-            //this.TcpPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TcpPanel_Paint);
             // 
             // checkBox1
             // 
@@ -470,6 +384,93 @@
             this.button3.Text = "옵션적용";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // UdpPanel
+            // 
+            this.UdpPanel.Controls.Add(this.checkBox2);
+            this.UdpPanel.Controls.Add(this.comboBox3);
+            this.UdpPanel.Controls.Add(this.comboBox4);
+            this.UdpPanel.Controls.Add(this.label9);
+            this.UdpPanel.Controls.Add(this.label10);
+            this.UdpPanel.Controls.Add(this.label11);
+            this.UdpPanel.Controls.Add(this.button4);
+            this.UdpPanel.Controls.Add(this.button5);
+            this.UdpPanel.Location = new System.Drawing.Point(3, 3);
+            this.UdpPanel.Name = "UdpPanel";
+            this.UdpPanel.Size = new System.Drawing.Size(150, 276);
+            this.UdpPanel.TabIndex = 15;
+            this.UdpPanel.Visible = false;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(18, 86);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(88, 16);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "서버 활성화";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(59, 27);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(87, 20);
+            this.comboBox3.TabIndex = 13;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(50, 59);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(96, 20);
+            this.comboBox4.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 12);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "포트 :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 12);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "IP :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(17, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 12);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "UDP 설정";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(250, 59);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(250, 22);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "옵션적용";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -616,7 +617,7 @@
             this.UART_Tile.Size = new System.Drawing.Size(159, 26);
             this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UART_Tile.TabIndex = 5;
-            this.UART_Tile.Text = "UART";
+            this.UART_Tile.Text = "SERIAL";
             this.UART_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.UART_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.UART_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
@@ -746,12 +747,12 @@
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.UdpPanel.ResumeLayout(false);
-            this.UdpPanel.PerformLayout();
             this.SerialPanel.ResumeLayout(false);
             this.SerialPanel.PerformLayout();
             this.TcpPanel.ResumeLayout(false);
             this.TcpPanel.PerformLayout();
+            this.UdpPanel.ResumeLayout(false);
+            this.UdpPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);

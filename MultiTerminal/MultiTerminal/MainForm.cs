@@ -215,24 +215,21 @@ namespace MultiTerminal
 
         }
 
-        private void ReceiveBtn_Click(object sender, EventArgs e)   // 받기 버튼
+        public byte[] str2hex(string strData, ref int SendCount)
         {
+            string resultHex = string.Empty;
+            byte[] arr_byteStr = Encoding.Default.GetBytes(strData);
+            byte[] byteSendData = new byte[200];
 
-            if (connectType == 2)
-            {
-                //this.ReceiveWindowBox.Text += serial.receivedata + "\n";       // 시리얼 전역변수에서 받아서 텍스트박스에 표현
-            }
-            if (connectType == 5)
-            {
-            }
-            if (connectType == 6)
-            {
-            }
+            foreach (byte byteStr in arr_byteStr)
+                byteSendData[SendCount++] = Convert.ToByte(string.Format("{0:X1}", byteStr),16);
+
+            return byteSendData;
         }
-
         // 임시 보내기 버튼
         private void button2_Click(object sender, EventArgs e)
         {
+        /*
 
             byte[] byteSendData = new byte[200];
             int SendCount = 0;
@@ -240,14 +237,20 @@ namespace MultiTerminal
             {
                 if (true == Chk_Hexa.Checked)
                 {
-                    foreach (string s in SendWindowBox.Text.Split(' '))
+                    //foreach (string s in SendWindowBox.Text.Split(' '))
                     {
+                        string s = SendWindowBox.Text;
                         if (s != null && s != "")
                         {
-                            byteSendData[SendCount++] = Convert.ToByte(s, 16);
+                            //byteSendData[SendCount++] = Convert.ToByte(str2hex(s), 16);
+                            char[] values = s.ToCharArray();
+                            foreach (char letter in values)
+                            {
+                                byteSendData[SendCount++] = Convert.ToInt32(letter);
+                            }
                         }
+                        serial.SerialHexSend(byteSendData, 0, SendCount);
                     }
-                    serial.SerialHexSend(byteSendData, 0, SendCount);
 
                 }
                 else
@@ -260,6 +263,7 @@ namespace MultiTerminal
             {
                 MessageBox.Show(ex.Message);
             }
+            */
         }
 
         private void Chk_Hexa_CheckedChanged(object sender, EventArgs e)
@@ -283,7 +287,6 @@ namespace MultiTerminal
         // 시리얼 설정 부분 선택지    
         private void Serial_Combo_Init()
         {
-
             // 시리얼 옵션 콤보박스 초기화
             this.Serial_Combo_Port.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_Baud.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -329,7 +332,7 @@ namespace MultiTerminal
                 {
                     Serial_Combo_Port.Items.Add(s);
                 }*/
-            }
+           }
             if(Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
 
