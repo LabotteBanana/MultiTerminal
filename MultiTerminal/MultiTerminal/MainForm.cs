@@ -607,29 +607,13 @@ namespace MultiTerminal
             {
                 this.Invoke(new Action(() =>
                 {
-                    this.ReceiveWindowBox.Text = Global.globalVar;
+                    this.ReceiveWindowBox.AppendText("수신 : " + GetTimer() + Global.globalVar + "\n");
+                    this.ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     this.ReceiveWindowBox.ScrollToCaret();
                 }));
             }));
             thread.Start();
         }
-
-        // 송신 텍스트박스 업데이트 이벤트
-        private void Enter_Rich(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (this.SendBox1.Text != null)
-                {
-
-                    serial.SerialSend(SendBox1.Text);
-
-                }
-            }
-        }
-
-
-
 
         #endregion
 
@@ -772,18 +756,10 @@ namespace MultiTerminal
             {
                 if (connectType == 2)
                 {
-                    if (Flag_AEAS[0] == 0)
-                    {
-                        serial.SerialSend(this.SendBox1.Text);
-                    }
-                    else if (Flag_AEAS[0] == 1)
-                    {
-                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
-                    }
-                    else
-                    {
-                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
-                    }
+                        serial.SerialSend(SendBox1.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
                 }
                 if (connectType == 5)
                 {
@@ -831,20 +807,48 @@ namespace MultiTerminal
         {
             try
             {
+                if (connectType == 2)
+                {
+                    serial.SerialSend(SendBox2.Text);
+                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
+                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                    ReceiveWindowBox.ScrollToCaret();
+                }
+                if (connectType == 5)
+                {
+                    if (isServ == true && tserv.client.Connected == true)
+                    {
+                        tserv.SendMsg(SendBox2.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                    if (isServ == false && tcla.client.Connected == true)
+                    {
+                        tcla.SendMsg(SendBox2.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                }
+                if (connectType == 6)
+                {
+                    if (isServ == true && userv.client.Connected == true)
+                    {
+                        userv.SendMsg(SendBox2.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                    if (isServ == false && ucla.client.Connected == true)
+                    {
+                        ucla.SendMsg(SendBox2.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
 
-                if (Flag_AEAS[1] == 0)
-                {
-                    serial.SerialSend(this.SendBox2.Text);
                 }
-                else if (Flag_AEAS[1] == 1)
-                {
-                    serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, "\n"));
-                }
-                else
-                {
-                    serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, " "));
-                }
-
             }
             catch (Exception ex)
             {
@@ -857,17 +861,47 @@ namespace MultiTerminal
         {
             try
             {
-                if (Flag_AEAS[2] == 0)
+                if (connectType == 2)
                 {
-                    serial.SerialSend(this.SendBox3.Text);
+                    serial.SerialSend(SendBox3.Text);
+                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
+                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                    ReceiveWindowBox.ScrollToCaret();
                 }
-                else if (Flag_AEAS[2] == 1)
+                if (connectType == 5)
                 {
-                    serial.SerialSend(SendBox3.Text.Insert(SendBox3.Text.Length, "\n"));
+                    if (isServ == true && tserv.client.Connected == true)
+                    {
+                        tserv.SendMsg(SendBox3.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                    if (isServ == false && tcla.client.Connected == true)
+                    {
+                        tcla.SendMsg(SendBox3.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
                 }
-                else
+                if (connectType == 6)
                 {
-                    serial.SerialSend(SendBox3.Text.Insert(SendBox3.Text.Length, " "));
+                    if (isServ == true && userv.client.Connected == true)
+                    {
+                        userv.SendMsg(SendBox3.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                    if (isServ == false && ucla.client.Connected == true)
+                    {
+                        ucla.SendMsg(SendBox3.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -882,17 +916,47 @@ namespace MultiTerminal
         {
             try
             {
-                if (Flag_AEAS[3] == 0)
+                if (connectType == 2)
                 {
-                    serial.SerialSend(this.SendBox4.Text);
+                    serial.SerialSend(SendBox4.Text);
+                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
+                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                    ReceiveWindowBox.ScrollToCaret();
                 }
-                else if (Flag_AEAS[3] == 1)
+                if (connectType == 5)
                 {
-                    serial.SerialSend(SendBox4.Text.Insert(SendBox4.Text.Length, "\n"));
+                    if (isServ == true && tserv.client.Connected == true)
+                    {
+                        tserv.SendMsg(SendBox4.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                    if (isServ == false && tcla.client.Connected == true)
+                    {
+                        tcla.SendMsg(SendBox4.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
                 }
-                else
+                if (connectType == 6)
                 {
-                    serial.SerialSend(SendBox4.Text.Insert(SendBox4.Text.Length, " "));
+                    if (isServ == true && userv.client.Connected == true)
+                    {
+                        userv.SendMsg(SendBox4.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+                    if (isServ == false && ucla.client.Connected == true)
+                    {
+                        ucla.SendMsg(SendBox4.Text);
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
+                    }
+
                 }
             }
             catch (Exception ex)
