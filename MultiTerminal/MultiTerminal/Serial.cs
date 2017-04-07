@@ -146,13 +146,9 @@ namespace MultiTerminal
 
                 //receivedata += strRecData;
                 if (MainForm.Chk_Hexa_Flag == 1 )
-                { Global.globalVar += strRecData; }
+                { Global.globalVar = strRecData; }
                 else
-                { Global.globalVar += Encoding.UTF8.GetString(buff); }
-                if (MainForm.CHK_AE_Flag == 1)
-                { Global.globalVar +=  "\n"; }
-                if (MainForm.Chk_AS_Flag == 1)
-                { Global.globalVar += " "; }
+                { Global.globalVar = Encoding.UTF8.GetString(buff); }
                 for (int iTemp = 0; iTemp < intRecSize; iTemp++)
                 {
                     Console.Write(Convert.ToString(buff[iTemp], 2));

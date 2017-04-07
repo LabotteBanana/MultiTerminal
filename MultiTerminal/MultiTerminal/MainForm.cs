@@ -34,7 +34,7 @@ namespace MultiTerminal
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
         public System.Timers.Timer timer = null;
-        System.Diagnostics.Stopwatch sw = new Stopwatch();
+        Stopwatch sw = new Stopwatch();
 
         public static System.Timers.Timer mactimer = null;
         public System.Timers.Timer aftertimer = null;
