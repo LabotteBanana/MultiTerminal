@@ -109,6 +109,7 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.패킷보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel1.SuspendLayout();
             this.SerialPanel.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -733,6 +734,7 @@
             this.checkBox3.TabIndex = 36;
             this.checkBox3.Text = "매크로";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Btn_AEAS4
             // 
@@ -957,6 +959,8 @@
             // 
             // ddfdfToolStripMenuItem
             // 
+            this.ddfdfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.패킷보기ToolStripMenuItem});
             this.ddfdfToolStripMenuItem.Name = "ddfdfToolStripMenuItem";
             this.ddfdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
             this.ddfdfToolStripMenuItem.Text = "설정";
@@ -974,6 +978,12 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // 패킷보기ToolStripMenuItem
+            // 
+            this.패킷보기ToolStripMenuItem.Name = "패킷보기ToolStripMenuItem";
+            this.패킷보기ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.패킷보기ToolStripMenuItem.Text = "패킷 보기";
             // 
             // MainForm
             // 
@@ -1094,6 +1104,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ToolStripMenuItem 패킷보기ToolStripMenuItem;
     }
 }
 

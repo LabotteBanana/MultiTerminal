@@ -179,6 +179,12 @@ namespace MultiTerminal
                 { Global.globalVar +=  "\n"; }
                 if (MainForm.Chk_AS_Flag == 1)
                 { Global.globalVar += " "; }
+                for (int iTemp = 0; iTemp < intRecSize; iTemp++)
+                {
+                    Console.Write(Convert.ToString(buff[iTemp], 2));
+                    
+                }
+            Console.WriteLine();
             }
 
         }

@@ -364,8 +364,6 @@ namespace MultiTerminal
             if (Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
 
-            Serial_Combo_Port.SelectedIndex = 0;
-
             List<string> data2 = new List<string>();
             string[] Baud = { "4800", "9600", "14400", "19200" };
             foreach (string s in Baud)
@@ -415,7 +413,8 @@ namespace MultiTerminal
         // 선택시 이벤트
         private void Serial_Combo_Port_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SerialOpt[0] = Serial_Combo_Port.Text;
+            string[] portName = Serial_Combo_Port.Text.Split(' ');
+            SerialOpt[0] = portName[0];
         }
 
         private void Serial_Combo_Baud_SelectedIndexChanged(object sender, EventArgs e)
@@ -573,7 +572,6 @@ namespace MultiTerminal
             {
                 mactimer.Elapsed += OnMacro;
                 macroThread.Start();
-
             }
             else
             {
@@ -581,8 +579,6 @@ namespace MultiTerminal
                 mactimer.Elapsed -= OnMacro;
                 macroThread.Abort();
             }
-
-
         }
 
         #region UI 초기화
