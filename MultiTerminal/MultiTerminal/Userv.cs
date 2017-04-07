@@ -87,7 +87,7 @@ namespace MultiTerminal
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
-        #endregion 
+        #endregion
 
         #region Client
         //채팅 서버와 연결 시도
@@ -95,7 +95,6 @@ namespace MultiTerminal
         {
             try
             {
-
                 IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(ip), port);
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 client.Connect(ipep);
@@ -172,12 +171,9 @@ namespace MultiTerminal
                 {
 
                     string msg = sr.ReadLine();
-                    main.ReceiveWindowBox.Text += "수신 : " + main.GetTimer() + msg + "\n";
+                    main.ReceiveWindowBox.AppendText("수신 : " + main.GetTimer() + msg + "\n");
+                    main.ReceiveWindowBox.SelectionStart = main.ReceiveWindowBox.Text.Length;
                     main.ReceiveWindowBox.ScrollToCaret();
-                    /*
-                    string msg = sr.ReadLine();
-                    Global.MacroVar = "수신 : " + main.GetTimer() + msg + "\n";
-                   */
 
                 }
             }

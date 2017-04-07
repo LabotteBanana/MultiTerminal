@@ -102,7 +102,9 @@ namespace MultiTerminal
                                 {
                                     tserv.SendMsg(SendBox1.Text);
 
-                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                                    ReceiveWindowBox.ScrollToCaret();
                                 }));
                             }));
                             SendThread.Start();
@@ -119,7 +121,9 @@ namespace MultiTerminal
                                 {
                                     tcla.SendMsg(SendBox1.Text);
 
-                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                                    ReceiveWindowBox.ScrollToCaret();
                                 }));
                             }));
                             SendThread.Start();
@@ -145,7 +149,9 @@ namespace MultiTerminal
                                 {
                                     userv.SendMsg(SendBox1.Text);
 
-                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                                    ReceiveWindowBox.ScrollToCaret();
                                 }));
                             }));
                             SendThread.Start();
@@ -162,7 +168,9 @@ namespace MultiTerminal
                                 {
                                     ucla.SendMsg(SendBox1.Text);
 
-                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                                    ReceiveWindowBox.ScrollToCaret();
                                 }));
                             }));
                             SendThread.Start();
@@ -673,7 +681,9 @@ namespace MultiTerminal
                     {
                         tserv.SendMsg(SendBox1.Text);
 
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
 
                     }
                 }
@@ -683,7 +693,9 @@ namespace MultiTerminal
                     {
                         tcla.SendMsg(SendBox1.Text);
 
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
 
                     }
 
@@ -778,12 +790,16 @@ namespace MultiTerminal
                     if (isServ == true && tserv.client.Connected == true)
                     {
                         tserv.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
                     }
                     if (isServ == false && tcla.client.Connected == true)
                     {
                         tcla.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
                     }
                 }
                 if (connectType == 6)
@@ -791,12 +807,16 @@ namespace MultiTerminal
                     if (isServ == true && userv.client.Connected == true)
                     {
                         userv.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
                     }
                     if (isServ == false && ucla.client.Connected == true)
                     {
                         ucla.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
+                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                        ReceiveWindowBox.ScrollToCaret();
                     }
 
                 }
