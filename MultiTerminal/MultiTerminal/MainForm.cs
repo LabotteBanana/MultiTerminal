@@ -22,7 +22,7 @@ namespace MultiTerminal
         public Tserv tserv = null;
         public Tserv tcla = null;
 
-        // 체크박스 부분
+        // 체크박스 옵션 부분 플래그 변수
         static public int Chk_Hexa_Flag = 0;
         static public int Chk_AS_Flag = 0;
         static public int CHK_AE_Flag = 0;
@@ -58,11 +58,12 @@ namespace MultiTerminal
             nowTime = e.SignalTime;
         }
 
+        // 매크로 전송 파트
         private  void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
         {
-            if(connectType == 2)
-            {
-                ///여기에 시리얼 센드부분
+            ///여기에 시리얼 매크로 샌드부분
+            if (connectType == 2)
+            {              
                 try
                 {
                     if (Flag_AEAS[0] == 0)
@@ -83,6 +84,7 @@ namespace MultiTerminal
                     //MessageBox.Show(ex.Message);
                 }
             }
+            // TCP/IP 부분 매크로 전송
             if (connectType == 5)
             {
                 if (isServ == true && tserv.client.Connected == true)
@@ -377,7 +379,8 @@ namespace MultiTerminal
             }
             if (Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
-
+            // 현재 시리얼 포트가 없는 상태에서는 포트가 뜨지 않아서
+            // 기본값이 뜨지 않는 오류 있음.
             Serial_Combo_Port.SelectedIndex = 0;
 
             List<string> data2 = new List<string>();
@@ -459,10 +462,32 @@ namespace MultiTerminal
 
         private void Serial_Btn_OK_Click(object sender, EventArgs e)    // 시리얼 오~픈~!!
         {
-            serial.SerialOpen(SerialOpt[0], SerialOpt[1], SerialOpt[2], SerialOpt[3], SerialOpt[4], "500", "500");
-            serial.sPort.DataReceived += new SerialDataReceivedEventHandler(UpdateWindowText);
-
-
+            try
+            {
+                /*
+                if (serial.IsOpen() == true)
+                {
+                    MessageBox.Show("이미 시리얼이 연결되어 있습니다.");
+                }
+                else
+                {
+                */
+                    serial.SerialOpen(SerialOpt[0], SerialOpt[1], SerialOpt[2], SerialOpt[3], SerialOpt[4], "500", "500");
+                    serial.sPort.DataReceived += new SerialDataReceivedEventHandler(UpdateWindowText);
+                //}
+            }
+            catch(System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+        private void Serial_Btn_DisCon_Click(object sender, EventArgs e)    // 시리얼 연결 취소
+        {
+            if(serial.IsOpen())
+                serial.DisConSerial();
+            else
+                MessageBox.Show("연결이 되어있지 않습니다.");
         }
         #endregion
 
@@ -483,28 +508,11 @@ namespace MultiTerminal
             }));
             thread.Start();
         }
-
-        // 송신 텍스트박스 업데이트 이벤트
-        private void Enter_Rich(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (this.SendBox1.Text != null)
-                {
-
-                    serial.SerialSend(SendBox1.Text);
-
-                }
-            }
-        }
-
-
-
-
         #endregion
 
         #region TCP UI
-        private void button3_Click(object sender, EventArgs e)
+        // TCP 연결설정 버튼
+        private void TCP_Btn_OK_Click(object sender, EventArgs e)
         {
             //comboBox5 -> IP, comboBox6 -> Port
             if (checkBox1.Checked == true)
@@ -521,6 +529,11 @@ namespace MultiTerminal
                 tcla = new Tserv(this, ip, port);
                 tcla.Connect();
             }
+        }
+        // TCP 연결 취소 버튼
+        private void TCP_Btn_DisCon_Click(object sender, EventArgs e)
+        {
+
         }
         #region TCP서버여부
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -667,7 +680,7 @@ namespace MultiTerminal
                 //MessageBox.Show(ex.Message);
             }
         }
-
+        
         private void Btn_Send2_Click(object sender, EventArgs e)
         {
             try
@@ -872,6 +885,21 @@ namespace MultiTerminal
 
 
         #endregion
+
+        
+
+
+
+        private void UDP_Btn_OK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UDP_Btn_DisCon_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
 }

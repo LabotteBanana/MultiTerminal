@@ -20,11 +20,11 @@ namespace MultiTerminal
           
         }
 
-        public int IsOpen()
+        public bool IsOpen()
         {
-            
-            if (sPort.IsOpen) return 0;
-            else return 1;
+
+            if (sPort.IsOpen) { return true; }
+            else { return false; }
         }
         public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT)
         {
@@ -145,13 +145,13 @@ namespace MultiTerminal
                 }
 
                 //receivedata += strRecData;
-                if (MainForm.Chk_Hexa_Flag == 1 )
+                if (MainForm.Chk_Hexa_Flag == 1 )   // 16진수 표현 옵션 체크시
                 { Global.globalVar += strRecData; }
-                else
+                else                                // 기본 출력
                 { Global.globalVar += Encoding.UTF8.GetString(buff); }
-                if (MainForm.CHK_AE_Flag == 1)
+                if (MainForm.CHK_AE_Flag == 1)  // Auto Enter 자동개행 옵션 체크시
                 { Global.globalVar +=  "\n"; }
-                if (MainForm.Chk_AS_Flag == 1)
+                if (MainForm.Chk_AS_Flag == 1)  // Auto Space 자동띄어쓰기 옵션 체크시
                 { Global.globalVar += " "; }
             }
 
