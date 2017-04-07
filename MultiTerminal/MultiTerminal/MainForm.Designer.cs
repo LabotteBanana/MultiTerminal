@@ -32,6 +32,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.UdpPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.Udp_Connect = new System.Windows.Forms.Button();
+            this.UServerCheck = new System.Windows.Forms.CheckBox();
+            this.UPortNumber = new System.Windows.Forms.ComboBox();
+            this.UIPNumber = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Combo_FlowCon = new System.Windows.Forms.ComboBox();
             this.Serial_Combo_StopBit = new System.Windows.Forms.ComboBox();
@@ -47,26 +59,15 @@
             this.Label_Se_Port = new System.Windows.Forms.Label();
             this.Serial_Btn_OK = new System.Windows.Forms.Button();
             this.F5 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.TcpPanel = new System.Windows.Forms.Panel();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ServerCheck = new System.Windows.Forms.CheckBox();
+            this.PortNumber = new System.Windows.Forms.ComboBox();
+            this.IpNumber = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.UdpPanel = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.TCP_Save = new System.Windows.Forms.Button();
+            this.Tcp_Connect = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.Btn_StopLog = new System.Windows.Forms.Button();
             this.Btn_UseLog = new System.Windows.Forms.Button();
@@ -83,10 +84,8 @@
             this.UART_Tile = new MetroFramework.Controls.MetroTile();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.MacroCount = new System.Windows.Forms.TextBox();
+            this.MacroCheck = new System.Windows.Forms.CheckBox();
             this.Btn_AEAS4 = new System.Windows.Forms.Button();
             this.Btn_AEAS3 = new System.Windows.Forms.Button();
             this.Btn_AEAS2 = new System.Windows.Forms.Button();
@@ -99,7 +98,6 @@
             this.Btn_Send1 = new System.Windows.Forms.Button();
             this.SendBox2 = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SendBox1 = new System.Windows.Forms.RichTextBox();
             this.Zigbee_Tile = new MetroFramework.Controls.MetroTile();
             this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
@@ -109,12 +107,11 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.패킷보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel1.SuspendLayout();
-            this.SerialPanel.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.TcpPanel.SuspendLayout();
             this.UdpPanel.SuspendLayout();
+            this.SerialPanel.SuspendLayout();
+            this.TcpPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.LogPanel.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -143,6 +140,125 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.TcpPanel);
+            this.panel4.Controls.Add(this.UdpPanel);
+            this.panel4.Controls.Add(this.SerialPanel);
+            this.panel4.Location = new System.Drawing.Point(5, 101);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(159, 306);
+            this.panel4.TabIndex = 17;
+            // 
+            // UdpPanel
+            // 
+            this.UdpPanel.Controls.Add(this.button1);
+            this.UdpPanel.Controls.Add(this.Udp_Connect);
+            this.UdpPanel.Controls.Add(this.UServerCheck);
+            this.UdpPanel.Controls.Add(this.UPortNumber);
+            this.UdpPanel.Controls.Add(this.UIPNumber);
+            this.UdpPanel.Controls.Add(this.label9);
+            this.UdpPanel.Controls.Add(this.label10);
+            this.UdpPanel.Controls.Add(this.label11);
+            this.UdpPanel.Controls.Add(this.button4);
+            this.UdpPanel.Controls.Add(this.button5);
+            this.UdpPanel.Location = new System.Drawing.Point(6, 3);
+            this.UdpPanel.Name = "UdpPanel";
+            this.UdpPanel.Size = new System.Drawing.Size(150, 276);
+            this.UdpPanel.TabIndex = 15;
+            this.UdpPanel.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 222);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "옵션저장";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // Udp_Connect
+            // 
+            this.Udp_Connect.Location = new System.Drawing.Point(81, 222);
+            this.Udp_Connect.Name = "Udp_Connect";
+            this.Udp_Connect.Size = new System.Drawing.Size(62, 23);
+            this.Udp_Connect.TabIndex = 18;
+            this.Udp_Connect.Text = "옵션적용";
+            this.Udp_Connect.UseVisualStyleBackColor = true;
+            this.Udp_Connect.Click += new System.EventHandler(this.Udp_Connect_Click);
+            // 
+            // UServerCheck
+            // 
+            this.UServerCheck.AutoSize = true;
+            this.UServerCheck.Location = new System.Drawing.Point(18, 86);
+            this.UServerCheck.Name = "UServerCheck";
+            this.UServerCheck.Size = new System.Drawing.Size(88, 16);
+            this.UServerCheck.TabIndex = 17;
+            this.UServerCheck.Text = "서버 활성화";
+            this.UServerCheck.UseVisualStyleBackColor = true;
+            this.UServerCheck.CheckedChanged += new System.EventHandler(this.UServerCheck_CheckedChanged);
+            // 
+            // UPortNumber
+            // 
+            this.UPortNumber.FormattingEnabled = true;
+            this.UPortNumber.Location = new System.Drawing.Point(59, 27);
+            this.UPortNumber.Name = "UPortNumber";
+            this.UPortNumber.Size = new System.Drawing.Size(87, 20);
+            this.UPortNumber.TabIndex = 13;
+            // 
+            // UIPNumber
+            // 
+            this.UIPNumber.FormattingEnabled = true;
+            this.UIPNumber.Location = new System.Drawing.Point(50, 59);
+            this.UIPNumber.Name = "UIPNumber";
+            this.UIPNumber.Size = new System.Drawing.Size(96, 20);
+            this.UIPNumber.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 12);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "포트 :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 12);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "IP :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(17, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 12);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "UDP 설정";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(250, 59);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(250, 22);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "옵션적용";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // SerialPanel
             // 
             this.SerialPanel.Controls.Add(this.Serial_Combo_FlowCon);
@@ -159,7 +275,7 @@
             this.SerialPanel.Controls.Add(this.Label_Se_Port);
             this.SerialPanel.Controls.Add(this.Serial_Btn_OK);
             this.SerialPanel.Controls.Add(this.F5);
-            this.SerialPanel.Location = new System.Drawing.Point(3, 0);
+            this.SerialPanel.Location = new System.Drawing.Point(6, 3);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(150, 276);
             this.SerialPanel.TabIndex = 7;
@@ -300,67 +416,48 @@
             this.F5.Text = "새로고침";
             this.F5.UseVisualStyleBackColor = true;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.TcpPanel);
-            this.panel4.Controls.Add(this.UdpPanel);
-            this.panel4.Controls.Add(this.SerialPanel);
-            this.panel4.Location = new System.Drawing.Point(5, 101);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(159, 285);
-            this.panel4.TabIndex = 17;
-            // 
             // TcpPanel
             // 
-            this.TcpPanel.Controls.Add(this.comboBox5);
-            this.TcpPanel.Controls.Add(this.checkBox1);
-            this.TcpPanel.Controls.Add(this.comboBox1);
-            this.TcpPanel.Controls.Add(this.comboBox2);
+            this.TcpPanel.Controls.Add(this.ServerCheck);
+            this.TcpPanel.Controls.Add(this.PortNumber);
+            this.TcpPanel.Controls.Add(this.IpNumber);
             this.TcpPanel.Controls.Add(this.label1);
             this.TcpPanel.Controls.Add(this.label7);
             this.TcpPanel.Controls.Add(this.label8);
-            this.TcpPanel.Controls.Add(this.button1);
-            this.TcpPanel.Controls.Add(this.button3);
+            this.TcpPanel.Controls.Add(this.TCP_Save);
+            this.TcpPanel.Controls.Add(this.Tcp_Connect);
             this.TcpPanel.Location = new System.Drawing.Point(3, 3);
             this.TcpPanel.Name = "TcpPanel";
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
             this.TcpPanel.Visible = false;
             // 
-            // comboBox5
+            // ServerCheck
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(18, 115);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 20);
-            this.comboBox5.TabIndex = 17;
+            this.ServerCheck.AutoSize = true;
+            this.ServerCheck.Location = new System.Drawing.Point(47, 85);
+            this.ServerCheck.Name = "ServerCheck";
+            this.ServerCheck.Size = new System.Drawing.Size(88, 16);
+            this.ServerCheck.TabIndex = 16;
+            this.ServerCheck.Text = "서버 활성화";
+            this.ServerCheck.UseVisualStyleBackColor = true;
+            this.ServerCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox1
+            // PortNumber
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(47, 85);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(88, 16);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "서버 활성화";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.PortNumber.FormattingEnabled = true;
+            this.PortNumber.Location = new System.Drawing.Point(59, 27);
+            this.PortNumber.Name = "PortNumber";
+            this.PortNumber.Size = new System.Drawing.Size(87, 20);
+            this.PortNumber.TabIndex = 13;
             // 
-            // comboBox1
+            // IpNumber
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(59, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(87, 20);
-            this.comboBox1.TabIndex = 13;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(50, 59);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(96, 20);
-            this.comboBox2.TabIndex = 12;
+            this.IpNumber.FormattingEnabled = true;
+            this.IpNumber.Location = new System.Drawing.Point(50, 59);
+            this.IpNumber.Name = "IpNumber";
+            this.IpNumber.Size = new System.Drawing.Size(96, 20);
+            this.IpNumber.TabIndex = 12;
             // 
             // label1
             // 
@@ -389,111 +486,24 @@
             this.label8.TabIndex = 5;
             this.label8.Text = "TCP 설정";
             // 
-            // button1
+            // TCP_Save
             // 
-            this.button1.Location = new System.Drawing.Point(9, 219);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.TCP_Save.Location = new System.Drawing.Point(9, 219);
+            this.TCP_Save.Name = "TCP_Save";
+            this.TCP_Save.Size = new System.Drawing.Size(62, 23);
+            this.TCP_Save.TabIndex = 1;
+            this.TCP_Save.Text = "옵션저장";
+            this.TCP_Save.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // Tcp_Connect
             // 
-            this.button3.Location = new System.Drawing.Point(79, 219);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(62, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "옵션적용";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // UdpPanel
-            // 
-            this.UdpPanel.Controls.Add(this.checkBox2);
-            this.UdpPanel.Controls.Add(this.comboBox3);
-            this.UdpPanel.Controls.Add(this.comboBox4);
-            this.UdpPanel.Controls.Add(this.label9);
-            this.UdpPanel.Controls.Add(this.label10);
-            this.UdpPanel.Controls.Add(this.label11);
-            this.UdpPanel.Controls.Add(this.button4);
-            this.UdpPanel.Controls.Add(this.button5);
-            this.UdpPanel.Location = new System.Drawing.Point(3, 3);
-            this.UdpPanel.Name = "UdpPanel";
-            this.UdpPanel.Size = new System.Drawing.Size(150, 276);
-            this.UdpPanel.TabIndex = 15;
-            this.UdpPanel.Visible = false;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(18, 86);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(88, 16);
-            this.checkBox2.TabIndex = 17;
-            this.checkBox2.Text = "서버 활성화";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(59, 27);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(87, 20);
-            this.comboBox3.TabIndex = 13;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(50, 59);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(96, 20);
-            this.comboBox4.TabIndex = 12;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 30);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 12);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "포트 :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 12);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "IP :";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(17, 8);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 12);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "UDP 설정";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(250, 59);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(250, 22);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "옵션적용";
-            this.button5.UseVisualStyleBackColor = true;
+            this.Tcp_Connect.Location = new System.Drawing.Point(79, 219);
+            this.Tcp_Connect.Name = "Tcp_Connect";
+            this.Tcp_Connect.Size = new System.Drawing.Size(62, 23);
+            this.Tcp_Connect.TabIndex = 0;
+            this.Tcp_Connect.Text = "옵션적용";
+            this.Tcp_Connect.UseVisualStyleBackColor = true;
+            this.Tcp_Connect.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel2
             // 
@@ -670,10 +680,8 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.textBox3);
-            this.panel3.Controls.Add(this.textBox2);
-            this.panel3.Controls.Add(this.checkBox3);
+            this.panel3.Controls.Add(this.MacroCount);
+            this.panel3.Controls.Add(this.MacroCheck);
             this.panel3.Controls.Add(this.Btn_AEAS4);
             this.panel3.Controls.Add(this.Btn_AEAS3);
             this.panel3.Controls.Add(this.Btn_AEAS2);
@@ -686,7 +694,6 @@
             this.panel3.Controls.Add(this.Btn_Send1);
             this.panel3.Controls.Add(this.SendBox2);
             this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.SendBox1);
             this.panel3.Location = new System.Drawing.Point(170, 14);
             this.panel3.Name = "panel3";
@@ -696,49 +703,33 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(272, 96);
+            this.label16.Location = new System.Drawing.Point(167, 93);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 12);
+            this.label16.Size = new System.Drawing.Size(51, 12);
             this.label16.TabIndex = 40;
-            this.label16.Text = "반복";
+            this.label16.Text = "ms 반복";
             // 
-            // label15
+            // MacroCount
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(158, 96);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(17, 12);
-            this.label15.TabIndex = 39;
-            this.label15.Text = "초";
+            this.MacroCount.Location = new System.Drawing.Point(87, 89);
+            this.MacroCount.Name = "MacroCount";
+            this.MacroCount.Size = new System.Drawing.Size(74, 21);
+            this.MacroCount.TabIndex = 38;
             // 
-            // textBox3
+            // MacroCheck
             // 
-            this.textBox3.Location = new System.Drawing.Point(192, 90);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(74, 21);
-            this.textBox3.TabIndex = 38;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(78, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(74, 21);
-            this.textBox2.TabIndex = 37;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(21, 93);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(60, 16);
-            this.checkBox3.TabIndex = 36;
-            this.checkBox3.Text = "매크로";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckStateChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.MacroCheck.AutoSize = true;
+            this.MacroCheck.Location = new System.Drawing.Point(21, 93);
+            this.MacroCheck.Name = "MacroCheck";
+            this.MacroCheck.Size = new System.Drawing.Size(60, 16);
+            this.MacroCheck.TabIndex = 36;
+            this.MacroCheck.Text = "매크로";
+            this.MacroCheck.UseVisualStyleBackColor = true;
+            this.MacroCheck.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Btn_AEAS4
             // 
-            this.Btn_AEAS4.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS4.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS4.Location = new System.Drawing.Point(504, 206);
             this.Btn_AEAS4.Name = "Btn_AEAS4";
             this.Btn_AEAS4.Size = new System.Drawing.Size(31, 47);
@@ -749,7 +740,7 @@
             // 
             // Btn_AEAS3
             // 
-            this.Btn_AEAS3.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS3.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS3.Location = new System.Drawing.Point(504, 177);
             this.Btn_AEAS3.Name = "Btn_AEAS3";
             this.Btn_AEAS3.Size = new System.Drawing.Size(31, 25);
@@ -760,7 +751,7 @@
             // 
             // Btn_AEAS2
             // 
-            this.Btn_AEAS2.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS2.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS2.Location = new System.Drawing.Point(504, 147);
             this.Btn_AEAS2.Name = "Btn_AEAS2";
             this.Btn_AEAS2.Size = new System.Drawing.Size(31, 25);
@@ -771,7 +762,7 @@
             // 
             // Btn_AEAS1
             // 
-            this.Btn_AEAS1.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS1.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS1.Location = new System.Drawing.Point(504, 117);
             this.Btn_AEAS1.Name = "Btn_AEAS1";
             this.Btn_AEAS1.Size = new System.Drawing.Size(31, 25);
@@ -871,14 +862,6 @@
             this.label14.TabIndex = 20;
             this.label14.Text = "송신";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(249, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(89, 21);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            // 
             // SendBox1
             // 
             this.SendBox1.BackColor = System.Drawing.SystemColors.HighlightText;
@@ -959,8 +942,6 @@
             // 
             // ddfdfToolStripMenuItem
             // 
-            this.ddfdfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.패킷보기ToolStripMenuItem});
             this.ddfdfToolStripMenuItem.Name = "ddfdfToolStripMenuItem";
             this.ddfdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
             this.ddfdfToolStripMenuItem.Text = "설정";
@@ -978,12 +959,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // 패킷보기ToolStripMenuItem
-            // 
-            this.패킷보기ToolStripMenuItem.Name = "패킷보기ToolStripMenuItem";
-            this.패킷보기ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.패킷보기ToolStripMenuItem.Text = "패킷 보기";
             // 
             // MainForm
             // 
@@ -1003,15 +978,16 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MultiTerminal";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
-            this.SerialPanel.ResumeLayout(false);
-            this.SerialPanel.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.TcpPanel.ResumeLayout(false);
-            this.TcpPanel.PerformLayout();
             this.UdpPanel.ResumeLayout(false);
             this.UdpPanel.PerformLayout();
+            this.SerialPanel.ResumeLayout(false);
+            this.SerialPanel.PerformLayout();
+            this.TcpPanel.ResumeLayout(false);
+            this.TcpPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.LogPanel.ResumeLayout(false);
@@ -1060,22 +1036,21 @@
         private System.Windows.Forms.CheckBox Chk_Hexa;
         private System.Windows.Forms.Panel TcpPanel;
         private System.Windows.Forms.Panel UdpPanel;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox UPortNumber;
+        private System.Windows.Forms.ComboBox UIPNumber;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox IpNumber;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button TCP_Save;
+        private System.Windows.Forms.Button Tcp_Connect;
+        private System.Windows.Forms.CheckBox ServerCheck;
+        private System.Windows.Forms.CheckBox UServerCheck;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel3;
@@ -1098,13 +1073,11 @@
         private System.Windows.Forms.Button Btn_UseLog;
         private System.Windows.Forms.Button Btn_Clear;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ToolStripMenuItem 패킷보기ToolStripMenuItem;
+        private System.Windows.Forms.TextBox MacroCount;
+        private System.Windows.Forms.CheckBox MacroCheck;
+        private System.Windows.Forms.ComboBox PortNumber;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Udp_Connect;
     }
 }
 
