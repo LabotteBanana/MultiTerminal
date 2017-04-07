@@ -168,14 +168,14 @@ namespace MultiTerminal
             {
                 while (client.Connected)
                 {
+
+                    string msg = sr.ReadLine();
+                    main.ReceiveWindowBox.Text += "수신 : " + main.GetTimer() + msg + "\n";
+                    main.ReceiveWindowBox.ScrollToCaret();
                     /*
                     string msg = sr.ReadLine();
-                    main.ReceiveWindowBox.Text += "수신 : "+ main.GetTimer()+ msg + "\n";
-                    main.ReceiveWindowBox.ScrollToCaret();
-                    */
-                    string msg = sr.ReadLine();
                     Global.MacroVar = "수신 : " + main.GetTimer() + msg + "\n";
-                   
+                   */
 
                 }
             }
