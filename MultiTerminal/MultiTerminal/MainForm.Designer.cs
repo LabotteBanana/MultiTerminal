@@ -108,6 +108,8 @@
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.로그저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.로그불러오기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SerialPanel.SuspendLayout();
@@ -327,7 +329,7 @@
             this.panel2.Controls.Add(this.Chk_Hexa);
             this.panel2.Location = new System.Drawing.Point(585, 287);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(127, 309);
+            this.panel2.Size = new System.Drawing.Size(127, 129);
             this.panel2.TabIndex = 19;
             // 
             // Btn_StopLog
@@ -740,7 +742,7 @@
             // 
             // Btn_AEAS4
             // 
-            this.Btn_AEAS4.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS4.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS4.Location = new System.Drawing.Point(504, 206);
             this.Btn_AEAS4.Name = "Btn_AEAS4";
             this.Btn_AEAS4.Size = new System.Drawing.Size(31, 47);
@@ -751,7 +753,7 @@
             // 
             // Btn_AEAS3
             // 
-            this.Btn_AEAS3.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS3.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS3.Location = new System.Drawing.Point(504, 177);
             this.Btn_AEAS3.Name = "Btn_AEAS3";
             this.Btn_AEAS3.Size = new System.Drawing.Size(31, 25);
@@ -762,7 +764,7 @@
             // 
             // Btn_AEAS2
             // 
-            this.Btn_AEAS2.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS2.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS2.Location = new System.Drawing.Point(504, 147);
             this.Btn_AEAS2.Name = "Btn_AEAS2";
             this.Btn_AEAS2.Size = new System.Drawing.Size(31, 25);
@@ -773,7 +775,7 @@
             // 
             // Btn_AEAS1
             // 
-            this.Btn_AEAS1.Font = new System.Drawing.Font("굴림", 7F);
+            this.Btn_AEAS1.Font = new System.Drawing.Font("Gulim", 7F);
             this.Btn_AEAS1.Location = new System.Drawing.Point(504, 117);
             this.Btn_AEAS1.Name = "Btn_AEAS1";
             this.Btn_AEAS1.Size = new System.Drawing.Size(31, 25);
@@ -947,6 +949,9 @@
             // 
             // asdfasdfToolStripMenuItem
             // 
+            this.asdfasdfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.로그저장ToolStripMenuItem,
+            this.로그불러오기ToolStripMenuItem});
             this.asdfasdfToolStripMenuItem.Name = "asdfasdfToolStripMenuItem";
             this.asdfasdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
             this.asdfasdfToolStripMenuItem.Text = "메인";
@@ -970,6 +975,20 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // 로그저장ToolStripMenuItem
+            // 
+            this.로그저장ToolStripMenuItem.Name = "로그저장ToolStripMenuItem";
+            this.로그저장ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.로그저장ToolStripMenuItem.Text = "로그 저장";
+            this.로그저장ToolStripMenuItem.Click += new System.EventHandler(this.saveLog_Click);
+            // 
+            // 로그불러오기ToolStripMenuItem
+            // 
+            this.로그불러오기ToolStripMenuItem.Name = "로그불러오기ToolStripMenuItem";
+            this.로그불러오기ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.로그불러오기ToolStripMenuItem.Text = "로그 불러오기";
+            this.로그불러오기ToolStripMenuItem.Click += new System.EventHandler(this.openLog_Click);
             // 
             // MainForm
             // 
@@ -1090,6 +1109,8 @@
         private System.Windows.Forms.Button Udp_Btn_DisCon;
         private System.Windows.Forms.Button Udp_Btn_Con;
         private System.Windows.Forms.Button Serial_Btn_F5;
+        private System.Windows.Forms.ToolStripMenuItem 로그저장ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 로그불러오기ToolStripMenuItem;
     }
 }
 

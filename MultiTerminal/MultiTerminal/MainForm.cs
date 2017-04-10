@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 using System.IO.Ports;
 using System.Threading;
 using System.Timers;
@@ -1144,6 +1145,53 @@ namespace MultiTerminal
                 ucla.Connect();
             }
 
+        }
+        private void saveLog_Click(object sender, EventArgs e) {
+            SaveFileDialog saveLog = new SaveFileDialog();
+
+            saveLog.InitialDirectory = @"C:\"; //기본 경로 설정
+            saveLog.Title = "로그 저장";//파일 저장 다이얼로그 제목
+            saveLog.Filter = "로그 파일(*.log)|*.log|모든 파일|*.*";//파일 형식 필터
+            saveLog.DefaultExt = "log";
+            saveLog.AddExtension = true;
+
+            if (saveLog.ShowDialog() == DialogResult.OK) {
+                //saveLog.Filename에서 경로를 가져온다.
+                FileStream filestream = new FileStream(saveLog.FileName, FileMode.Create, FileAccess.Write);
+                StreamWriter streamwriter = new StreamWriter(filestream);
+                streamwriter.WriteLine(ReceiveWindowBox.Text);//텍박에 있는 거 저장
+
+                //lastIndexOf 지정된 문자열이 마지막으로 발견되는 위치 값을 받는다.
+                int position = saveLog.FileName.LastIndexOf("\\");
+
+                //Substring에 위치 값을 하나만 넣어주면 그 위치 부터 문자열의 끝까지 출력한다.
+                string textboxname = saveLog.FileName.Substring(position + 1);
+                streamwriter.Close();
+            }
+        }
+        private void openLog_Click(object sender, EventArgs e) {
+            OpenFileDialog openLog = new OpenFileDialog();
+            openLog.Title = "로그 열기";
+            openLog.Filter = "로그 파일(*.log)|*.log|모든 파일|*.*";
+            if (openLog.ShowDialog() == DialogResult.OK) {
+                //열기 대상 파일 경로
+                string openfileposition = openLog.FileName;
+
+                //lastIndexOf 지정된 문자열이 마지막으로 발견되는 위치 값을 받는다.
+                int openPosition = openLog.FileName.LastIndexOf("\\");
+
+                //Substring에 위치 값을 하나만 넣어주면 그 위치부터 문자열의 끝까지 출력한다.
+                string logfileName = openLog.FileName.Substring(openPosition + 1);
+
+                StreamReader streamreader = new StreamReader(openfileposition);
+
+                //Text를 Null로 초기화 후 읽어들인 문자를 Text에 넣어준다.
+                ReceiveWindowBox.Text = null;
+                ReceiveWindowBox.Text = streamreader.ReadToEnd();
+
+                //Close
+                streamreader.Close();
+            }
         }
     }
 
