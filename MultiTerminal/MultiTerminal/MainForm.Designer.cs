@@ -1,6 +1,9 @@
-﻿namespace MultiTerminal
-    //choi에 분기만들고 커밋해보기
-    //1212123123123
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace MultiTerminal
+//choi에 분기만들고 커밋해보기
+//1212123123123
 {
     partial class MainForm
     {
@@ -104,12 +107,13 @@
             this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
             this.RF_Tile = new MetroFramework.Controls.MetroTile();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.로그저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.로그불러오기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.로그저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.로그불러오기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SerialPanel.SuspendLayout();
@@ -334,12 +338,13 @@
             // 
             // Btn_StopLog
             // 
-            this.Btn_StopLog.Location = new System.Drawing.Point(17, 91);
+            this.Btn_StopLog.Location = new System.Drawing.Point(6, 91);
             this.Btn_StopLog.Name = "Btn_StopLog";
-            this.Btn_StopLog.Size = new System.Drawing.Size(103, 29);
+            this.Btn_StopLog.Size = new System.Drawing.Size(114, 29);
             this.Btn_StopLog.TabIndex = 26;
-            this.Btn_StopLog.Text = "StopUsingFact";
+            this.Btn_StopLog.Text = "Clear";
             this.Btn_StopLog.UseVisualStyleBackColor = true;
+            this.Btn_StopLog.Click += new System.EventHandler(this.receiveWindowBoxClear_Click);
             // 
             // Btn_UseLog
             // 
@@ -936,8 +941,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.asdfasdfToolStripMenuItem,
-            this.ddfdfToolStripMenuItem});
+            this.MainToolStripMenuItem,
+            this.ddfdfToolStripMenuItem,
+            this.HelpToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 60);
             this.menuStrip1.Name = "menuStrip1";
@@ -947,14 +953,28 @@
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // asdfasdfToolStripMenuItem
+            // MainToolStripMenuItem
             // 
-            this.asdfasdfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.로그저장ToolStripMenuItem,
             this.로그불러오기ToolStripMenuItem});
-            this.asdfasdfToolStripMenuItem.Name = "asdfasdfToolStripMenuItem";
-            this.asdfasdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
-            this.asdfasdfToolStripMenuItem.Text = "메인";
+            this.MainToolStripMenuItem.Name = "MainToolStripMenuItem";
+            this.MainToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
+            this.MainToolStripMenuItem.Text = "메뉴";
+            // 
+            // 로그저장ToolStripMenuItem
+            // 
+            this.로그저장ToolStripMenuItem.Name = "로그저장ToolStripMenuItem";
+            this.로그저장ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.로그저장ToolStripMenuItem.Text = "로그 저장";
+            this.로그저장ToolStripMenuItem.Click += new System.EventHandler(this.saveLog_Click);
+            // 
+            // 로그불러오기ToolStripMenuItem
+            // 
+            this.로그불러오기ToolStripMenuItem.Name = "로그불러오기ToolStripMenuItem";
+            this.로그불러오기ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.로그불러오기ToolStripMenuItem.Text = "로그 불러오기";
+            this.로그불러오기ToolStripMenuItem.Click += new System.EventHandler(this.openLog_Click);
             // 
             // ddfdfToolStripMenuItem
             // 
@@ -976,19 +996,11 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // 로그저장ToolStripMenuItem
+            // HelpToolStripMenuItem
             // 
-            this.로그저장ToolStripMenuItem.Name = "로그저장ToolStripMenuItem";
-            this.로그저장ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.로그저장ToolStripMenuItem.Text = "로그 저장";
-            this.로그저장ToolStripMenuItem.Click += new System.EventHandler(this.saveLog_Click);
-            // 
-            // 로그불러오기ToolStripMenuItem
-            // 
-            this.로그불러오기ToolStripMenuItem.Name = "로그불러오기ToolStripMenuItem";
-            this.로그불러오기ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.로그불러오기ToolStripMenuItem.Text = "로그 불러오기";
-            this.로그불러오기ToolStripMenuItem.Click += new System.EventHandler(this.openLog_Click);
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(55, 19);
+            this.HelpToolStripMenuItem.Text = "도움말";
             // 
             // MainForm
             // 
@@ -1038,7 +1050,7 @@
         private MetroFramework.Controls.MetroTile RF_Tile;
         private MetroFramework.Controls.MetroTile Zigbee_Tile;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem asdfasdfToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ddfdfToolStripMenuItem;
         private MetroFramework.Controls.MetroPanel LogPanel;
         private MetroFramework.Controls.MetroLabel metroLabel7;
@@ -1111,6 +1123,7 @@
         private System.Windows.Forms.Button Serial_Btn_F5;
         private System.Windows.Forms.ToolStripMenuItem 로그저장ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 로그불러오기ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
     }
 }
 

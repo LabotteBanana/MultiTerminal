@@ -43,7 +43,6 @@ namespace MultiTerminal
 
         public MainForm()
         {
-
             InitializeComponent();
             //Application.Idle +=  new SerialDataReceivedEventHandler(serial.sPort_DataReceivedHandle);
         }
@@ -53,9 +52,6 @@ namespace MultiTerminal
             this.Style = MetroFramework.MetroColorStyle.Yellow;
 
             UI_Init();
-
-
-
         }
 
         #region Timer(타임스탬프)
@@ -246,6 +242,7 @@ namespace MultiTerminal
             this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Serial_Combo_Port.DropDownWidth = GetLargestTextEntent();
         }
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
@@ -485,12 +482,15 @@ namespace MultiTerminal
             {
                 string[] portnames = SerialPort.GetPortNames();
                 var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
+                //상세한 이름 가져오기
                 var tList = (from n in portnames
                              join p in ports on n equals p["DeviceID"].ToString()
                              select " - " + p["Caption"]).ToList();
+                //지원하는 포트 이름만 가져오기(비교해서 위에 있는 놈 붙여넣으려고)
                 var cmpList = (from n in portnames
                                join p in ports on n equals p["DeviceID"].ToString()
                                select n).ToList();
+                //usb이름 가져오는 녀석
                 foreach (string s in cmpList)
                 {
                     for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
@@ -505,6 +505,13 @@ namespace MultiTerminal
 
                         }
                     }
+                }
+                //comport 이름 가져오는 녀석
+                foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
+                {
+                    string[] comportName = comPort.Name.Split('-');
+                    int a = Serial_Combo_Port.Items.IndexOf(comportName[0]);
+                    Serial_Combo_Port.Items[a] += " - " + comPort.Description;
                 }
             }
             if (Serial_Combo_Port.Items.Count != 0)
@@ -1192,6 +1199,34 @@ namespace MultiTerminal
                 //Close
                 streamreader.Close();
             }
+        }
+        private void receiveWindowBoxClear_Click(object sender, EventArgs e) {
+            ReceiveWindowBox.Text = null;
+        }
+        private int GetLargestTextEntent()
+        {
+            ComboBox cb = this.Serial_Combo_Port;
+            int maxLen = -1;
+            if (cb.Items.Count > -1)
+            {
+                using (Graphics g = cb.CreateGraphics())
+                {
+                    int vertScrollBarWidth = 0;
+                    if (cb.Items.Count > cb.MaxDropDownItems)
+                    {
+                        vertScrollBarWidth = SystemInformation.VerticalScrollBarWidth;
+                    }
+                    for (int nLoopCnt = 0; nLoopCnt < cb.Items.Count; nLoopCnt++)
+                    {
+                        int newWidth = (int)g.MeasureString(cb.Items[nLoopCnt].ToString(), cb.Font).Width + vertScrollBarWidth;
+                        if (newWidth > maxLen)
+                        {
+                            maxLen = newWidth;
+                        }
+                    }
+                }
+            }
+            return maxLen;
         }
     }
 
