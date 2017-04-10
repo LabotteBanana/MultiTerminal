@@ -20,11 +20,11 @@ namespace MultiTerminal
           
         }
 
-        public int IsOpen()
+        public bool IsOpen()
         {
             
-            if (sPort.IsOpen) return 0;
-            else return 1;
+            if (sPort.IsOpen) return false;
+            else return true;
         }
         public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT)
         {
