@@ -30,8 +30,8 @@ namespace MultiTerminal
         static public int Chk_Hexa_Flag = 0;
         static public int Chk_AS_Flag = 0;
         static public int CHK_AE_Flag = 0;
-
-        public Serial serial = new Serial();
+        
+        public Serial[] serial;
         private string[] SerialOpt = new string[6];
         public System.Timers.Timer timer = null;
         Stopwatch sw = new Stopwatch();
@@ -70,10 +70,13 @@ namespace MultiTerminal
                 ///여기에 시리얼 센드부분
                 try
                 {
+                    /*
                     if (Flag_AEAS[0] == 0)
                     {
-                        serial.SerialSend(this.SendBox1.Text);
-                    }
+                    */
+                        serial[0].SerialSend(this.SendBox1.Text);
+                    
+                    /*
                     else if (Flag_AEAS[0] == 1)
                     {
                         serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
@@ -82,6 +85,7 @@ namespace MultiTerminal
                     {
                         serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
                     }
+                    */
                 }
                 catch (Exception ex)
                 {
@@ -471,14 +475,15 @@ namespace MultiTerminal
             this.Serial_Combo_Parity.DropDownStyle = ComboBoxStyle.DropDownList;
             this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
-            List<string> data = new List<string>();
+           
+            // 이 부분에서 포트 없는 상태에서 불러올때마다 에러생기는 듯. 조건식 필요~!
+            List<string> data = new List<string>();     
             foreach (string s in SerialPort.GetPortNames())
             {
                 data.Add(s);
             }
             Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
-
+            
             using (var searcher = new ManagementObjectSearcher
                ("SELECT * FROM WIN32_SerialPort"))
             {
@@ -589,8 +594,9 @@ namespace MultiTerminal
 
         private void Serial_Btn_OK_Click(object sender, EventArgs e)    // 시리얼 오~픈~!!
         {
-            serial.SerialOpen(SerialOpt[0], SerialOpt[1], SerialOpt[2], SerialOpt[3], SerialOpt[4], "500", "500");
-            serial.sPort.DataReceived += new SerialDataReceivedEventHandler(UpdateWindowText);
+            serial = new Serial[0];
+            serial[0].SerialOpen(SerialOpt[0], SerialOpt[1], SerialOpt[2], SerialOpt[3], SerialOpt[4], "500", "500");
+            serial[0].sPort.DataReceived += new SerialDataReceivedEventHandler(UpdateWindowText);
 
 
         }
