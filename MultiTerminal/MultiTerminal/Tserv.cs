@@ -25,7 +25,7 @@ namespace MultiTerminal
         private StreamReader sr = null;
         private StreamWriter sw = null;
             
-
+        
         public Tserv(MainForm Main,int Port) //서버로 만들때
         {
             main = Main;
