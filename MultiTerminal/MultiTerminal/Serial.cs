@@ -145,14 +145,16 @@ namespace MultiTerminal
                 }
 
                 //receivedata += strRecData;
-                if (MainForm.Chk_Hexa_Flag == 1 )   // 16진수 표현 옵션 체크시
-                { Global.globalVar += strRecData; }
-                else                                // 기본 출력
-                { Global.globalVar += Encoding.UTF8.GetString(buff); }
-                if (MainForm.CHK_AE_Flag == 1)  // Auto Enter 자동개행 옵션 체크시
-                { Global.globalVar +=  "\n"; }
-                if (MainForm.Chk_AS_Flag == 1)  // Auto Space 자동띄어쓰기 옵션 체크시
-                { Global.globalVar += " "; }
+                if (MainForm.Chk_Hexa_Flag == 1 )
+                { Global.globalVar = strRecData; }
+                else
+                { Global.globalVar = Encoding.UTF8.GetString(buff); }
+                for (int iTemp = 0; iTemp < intRecSize; iTemp++)
+                {
+                    Console.Write(Convert.ToString(buff[iTemp], 2));
+                    
+                }
+            Console.WriteLine();
             }
 
         }
