@@ -22,9 +22,9 @@ namespace MultiTerminal
 
         public bool IsOpen()
         {
-            
-            if (sPort.IsOpen) return false;
-            else return true;
+
+            if (sPort.IsOpen) { return true; }
+            else { return false; }
         }
         public void SerialOpen(String Port, String Baud, String Data, String parity, String stopbits, String RT, String WT)
         {
