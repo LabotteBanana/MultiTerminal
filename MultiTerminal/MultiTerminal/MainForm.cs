@@ -26,16 +26,22 @@ namespace MultiTerminal
         public static Thread macroThread;
         public static Thread SendThread;
         public delegate void TRecvCallBack();
+
         // 체크박스 부분
         static public int Chk_Hexa_Flag = 0;
-        static public int Chk_AS_Flag = 0;
-        static public int CHK_AE_Flag = 0;
-        
-        public Serial[] serial;
+
+
+
+
+        public Serial[] serial = new Serial[9];
+        public int Sport_Count = 0;
+        public int[] Serial_Send_Arr = new int[8];       // 시리얼 선택적 송신 체크 옵션
+        public int[] Serial_Receive_Arr = new int[8];    // 시리얼 선택적 수신 체크 옵션
         private string[] SerialOpt = new string[6];
+
+
         public System.Timers.Timer timer = null;
         Stopwatch sw = new Stopwatch();
-
         public static System.Timers.Timer mactimer = null;
         public System.Timers.Timer aftertimer = null;
         private DateTime nowTime;
@@ -333,6 +339,7 @@ namespace MultiTerminal
                         connectType = 2;
                         SerialPanel.Location = Loc;
                         this.SerialPanel.Visible = true;    // 시리얼 패널 보이기
+
                         TcpPanel.Visible = false;
                         UdpPanel.Visible = false;
                         Serial_Combo_Init();
@@ -594,11 +601,35 @@ namespace MultiTerminal
 
         private void Serial_Btn_OK_Click(object sender, EventArgs e)    // 시리얼 오~픈~!!
         {
-            serial = new Serial[0];
-            serial[0].SerialOpen(SerialOpt[0], SerialOpt[1], SerialOpt[2], SerialOpt[3], SerialOpt[4], "500", "500");
-            serial[0].sPort.DataReceived += new SerialDataReceivedEventHandler(UpdateWindowText);
-
-
+            try
+            {
+                serial[Sport_Count] = new Serial();
+                serial[Sport_Count].SerialOpen(SerialOpt[0], SerialOpt[1], SerialOpt[2], SerialOpt[3], SerialOpt[4], "500", "500");
+                serial[Sport_Count].sPort.DataReceived += new SerialDataReceivedEventHandler(UpdateWindowText);
+                if (serial[Sport_Count].IsOpen())
+                {
+                    Sport_Count++;
+                    switch (Sport_Count)
+                    {
+                        case 1: Sport_label1.Visible = true; Serial_select_CHK1.Visible = true; Serial_select_CHK11.Visible = true; break;
+                        case 2: Sport_label2.Visible = true; Serial_select_CHK2.Visible = true; Serial_select_CHK22.Visible = true; break;
+                        case 3: Sport_label3.Visible = true; Serial_select_CHK3.Visible = true; Serial_select_CHK33.Visible = true; break;
+                        case 4: Sport_label4.Visible = true; Serial_select_CHK4.Visible = true; Serial_select_CHK44.Visible = true; break;
+                        case 5: Sport_label5.Visible = true; Serial_select_CHK5.Visible = true; Serial_select_CHK55.Visible = true; break;
+                        case 6: Sport_label6.Visible = true; Serial_select_CHK6.Visible = true; Serial_select_CHK66.Visible = true; break;
+                        case 7: Sport_label7.Visible = true; Serial_select_CHK7.Visible = true; Serial_select_CHK77.Visible = true; break;
+                        case 8: Sport_label8.Visible = true; Serial_select_CHK8.Visible = true; Serial_select_CHK88.Visible = true; break;
+                    }
+                }
+                
+            }   
+            catch(Exception E)
+            {
+                MessageBox.Show(E.ToString());
+            }     
+            
+            
+                       
         }
         #endregion
 
@@ -733,11 +764,7 @@ namespace MultiTerminal
             UdpPanel.Visible = false;
             SerialPanel.Visible = false;
 
-            for (int i = 0; i < 4; i++)
-            {
-                Flag_AEAS[i] = 0;
-                Flag_ASCII[i] = 0;
-            }
+
             TcpPanel.Visible = false;
 
             timer = new System.Timers.Timer();
@@ -762,7 +789,9 @@ namespace MultiTerminal
             {
                 if (connectType == 2)
                 {
-                        serial.SerialSend(SendBox1.Text);
+                    //serial[0].SerialSend(SendBox1.Text);
+                    // 우선 버튼 1에만 멀티 전송 구현
+                    Sport_Num_Select_Send(serial, Serial_Send_Arr, SendBox1.Text);
                         ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
                         ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                         ReceiveWindowBox.ScrollToCaret();
@@ -815,7 +844,7 @@ namespace MultiTerminal
             {
                 if (connectType == 2)
                 {
-                    serial.SerialSend(SendBox2.Text);
+                    serial[0].SerialSend(SendBox2.Text);
                     ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
                     ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     ReceiveWindowBox.ScrollToCaret();
@@ -869,7 +898,7 @@ namespace MultiTerminal
             {
                 if (connectType == 2)
                 {
-                    serial.SerialSend(SendBox3.Text);
+                    serial[0].SerialSend(SendBox3.Text);
                     ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
                     ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     ReceiveWindowBox.ScrollToCaret();
@@ -918,13 +947,31 @@ namespace MultiTerminal
 
         }
 
+        private void Sport_Num_Select_Send(Serial[] Serial,int[] arr, string msg)   // 시리얼포트, 체크박스변수, 보낼메시지
+        {
+            int count = Serial.Length;  // 먼저 현재 시리얼 포트 살아있는 것 갯수부터
+            for(int i = 0; i <= count; i++ )    // 살아있는 시리얼 포트 만큼 순회
+            {
+                if ( arr[i] == 1)   // 체크박스 송신 체크되있으면 전송하긔
+                {
+                    serial[i].SerialSend(msg);
+                }
+            }
+            
+        }
+
+        private void Sport_Num_Select_Receive(Serial[] Serial,int[] arr, string msg)
+        {
+
+        }
+
         private void Btn_Send4_Click(object sender, EventArgs e)
         {
             try
             {
                 if (connectType == 2)
                 {
-                    serial.SerialSend(SendBox4.Text);
+                    serial[0].SerialSend(SendBox4.Text);
                     ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
                     ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     ReceiveWindowBox.ScrollToCaret();
@@ -973,98 +1020,111 @@ namespace MultiTerminal
 
         #endregion
 
-        #region 보내기 옵션들 묶음
-        private int[] Flag_AEAS = new int[4];
-        private int[] Flag_ASCII = new int[4];
+        #region 시리얼 송수신 옵션
 
-        private void Btn_AEAS1_Click(object sender, EventArgs e)
+        // 시리얼 옵션 체크박스 
+        private void Serial_select_CHK1_CheckedChanged(object sender, EventArgs e)
         {
-            if (Flag_AEAS[0] == 2)
-            {
-                Flag_AEAS[0] = -1;
-            }
-
-            Flag_AEAS[0]++;
-            switch (Flag_AEAS[0])
-            {
-                case 0:
-                    this.Btn_AEAS1.Text = "No";
-                    break;
-                case 1:
-                    this.Btn_AEAS1.Text = "A/E";
-                    break;
-                case 2:
-                    this.Btn_AEAS1.Text = "A/S";
-                    break;
-            }
+            Update_Serial_Opt();
         }
 
-        private void Btn_AEAS2_Click(object sender, EventArgs e)
+        private void Serial_select_CHK2_CheckedChanged(object sender, EventArgs e)
         {
-            if (Flag_AEAS[1] == 2)
-            {
-                Flag_AEAS[1] = -1;
-            }
-
-            Flag_AEAS[1]++;
-            switch (Flag_AEAS[1])
-            {
-                case 0:
-                    this.Btn_AEAS2.Text = "No";
-                    break;
-                case 1:
-                    this.Btn_AEAS2.Text = "A/E";
-                    break;
-                case 2:
-                    this.Btn_AEAS2.Text = "A/S";
-                    break;
-            }
+            Update_Serial_Opt();
         }
-
-        private void Btn_AEAS3_Click(object sender, EventArgs e)
+        private void Serial_select_CHK3_CheckedChanged(object sender, EventArgs e)
         {
-            if (Flag_AEAS[2] == 2)
-            {
-                Flag_AEAS[2] = -1;
-            }
-
-            Flag_AEAS[2]++;
-            switch (Flag_AEAS[2])
-            {
-                case 0:
-                    this.Btn_AEAS3.Text = "No";
-                    break;
-                case 1:
-                    this.Btn_AEAS3.Text = "A/E";
-                    break;
-                case 2:
-                    this.Btn_AEAS3.Text = "A/S";
-                    break;
-            }
+            Update_Serial_Opt();
         }
-
-        private void Btn_AEAS4_Click(object sender, EventArgs e)
+        private void Serial_select_CHK4_CheckedChanged(object sender, EventArgs e)
         {
-            if (Flag_AEAS[3] == 2)
-            {
-                Flag_AEAS[3] = -1;
-            }
-
-            Flag_AEAS[3]++;
-            switch (Flag_AEAS[3])
-            {
-                case 0:
-                    this.Btn_AEAS4.Text = "No";
-                    break;
-                case 1:
-                    this.Btn_AEAS4.Text = "A/E";
-                    break;
-                case 2:
-                    this.Btn_AEAS4.Text = "A/S";
-                    break;
-            }
+            Update_Serial_Opt();
         }
+        private void Serial_select_CHK11_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK22_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK33_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK44_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK5_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK55_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK6_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK7_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK8_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK66_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK77_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        private void Serial_select_CHK88_CheckedChanged(object sender, EventArgs e)
+        {
+            Update_Serial_Opt();
+        }
+        // 체크박스 체크했을 시 변수값 변경...
+        void Update_Serial_Opt()
+        {           
+            if (Serial_select_CHK1.Checked) { Serial_Send_Arr[0] = 1; }
+            else { Serial_Send_Arr[0] = 0; }
+            if (Serial_select_CHK2.Checked) { Serial_Send_Arr[1] = 1; }
+            else { Serial_Send_Arr[1] = 0; }
+            if (Serial_select_CHK3.Checked) { Serial_Send_Arr[2] = 1; }
+            else { Serial_Send_Arr[2] = 0; }
+            if (Serial_select_CHK4.Checked) { Serial_Send_Arr[3] = 1; }
+            else { Serial_Send_Arr[3] = 0; }
+            if (Serial_select_CHK4.Checked) { Serial_Send_Arr[4] = 1; }
+            else { Serial_Send_Arr[4] = 0; }
+            if (Serial_select_CHK4.Checked) { Serial_Send_Arr[5] = 1; }
+            else { Serial_Send_Arr[5] = 0; }
+            if (Serial_select_CHK4.Checked) { Serial_Send_Arr[6] = 1; }
+            else { Serial_Send_Arr[6] = 0; }
+            if (Serial_select_CHK4.Checked) { Serial_Send_Arr[7] = 1; }
+            else { Serial_Send_Arr[7] = 0; }
 
+            if (Serial_select_CHK11.Checked) { Serial_Receive_Arr[0] = 1; }
+            else { Serial_Receive_Arr[0] = 0; }
+            if (Serial_select_CHK22.Checked) { Serial_Receive_Arr[1] = 1; }
+            else { Serial_Receive_Arr[1] = 0; }
+            if (Serial_select_CHK33.Checked) { Serial_Receive_Arr[2] = 1; }
+            else { Serial_Receive_Arr[2] = 0; }
+            if (Serial_select_CHK44.Checked) { Serial_Receive_Arr[3] = 1; }
+            else { Serial_Receive_Arr[3] = 0; }
+            if (Serial_select_CHK55.Checked) { Serial_Receive_Arr[4] = 1; }
+            else { Serial_Receive_Arr[4] = 0; }
+            if (Serial_select_CHK66.Checked) { Serial_Receive_Arr[5] = 1; }
+            else { Serial_Receive_Arr[5] = 0; }
+            if (Serial_select_CHK77.Checked) { Serial_Receive_Arr[6] = 1; }
+            else { Serial_Receive_Arr[6] = 0; }
+            if (Serial_select_CHK88.Checked) { Serial_Receive_Arr[7] = 1; }
+            else { Serial_Receive_Arr[7] = 0; }
+        }
 
         #endregion
 
@@ -1083,21 +1143,7 @@ namespace MultiTerminal
 
         }
 
-        private void Chk_AE_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Chk_AE.CheckState == CheckState.Checked)
-                CHK_AE_Flag = 1;
-            else
-                CHK_AE_Flag = 0;
-        }
-
-        private void Chk_AS_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Chk_AS.CheckState == CheckState.Checked)
-                Chk_AS_Flag = 1;
-            else
-                Chk_AS_Flag = 0;
-        }
+        
 
 
         #endregion
@@ -1151,6 +1197,8 @@ namespace MultiTerminal
             }
 
         }
+
+        
     }
 
 }
