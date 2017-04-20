@@ -1203,6 +1203,8 @@ namespace MultiTerminal
         private void receiveWindowBoxClear_Click(object sender, EventArgs e) {
             ReceiveWindowBox.Text = null;
         }
+
+        //시리얼 포트 콤보박스에서 제일 긴 녀석 넓이 가져오기
         private int GetLargestTextEntent()
         {
             ComboBox cb = this.Serial_Combo_Port;
