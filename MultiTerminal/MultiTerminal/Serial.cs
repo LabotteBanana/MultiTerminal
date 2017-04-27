@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Windows.Forms;
 
@@ -85,7 +88,7 @@ namespace MultiTerminal
                     MessageBox.Show("시리얼 포트 연결에 실패했습니다.");
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -146,7 +149,16 @@ namespace MultiTerminal
                 { Global.globalVar = strRecData; }
                 else
                 { Global.globalVar = Encoding.UTF8.GetString(buff); }
+                for (int iTemp = 0; iTemp < intRecSize; iTemp++)
+                {
+                    Console.Write(Convert.ToString(buff[iTemp], 2));
+                    
+                }
+            Console.WriteLine();
             }
+
         }
+
+
     }
 }
