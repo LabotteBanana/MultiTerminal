@@ -16,7 +16,7 @@ namespace MultiTerminal
         MainForm main = null;
         public Socket server =null;
         public Socket client = null;
-        Thread th= null; //Recv가능 쓰레드
+        private Thread th= null; //Recv가능 쓰레드
         private string ip;
         private string client_ip;
         private int port;
@@ -25,7 +25,7 @@ namespace MultiTerminal
         private StreamReader sr = null;
         private StreamWriter sw = null;
             
-        
+
         public Tserv(MainForm Main,int Port) //서버로 만들때
         {
             main = Main;
@@ -170,9 +170,12 @@ namespace MultiTerminal
                 {
 
                     string msg = sr.ReadLine();
-                    main.ReceiveWindowBox.AppendText("수신 : " + main.GetTimer() + msg + "\n");
-                    main.ReceiveWindowBox.SelectionStart = main.ReceiveWindowBox.Text.Length;
+                    main.ReceiveWindowBox.Text += "수신 : " + main.GetTimer() + msg + "\n";
                     main.ReceiveWindowBox.ScrollToCaret();
+                    /*
+                    string msg = sr.ReadLine();
+                    Global.MacroVar = "수신 : " + main.GetTimer() + msg + "\n";
+                   */
 
                 }
             }
@@ -212,31 +215,31 @@ namespace MultiTerminal
                 IPAddressCollection dhcpServers = adapterProperties.DhcpServerAddresses;
                 IPAddressCollection dnsServers = adapterProperties.DnsAddresses;
 
-                /*
-                Console.WriteLine("네트워크 카드 : "+adapter.Description);   //하드웨어 타입
-                Console.WriteLine("Physical Address : "+adapter.GetPhysicalAddress()); //피지컬 주소
-                Console.WriteLine("IP Address : " + Get_MyIP()); // 내 IP주소
-                */
+             
+                main.ReceiveWindowBox.Text += "네트워크 카드 : "+adapter.Description;   //하드웨어 타입
+                main.ReceiveWindowBox.Text += "Physical Address : " + adapter.GetPhysicalAddress(); //피지컬 주소
+                main.ReceiveWindowBox.Text += "IP Address : " + Get_MyIP(); // 내 IP주소
+              
 
                 if (Gatewayaddress.Count > 0)
                 {
                     foreach (GatewayIPAddressInformation address in Gatewayaddress)
                     {
-                        Console.WriteLine("GateWay Address :" + address.Address.ToString()); //게이트웨이 주소
+                        main.ReceiveWindowBox.Text += "GateWay Address :" + address.Address.ToString(); //게이트웨이 주소
                     }
                 }
                 if (dhcpServers.Count > 0)
                 {
                     foreach (IPAddress dhcp in dhcpServers)
                     {
-                        Console.WriteLine("DHCP Servers : " + dhcp.ToString()); //DHCP 주소
+                        main.ReceiveWindowBox.Text += "DHCP Servers : " + dhcp.ToString(); //DHCP 주소
                     }
                 }
                 if (dnsServers.Count > 0)
                 {
                     foreach (IPAddress dns in dnsServers)
                     {
-                        Console.WriteLine("DNS Servers : " + dns.ToString()); //DNS 주소
+                        main.ReceiveWindowBox.Text += "DNS Servers : " + dns.ToString(); //DNS 주소
                     }
                 }
 

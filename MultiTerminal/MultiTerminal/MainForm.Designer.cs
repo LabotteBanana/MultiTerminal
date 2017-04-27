@@ -1,9 +1,6 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace MultiTerminal
-//choi에 분기만들고 커밋해보기
-//1212123123123
+﻿namespace MultiTerminal
+    //choi에 분기만들고 커밋해보기
+    //1212123123123
 {
     partial class MainForm
     {
@@ -34,7 +31,37 @@ namespace MultiTerminal
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Serial_select_CHK88 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK77 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK66 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK55 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK8 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK7 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK6 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK5 = new System.Windows.Forms.CheckBox();
+            this.Sport_label8 = new System.Windows.Forms.Label();
+            this.Sport_label7 = new System.Windows.Forms.Label();
+            this.Sport_label6 = new System.Windows.Forms.Label();
+            this.Sport_label5 = new System.Windows.Forms.Label();
+            this.Serial_select_CHK44 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK33 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK22 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK11 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK4 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK3 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK2 = new System.Windows.Forms.CheckBox();
+            this.Serial_select_CHK1 = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.Sport_label4 = new System.Windows.Forms.Label();
+            this.Sport_label3 = new System.Windows.Forms.Label();
+            this.Sport_label2 = new System.Windows.Forms.Label();
+            this.Sport_label1 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.Serial_Btn_F5 = new System.Windows.Forms.Button();
@@ -56,8 +83,6 @@ namespace MultiTerminal
             this.Btn_StopLog = new System.Windows.Forms.Button();
             this.Btn_UseLog = new System.Windows.Forms.Button();
             this.Btn_Clear = new System.Windows.Forms.Button();
-            this.Chk_AS = new System.Windows.Forms.CheckBox();
-            this.Chk_AE = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.Chk_Hexa = new System.Windows.Forms.CheckBox();
             this.LogPanel = new MetroFramework.Controls.MetroPanel();
@@ -107,14 +132,17 @@ namespace MultiTerminal
             this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
             this.RF_Tile = new MetroFramework.Controls.MetroTile();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.MainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.로그저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.로그불러오기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.metroPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SerialPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -123,12 +151,14 @@ namespace MultiTerminal
             this.UdpPanel.SuspendLayout();
             this.TcpPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
             this.metroPanel1.AutoSize = true;
             this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.metroPanel1.Controls.Add(this.panel5);
             this.metroPanel1.Controls.Add(this.panel4);
             this.metroPanel1.Controls.Add(this.panel2);
             this.metroPanel1.Controls.Add(this.LogPanel);
@@ -147,12 +177,318 @@ namespace MultiTerminal
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.Serial_select_CHK88);
+            this.panel1.Controls.Add(this.Serial_select_CHK77);
+            this.panel1.Controls.Add(this.Serial_select_CHK66);
+            this.panel1.Controls.Add(this.Serial_select_CHK55);
+            this.panel1.Controls.Add(this.Serial_select_CHK8);
+            this.panel1.Controls.Add(this.Serial_select_CHK7);
+            this.panel1.Controls.Add(this.Serial_select_CHK6);
+            this.panel1.Controls.Add(this.Serial_select_CHK5);
+            this.panel1.Controls.Add(this.Sport_label8);
+            this.panel1.Controls.Add(this.Sport_label7);
+            this.panel1.Controls.Add(this.Sport_label6);
+            this.panel1.Controls.Add(this.Sport_label5);
+            this.panel1.Controls.Add(this.Serial_select_CHK44);
+            this.panel1.Controls.Add(this.Serial_select_CHK33);
+            this.panel1.Controls.Add(this.Serial_select_CHK22);
+            this.panel1.Controls.Add(this.Serial_select_CHK11);
+            this.panel1.Controls.Add(this.Serial_select_CHK4);
+            this.panel1.Controls.Add(this.Serial_select_CHK3);
+            this.panel1.Controls.Add(this.Serial_select_CHK2);
+            this.panel1.Controls.Add(this.Serial_select_CHK1);
+            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.Sport_label4);
+            this.panel1.Controls.Add(this.Sport_label3);
+            this.panel1.Controls.Add(this.Sport_label2);
+            this.panel1.Controls.Add(this.Sport_label1);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Location = new System.Drawing.Point(376, 126);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(159, 183);
+            this.panel1.TabIndex = 22;
+            // 
+            // Serial_select_CHK88
+            // 
+            this.Serial_select_CHK88.AutoSize = true;
+            this.Serial_select_CHK88.Location = new System.Drawing.Point(129, 161);
+            this.Serial_select_CHK88.Name = "Serial_select_CHK88";
+            this.Serial_select_CHK88.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK88.TabIndex = 22;
+            this.Serial_select_CHK88.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK88.Visible = false;
+            this.Serial_select_CHK88.CheckedChanged += new System.EventHandler(this.Serial_select_CHK88_CheckedChanged);
+            // 
+            // Serial_select_CHK77
+            // 
+            this.Serial_select_CHK77.AutoSize = true;
+            this.Serial_select_CHK77.Location = new System.Drawing.Point(129, 141);
+            this.Serial_select_CHK77.Name = "Serial_select_CHK77";
+            this.Serial_select_CHK77.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK77.TabIndex = 21;
+            this.Serial_select_CHK77.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK77.Visible = false;
+            this.Serial_select_CHK77.CheckedChanged += new System.EventHandler(this.Serial_select_CHK77_CheckedChanged);
+            // 
+            // Serial_select_CHK66
+            // 
+            this.Serial_select_CHK66.AutoSize = true;
+            this.Serial_select_CHK66.Location = new System.Drawing.Point(129, 121);
+            this.Serial_select_CHK66.Name = "Serial_select_CHK66";
+            this.Serial_select_CHK66.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK66.TabIndex = 20;
+            this.Serial_select_CHK66.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK66.Visible = false;
+            this.Serial_select_CHK66.CheckedChanged += new System.EventHandler(this.Serial_select_CHK66_CheckedChanged);
+            // 
+            // Serial_select_CHK55
+            // 
+            this.Serial_select_CHK55.AutoSize = true;
+            this.Serial_select_CHK55.Location = new System.Drawing.Point(129, 101);
+            this.Serial_select_CHK55.Name = "Serial_select_CHK55";
+            this.Serial_select_CHK55.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK55.TabIndex = 19;
+            this.Serial_select_CHK55.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK55.Visible = false;
+            this.Serial_select_CHK55.CheckedChanged += new System.EventHandler(this.Serial_select_CHK55_CheckedChanged);
+            // 
+            // Serial_select_CHK8
+            // 
+            this.Serial_select_CHK8.AutoSize = true;
+            this.Serial_select_CHK8.Location = new System.Drawing.Point(92, 161);
+            this.Serial_select_CHK8.Name = "Serial_select_CHK8";
+            this.Serial_select_CHK8.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK8.TabIndex = 18;
+            this.Serial_select_CHK8.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK8.Visible = false;
+            this.Serial_select_CHK8.CheckedChanged += new System.EventHandler(this.Serial_select_CHK8_CheckedChanged);
+            // 
+            // Serial_select_CHK7
+            // 
+            this.Serial_select_CHK7.AutoSize = true;
+            this.Serial_select_CHK7.Location = new System.Drawing.Point(92, 141);
+            this.Serial_select_CHK7.Name = "Serial_select_CHK7";
+            this.Serial_select_CHK7.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK7.TabIndex = 17;
+            this.Serial_select_CHK7.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK7.Visible = false;
+            this.Serial_select_CHK7.CheckedChanged += new System.EventHandler(this.Serial_select_CHK7_CheckedChanged);
+            // 
+            // Serial_select_CHK6
+            // 
+            this.Serial_select_CHK6.AutoSize = true;
+            this.Serial_select_CHK6.Location = new System.Drawing.Point(92, 121);
+            this.Serial_select_CHK6.Name = "Serial_select_CHK6";
+            this.Serial_select_CHK6.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK6.TabIndex = 16;
+            this.Serial_select_CHK6.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK6.Visible = false;
+            this.Serial_select_CHK6.CheckedChanged += new System.EventHandler(this.Serial_select_CHK6_CheckedChanged);
+            // 
+            // Serial_select_CHK5
+            // 
+            this.Serial_select_CHK5.AutoSize = true;
+            this.Serial_select_CHK5.Location = new System.Drawing.Point(92, 101);
+            this.Serial_select_CHK5.Name = "Serial_select_CHK5";
+            this.Serial_select_CHK5.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK5.TabIndex = 15;
+            this.Serial_select_CHK5.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK5.Visible = false;
+            this.Serial_select_CHK5.CheckedChanged += new System.EventHandler(this.Serial_select_CHK5_CheckedChanged);
+            // 
+            // Sport_label8
+            // 
+            this.Sport_label8.AutoSize = true;
+            this.Sport_label8.Location = new System.Drawing.Point(14, 162);
+            this.Sport_label8.Name = "Sport_label8";
+            this.Sport_label8.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label8.TabIndex = 11;
+            this.Sport_label8.Text = "└ 8. Port";
+            this.Sport_label8.Visible = false;
+            // 
+            // Sport_label7
+            // 
+            this.Sport_label7.AutoSize = true;
+            this.Sport_label7.Location = new System.Drawing.Point(14, 143);
+            this.Sport_label7.Name = "Sport_label7";
+            this.Sport_label7.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label7.TabIndex = 12;
+            this.Sport_label7.Text = "└ 7. Port";
+            this.Sport_label7.Visible = false;
+            // 
+            // Sport_label6
+            // 
+            this.Sport_label6.AutoSize = true;
+            this.Sport_label6.Location = new System.Drawing.Point(14, 123);
+            this.Sport_label6.Name = "Sport_label6";
+            this.Sport_label6.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label6.TabIndex = 13;
+            this.Sport_label6.Text = "└ 6. Port";
+            this.Sport_label6.Visible = false;
+            // 
+            // Sport_label5
+            // 
+            this.Sport_label5.AutoSize = true;
+            this.Sport_label5.Location = new System.Drawing.Point(14, 103);
+            this.Sport_label5.Name = "Sport_label5";
+            this.Sport_label5.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label5.TabIndex = 14;
+            this.Sport_label5.Text = "└ 5. Port";
+            this.Sport_label5.Visible = false;
+            // 
+            // Serial_select_CHK44
+            // 
+            this.Serial_select_CHK44.AutoSize = true;
+            this.Serial_select_CHK44.Location = new System.Drawing.Point(129, 82);
+            this.Serial_select_CHK44.Name = "Serial_select_CHK44";
+            this.Serial_select_CHK44.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK44.TabIndex = 10;
+            this.Serial_select_CHK44.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK44.Visible = false;
+            // 
+            // Serial_select_CHK33
+            // 
+            this.Serial_select_CHK33.AutoSize = true;
+            this.Serial_select_CHK33.Location = new System.Drawing.Point(129, 62);
+            this.Serial_select_CHK33.Name = "Serial_select_CHK33";
+            this.Serial_select_CHK33.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK33.TabIndex = 9;
+            this.Serial_select_CHK33.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK33.Visible = false;
+            this.Serial_select_CHK33.CheckedChanged += new System.EventHandler(this.Serial_select_CHK33_CheckedChanged);
+            // 
+            // Serial_select_CHK22
+            // 
+            this.Serial_select_CHK22.AutoSize = true;
+            this.Serial_select_CHK22.Location = new System.Drawing.Point(129, 42);
+            this.Serial_select_CHK22.Name = "Serial_select_CHK22";
+            this.Serial_select_CHK22.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK22.TabIndex = 8;
+            this.Serial_select_CHK22.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK22.Visible = false;
+            this.Serial_select_CHK22.CheckedChanged += new System.EventHandler(this.Serial_select_CHK22_CheckedChanged);
+            // 
+            // Serial_select_CHK11
+            // 
+            this.Serial_select_CHK11.AutoSize = true;
+            this.Serial_select_CHK11.Location = new System.Drawing.Point(129, 22);
+            this.Serial_select_CHK11.Name = "Serial_select_CHK11";
+            this.Serial_select_CHK11.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK11.TabIndex = 7;
+            this.Serial_select_CHK11.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK11.Visible = false;
+            this.Serial_select_CHK11.CheckedChanged += new System.EventHandler(this.Serial_select_CHK11_CheckedChanged);
+            // 
+            // Serial_select_CHK4
+            // 
+            this.Serial_select_CHK4.AutoSize = true;
+            this.Serial_select_CHK4.Location = new System.Drawing.Point(92, 82);
+            this.Serial_select_CHK4.Name = "Serial_select_CHK4";
+            this.Serial_select_CHK4.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK4.TabIndex = 6;
+            this.Serial_select_CHK4.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK4.Visible = false;
+            this.Serial_select_CHK4.CheckedChanged += new System.EventHandler(this.Serial_select_CHK4_CheckedChanged);
+            // 
+            // Serial_select_CHK3
+            // 
+            this.Serial_select_CHK3.AutoSize = true;
+            this.Serial_select_CHK3.Location = new System.Drawing.Point(92, 62);
+            this.Serial_select_CHK3.Name = "Serial_select_CHK3";
+            this.Serial_select_CHK3.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK3.TabIndex = 5;
+            this.Serial_select_CHK3.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK3.Visible = false;
+            this.Serial_select_CHK3.CheckedChanged += new System.EventHandler(this.Serial_select_CHK3_CheckedChanged);
+            // 
+            // Serial_select_CHK2
+            // 
+            this.Serial_select_CHK2.AutoSize = true;
+            this.Serial_select_CHK2.Location = new System.Drawing.Point(92, 42);
+            this.Serial_select_CHK2.Name = "Serial_select_CHK2";
+            this.Serial_select_CHK2.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK2.TabIndex = 4;
+            this.Serial_select_CHK2.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK2.Visible = false;
+            this.Serial_select_CHK2.CheckedChanged += new System.EventHandler(this.Serial_select_CHK2_CheckedChanged);
+            // 
+            // Serial_select_CHK1
+            // 
+            this.Serial_select_CHK1.AutoSize = true;
+            this.Serial_select_CHK1.Location = new System.Drawing.Point(92, 22);
+            this.Serial_select_CHK1.Name = "Serial_select_CHK1";
+            this.Serial_select_CHK1.Size = new System.Drawing.Size(15, 14);
+            this.Serial_select_CHK1.TabIndex = 3;
+            this.Serial_select_CHK1.UseVisualStyleBackColor = true;
+            this.Serial_select_CHK1.Visible = false;
+            this.Serial_select_CHK1.CheckedChanged += new System.EventHandler(this.Serial_select_CHK1_CheckedChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(85, 3);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(65, 12);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "송신   수신";
+            // 
+            // Sport_label4
+            // 
+            this.Sport_label4.AutoSize = true;
+            this.Sport_label4.Location = new System.Drawing.Point(14, 83);
+            this.Sport_label4.Name = "Sport_label4";
+            this.Sport_label4.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label4.TabIndex = 1;
+            this.Sport_label4.Text = "└ 4. Port";
+            this.Sport_label4.Visible = false;
+            // 
+            // Sport_label3
+            // 
+            this.Sport_label3.AutoSize = true;
+            this.Sport_label3.Location = new System.Drawing.Point(14, 64);
+            this.Sport_label3.Name = "Sport_label3";
+            this.Sport_label3.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label3.TabIndex = 1;
+            this.Sport_label3.Text = "└ 3. Port";
+            this.Sport_label3.Visible = false;
+            // 
+            // Sport_label2
+            // 
+            this.Sport_label2.AutoSize = true;
+            this.Sport_label2.Location = new System.Drawing.Point(14, 44);
+            this.Sport_label2.Name = "Sport_label2";
+            this.Sport_label2.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label2.TabIndex = 1;
+            this.Sport_label2.Text = "└ 2. Port";
+            this.Sport_label2.Visible = false;
+            // 
+            // Sport_label1
+            // 
+            this.Sport_label1.AutoSize = true;
+            this.Sport_label1.Location = new System.Drawing.Point(14, 24);
+            this.Sport_label1.Name = "Sport_label1";
+            this.Sport_label1.Size = new System.Drawing.Size(57, 12);
+            this.Sport_label1.TabIndex = 1;
+            this.Sport_label1.Text = "└ 1. Port";
+            this.Sport_label1.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 3);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(69, 12);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "시리얼 현황";
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.SerialPanel);
             this.panel4.Location = new System.Drawing.Point(5, 101);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(159, 306);
+            this.panel4.Size = new System.Drawing.Size(159, 284);
             this.panel4.TabIndex = 17;
             // 
             // SerialPanel
@@ -327,24 +663,21 @@ namespace MultiTerminal
             this.panel2.Controls.Add(this.Btn_StopLog);
             this.panel2.Controls.Add(this.Btn_UseLog);
             this.panel2.Controls.Add(this.Btn_Clear);
-            this.panel2.Controls.Add(this.Chk_AS);
-            this.panel2.Controls.Add(this.Chk_AE);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.Chk_Hexa);
             this.panel2.Location = new System.Drawing.Point(585, 287);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(127, 129);
+            this.panel2.Size = new System.Drawing.Size(127, 309);
             this.panel2.TabIndex = 19;
             // 
             // Btn_StopLog
             // 
-            this.Btn_StopLog.Location = new System.Drawing.Point(6, 91);
+            this.Btn_StopLog.Location = new System.Drawing.Point(17, 91);
             this.Btn_StopLog.Name = "Btn_StopLog";
-            this.Btn_StopLog.Size = new System.Drawing.Size(114, 29);
+            this.Btn_StopLog.Size = new System.Drawing.Size(103, 29);
             this.Btn_StopLog.TabIndex = 26;
-            this.Btn_StopLog.Text = "Clear";
+            this.Btn_StopLog.Text = "StopUsingFact";
             this.Btn_StopLog.UseVisualStyleBackColor = true;
-            this.Btn_StopLog.Click += new System.EventHandler(this.receiveWindowBoxClear_Click);
             // 
             // Btn_UseLog
             // 
@@ -364,30 +697,6 @@ namespace MultiTerminal
             this.Btn_Clear.Text = "Clear";
             this.Btn_Clear.UseVisualStyleBackColor = true;
             this.Btn_Clear.Click += new System.EventHandler(this.Btn_Clear_Click);
-            // 
-            // Chk_AS
-            // 
-            this.Chk_AS.AutoSize = true;
-            this.Chk_AS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Chk_AS.Location = new System.Drawing.Point(6, 69);
-            this.Chk_AS.Name = "Chk_AS";
-            this.Chk_AS.Size = new System.Drawing.Size(46, 16);
-            this.Chk_AS.TabIndex = 23;
-            this.Chk_AS.Text = "A/S";
-            this.Chk_AS.UseVisualStyleBackColor = true;
-            this.Chk_AS.CheckStateChanged += new System.EventHandler(this.Chk_AS_CheckedChanged);
-            // 
-            // Chk_AE
-            // 
-            this.Chk_AE.AutoSize = true;
-            this.Chk_AE.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Chk_AE.Location = new System.Drawing.Point(6, 47);
-            this.Chk_AE.Name = "Chk_AE";
-            this.Chk_AE.Size = new System.Drawing.Size(46, 16);
-            this.Chk_AE.TabIndex = 22;
-            this.Chk_AE.Text = "A/E";
-            this.Chk_AE.UseVisualStyleBackColor = true;
-            this.Chk_AE.CheckStateChanged += new System.EventHandler(this.Chk_AE_CheckedChanged);
             // 
             // label13
             // 
@@ -412,6 +721,7 @@ namespace MultiTerminal
             // 
             // LogPanel
             // 
+            this.LogPanel.Controls.Add(this.panel1);
             this.LogPanel.Controls.Add(this.metroLabel7);
             this.LogPanel.Controls.Add(this.ReceiveWindowBox);
             this.LogPanel.HorizontalScrollbarBarColor = true;
@@ -639,7 +949,7 @@ namespace MultiTerminal
             this.TcpPanel.Controls.Add(this.label8);
             this.TcpPanel.Controls.Add(this.Tcp_Btn_DisCon);
             this.TcpPanel.Controls.Add(this.Tcp_Btn_Con);
-            this.TcpPanel.Location = new System.Drawing.Point(38, 6);
+            this.TcpPanel.Location = new System.Drawing.Point(38, 18);
             this.TcpPanel.Name = "TcpPanel";
             this.TcpPanel.Size = new System.Drawing.Size(150, 276);
             this.TcpPanel.TabIndex = 14;
@@ -747,47 +1057,43 @@ namespace MultiTerminal
             // 
             // Btn_AEAS4
             // 
-            this.Btn_AEAS4.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS4.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS4.Location = new System.Drawing.Point(504, 206);
             this.Btn_AEAS4.Name = "Btn_AEAS4";
             this.Btn_AEAS4.Size = new System.Drawing.Size(31, 47);
             this.Btn_AEAS4.TabIndex = 34;
             this.Btn_AEAS4.Text = "No";
             this.Btn_AEAS4.UseVisualStyleBackColor = true;
-            this.Btn_AEAS4.Click += new System.EventHandler(this.Btn_AEAS4_Click);
             // 
             // Btn_AEAS3
             // 
-            this.Btn_AEAS3.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS3.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS3.Location = new System.Drawing.Point(504, 177);
             this.Btn_AEAS3.Name = "Btn_AEAS3";
             this.Btn_AEAS3.Size = new System.Drawing.Size(31, 25);
             this.Btn_AEAS3.TabIndex = 32;
             this.Btn_AEAS3.Text = "No";
             this.Btn_AEAS3.UseVisualStyleBackColor = true;
-            this.Btn_AEAS3.Click += new System.EventHandler(this.Btn_AEAS3_Click);
             // 
             // Btn_AEAS2
             // 
-            this.Btn_AEAS2.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS2.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS2.Location = new System.Drawing.Point(504, 147);
             this.Btn_AEAS2.Name = "Btn_AEAS2";
             this.Btn_AEAS2.Size = new System.Drawing.Size(31, 25);
             this.Btn_AEAS2.TabIndex = 30;
             this.Btn_AEAS2.Text = "No";
             this.Btn_AEAS2.UseVisualStyleBackColor = true;
-            this.Btn_AEAS2.Click += new System.EventHandler(this.Btn_AEAS2_Click);
             // 
             // Btn_AEAS1
             // 
-            this.Btn_AEAS1.Font = new System.Drawing.Font("Gulim", 7F);
+            this.Btn_AEAS1.Font = new System.Drawing.Font("굴림", 7F);
             this.Btn_AEAS1.Location = new System.Drawing.Point(504, 117);
             this.Btn_AEAS1.Name = "Btn_AEAS1";
             this.Btn_AEAS1.Size = new System.Drawing.Size(31, 25);
             this.Btn_AEAS1.TabIndex = 28;
             this.Btn_AEAS1.Text = "No";
             this.Btn_AEAS1.UseVisualStyleBackColor = true;
-            this.Btn_AEAS1.Click += new System.EventHandler(this.Btn_AEAS1_Click);
             // 
             // Btn_Send3
             // 
@@ -941,9 +1247,8 @@ namespace MultiTerminal
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MainToolStripMenuItem,
-            this.ddfdfToolStripMenuItem,
-            this.HelpToolStripMenuItem});
+            this.asdfasdfToolStripMenuItem,
+            this.ddfdfToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 60);
             this.menuStrip1.Name = "menuStrip1";
@@ -953,28 +1258,11 @@ namespace MultiTerminal
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // MainToolStripMenuItem
+            // asdfasdfToolStripMenuItem
             // 
-            this.MainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.로그저장ToolStripMenuItem,
-            this.로그불러오기ToolStripMenuItem});
-            this.MainToolStripMenuItem.Name = "MainToolStripMenuItem";
-            this.MainToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
-            this.MainToolStripMenuItem.Text = "메뉴";
-            // 
-            // 로그저장ToolStripMenuItem
-            // 
-            this.로그저장ToolStripMenuItem.Name = "로그저장ToolStripMenuItem";
-            this.로그저장ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.로그저장ToolStripMenuItem.Text = "로그 저장";
-            this.로그저장ToolStripMenuItem.Click += new System.EventHandler(this.saveLog_Click);
-            // 
-            // 로그불러오기ToolStripMenuItem
-            // 
-            this.로그불러오기ToolStripMenuItem.Name = "로그불러오기ToolStripMenuItem";
-            this.로그불러오기ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.로그불러오기ToolStripMenuItem.Text = "로그 불러오기";
-            this.로그불러오기ToolStripMenuItem.Click += new System.EventHandler(this.openLog_Click);
+            this.asdfasdfToolStripMenuItem.Name = "asdfasdfToolStripMenuItem";
+            this.asdfasdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
+            this.asdfasdfToolStripMenuItem.Text = "메인";
             // 
             // ddfdfToolStripMenuItem
             // 
@@ -996,11 +1284,30 @@ namespace MultiTerminal
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // HelpToolStripMenuItem
+            // panel5
             // 
-            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(55, 19);
-            this.HelpToolStripMenuItem.Text = "도움말";
+            this.panel5.Controls.Add(this.listView1);
+            this.panel5.Location = new System.Drawing.Point(5, 386);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(159, 210);
+            this.panel5.TabIndex = 22;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView1.GridLines = true;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
+            this.listView1.Location = new System.Drawing.Point(6, 6);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(150, 198);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
@@ -1023,6 +1330,8 @@ namespace MultiTerminal
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.metroPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.SerialPanel.ResumeLayout(false);
             this.SerialPanel.PerformLayout();
@@ -1038,6 +1347,7 @@ namespace MultiTerminal
             this.TcpPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1050,7 +1360,7 @@ namespace MultiTerminal
         private MetroFramework.Controls.MetroTile RF_Tile;
         private MetroFramework.Controls.MetroTile Zigbee_Tile;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem MainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asdfasdfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ddfdfToolStripMenuItem;
         private MetroFramework.Controls.MetroPanel LogPanel;
         private MetroFramework.Controls.MetroLabel metroLabel7;
@@ -1105,8 +1415,6 @@ namespace MultiTerminal
         private System.Windows.Forms.Button Btn_Send3;
         private System.Windows.Forms.RichTextBox SendBox3;
         private System.Windows.Forms.Button Btn_Send4;
-        private System.Windows.Forms.CheckBox Chk_AS;
-        private System.Windows.Forms.CheckBox Chk_AE;
         private System.Windows.Forms.Button Btn_AEAS3;
         private System.Windows.Forms.Button Btn_AEAS2;
         private System.Windows.Forms.Button Btn_AEAS1;
@@ -1121,9 +1429,38 @@ namespace MultiTerminal
         private System.Windows.Forms.Button Udp_Btn_DisCon;
         private System.Windows.Forms.Button Udp_Btn_Con;
         private System.Windows.Forms.Button Serial_Btn_F5;
-        private System.Windows.Forms.ToolStripMenuItem 로그저장ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 로그불러오기ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox Serial_select_CHK4;
+        private System.Windows.Forms.CheckBox Serial_select_CHK3;
+        private System.Windows.Forms.CheckBox Serial_select_CHK2;
+        private System.Windows.Forms.CheckBox Serial_select_CHK1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label Sport_label4;
+        private System.Windows.Forms.Label Sport_label3;
+        private System.Windows.Forms.Label Sport_label2;
+        private System.Windows.Forms.Label Sport_label1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox Serial_select_CHK44;
+        private System.Windows.Forms.CheckBox Serial_select_CHK33;
+        private System.Windows.Forms.CheckBox Serial_select_CHK22;
+        private System.Windows.Forms.CheckBox Serial_select_CHK11;
+        private System.Windows.Forms.CheckBox Serial_select_CHK88;
+        private System.Windows.Forms.CheckBox Serial_select_CHK77;
+        private System.Windows.Forms.CheckBox Serial_select_CHK66;
+        private System.Windows.Forms.CheckBox Serial_select_CHK55;
+        private System.Windows.Forms.CheckBox Serial_select_CHK8;
+        private System.Windows.Forms.CheckBox Serial_select_CHK7;
+        private System.Windows.Forms.CheckBox Serial_select_CHK6;
+        private System.Windows.Forms.CheckBox Serial_select_CHK5;
+        private System.Windows.Forms.Label Sport_label8;
+        private System.Windows.Forms.Label Sport_label7;
+        private System.Windows.Forms.Label Sport_label6;
+        private System.Windows.Forms.Label Sport_label5;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 
