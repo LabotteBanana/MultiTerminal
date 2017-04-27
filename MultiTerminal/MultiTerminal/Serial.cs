@@ -85,7 +85,7 @@ namespace MultiTerminal
                 }
                 else
                 {
-                    MessageBox.Show("시리얼 포트를 연결했습니다.");
+                    MessageBox.Show("시리얼 포트 연결에 실패했습니다.");
                 }
             }
             catch (System.Exception ex)
@@ -111,33 +111,7 @@ namespace MultiTerminal
 
             sPort.Write(bytesenddata, 0, count);
         }
-        /*
-        void sPort_DataReceivedHandle(object sender, SerialDataReceivedEventArgs e)
-        {
-            int intRecSize = sPort.BytesToRead; // 들어온 데이터의 크기에 따라 사이즈 초기화
-            string strRecData;  // 최종 데이터 저장 변수
-
-
-            if (intRecSize != 0)    // 들어온 데이터 사이즈가 0 이상이면...
-            {
-                strRecData = "";
-                byte[] buff = new byte[intRecSize]; // 데이터 사이즈에 따른 버퍼 생성
-                sPort.Read(buff, 0, intRecSize);    // buff에 시리얼 데이터 Read...!
-                
-                for (int iTemp = 0; iTemp < intRecSize; iTemp++)
-                {
-                    if ( MainForm.Chk_Hexa_Flag == 1)    // 16진수인 경우...
-                    { strRecData += buff[iTemp].ToString("X2") + " "; }
-                    else
-                    { strRecData += Convert.ToChar(buff[iTemp]); }  // 최종 변수에 buff 내용 대입
-                }
-
-            }
-        }
-        */
-
-
-
+      
         public void DisConSerial()  // 시리얼 연결 해제
         {
             if (null != sPort)

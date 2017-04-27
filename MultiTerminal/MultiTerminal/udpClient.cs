@@ -6,35 +6,63 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
-//UdpClient
-//https://msdn.microsoft.com/ko-kr/library/tst0kwb1(v=vs.110).aspx
-
+using System.Threading;
 namespace MultiTerminal
 {
-    class udpClient
+    public class udpClient
     {
-        private UdpClient client;
-        private IPEndPoint ep;
-        private bool m_isConnected = false;
-        public void Connect(string IP,int port)
-        {
-            client = new UdpClient(IP, port);
-            ep = new IPEndPoint(IPAddress.Any, 0);
-        }
-        public string RecvMessage()
-        {
-            byte[] data = new byte[1024];
-            if (client != null)
-                data = client.Receive(ref ep);
-            string sendData = Encoding.Default.GetString(data);
+        MainForm main = null;
 
-            if (sendData.Length > 0)
+        public Socket client;
+        private IPEndPoint serverEP;
+        private IPEndPoint Sender;
+        private EndPoint remoteEP;
+        public bool m_isConnected = false;
+        private static Thread Recvth = null;
+        public void Connect(MainForm form,string IP,int port)
+        {
+            try
             {
-                return sendData;
+                main = form;
+                client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                serverEP = new IPEndPoint(IPAddress.Parse(IP), port);
+                Sender = new IPEndPoint(IPAddress.Any, 0);
+                remoteEP = (EndPoint)Sender;
+                client.Bind(Sender);
+                Recvth = new Thread(new ThreadStart(RecvMessage)); //상대 문자열 수신 쓰레드 가동
+                m_isConnected = true;
+                Recvth.Start();
             }
-            else
+            catch(Exception ex)
             {
-                return "받은메시지가 없습니다.";
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+                
+        }
+        public void RecvMessage()
+        {
+            try
+            {
+                byte[] data = new byte[1024];
+                client.ReceiveFrom(data, data.Length, SocketFlags.None, ref remoteEP);
+                if (data.Length == 0) return;
+                string recvMsg = Encoding.Default.GetString(data);
+                if (main.InvokeRequired)
+                {
+                    main.Invoke(new Action(() => main.ReceiveWindowBox.Text += "수신 :" + main.GetTimer() + recvMsg + "\n"));
+
+
+                }
+                else
+                {
+                    main.ReceiveWindowBox.Text += "수신 :" + main.GetTimer() + recvMsg + "\n";
+
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
         }
         public void SendMessage(string sendMsg)
@@ -42,35 +70,20 @@ namespace MultiTerminal
             byte[] data = new byte[1024];
 
             data = Encoding.Default.GetBytes(sendMsg);
-
-            if (sendMsg.Length == 0)
-            {
-                Debug.WriteLine("메시지를 적으세요");
-            }
-            if (sendMsg == "끝")
-            {
-                Debug.WriteLine("보내지않습니다.");
-            }
-            else
-            {
-                if(client!=null)
-                client.Send(data,data.Length);
-            }
+            client.SendTo(data,data.Length,SocketFlags.None,serverEP);
         }
         public void DisConnect()
         {
+            if(client !=null)
             client.Close();
+            m_isConnected = false;
         }
         public bool isConnected()
         {
-            if (client != null)
-            {
-                if (client.Client.Connected == true)
-                    m_isConnected = true;
-                else
-                    m_isConnected = false;
-            }
-            else m_isConnected = false;
+            if (client.Connected == true)
+                m_isConnected = true;
+            else
+                m_isConnected = false;
             return m_isConnected;
         }
 

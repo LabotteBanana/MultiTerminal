@@ -6,34 +6,72 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
-//UdpClient
-//https://msdn.microsoft.com/ko-kr/library/tst0kwb1(v=vs.110).aspx
+using System.Threading;
+
 namespace MultiTerminal
 {
-    class udpServer
+    public class udpServer
     {
+        MainForm main = null;
+
         private IPEndPoint EP;
-        private UdpClient server;
+        private IPEndPoint Sender;
+        private EndPoint remoteEP;
+        public Socket server;
         private bool m_isConnected = false;
-        public void Connect(int Port)
+        private static Thread th = null;
+        public void Connect(MainForm form,int Port)
         {
-            EP = new IPEndPoint(IPAddress.Any, Port);
-            server = new UdpClient(EP);
+            try
+            {
+                main = form;
+                EP = new IPEndPoint(IPAddress.Any, Port);
+                server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                Sender = new IPEndPoint(IPAddress.Any, 0);
+                remoteEP = (EndPoint)Sender;
+                if (server.IsBound == false)
+                {
+                    server.Bind(EP);
+                }
+                //SendMessage("Hello, Client!");
+
+                th = new Thread(new ThreadStart(RecvMessage)); //상대 문자열 수신 쓰레드 가동
+                th.Start();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
         }
         public void SendMessage(string sendMsg)
         {
             byte[] data = new byte[1024];
             data = Encoding.UTF8.GetBytes(sendMsg);
-            if (server != null)
-                server.Send(data, data.Length, EP);
+            server.SendTo(data, remoteEP);
         }
-        public string RecvMessage()
+        public void RecvMessage()
         {
+            try { 
             byte[] recv = new byte[1024];
-            if (server != null)
-                recv = server.Receive(ref EP);
+            int recvi = server.ReceiveFrom(recv,ref remoteEP);
+
             string recvMsg = Encoding.Default.GetString(recv);
-            return recvMsg;
+                ///이부분 문제
+                if (main.InvokeRequired)
+                {
+                    main.Invoke(new Action(() => main.ReceiveWindowBox.Text += "수신 :" + main.GetTimer() +recvMsg + "\n"));
+
+
+                }
+                else
+                {
+                    main.ReceiveWindowBox.Text += "수신 :" + main.GetTimer() + recvMsg + "\n";
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
         }
         public void DisConnect()
         {
@@ -42,15 +80,11 @@ namespace MultiTerminal
         }
         public bool isConnected()
         {
-            if (server != null)
-            {
-                if (server.Client.Connected == true)
-                    m_isConnected = true;
-                else
-                    m_isConnected = false;
-            }
-            else m_isConnected = false;
-                return m_isConnected;
+            if (server.Connected == true)
+                m_isConnected = true;
+            else
+                m_isConnected = false;
+            return m_isConnected;
         }
 
 
