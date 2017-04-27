@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
-using System.Timers;
 using System.Management;
+using System.IO;
 
 namespace MultiTerminal
 {
@@ -29,9 +26,6 @@ namespace MultiTerminal
 
         // 체크박스 부분
         static public int Chk_Hexa_Flag = 0;
-
-
-
 
         public Serial[] serial = new Serial[9];
         public int Sport_Count = 0;
@@ -60,9 +54,6 @@ namespace MultiTerminal
             this.Style = MetroFramework.MetroColorStyle.Yellow;
 
             UI_Init();
-
-
-
         }
 
         #region Timer(타임스탬프)
@@ -257,6 +248,7 @@ namespace MultiTerminal
             this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Serial_Combo_Port.DropDownWidth = GetLargestTextEntent();
         }
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
@@ -444,24 +436,6 @@ namespace MultiTerminal
             }
 
         }
-
-        private void ReceiveBtn_Click(object sender, EventArgs e)   // 받기 버튼
-        {
-
-            if (connectType == 2)
-            {
-                //this.ReceiveWindowBox.Text += serial.receivedata + "\n";       // 시리얼 전역변수에서 받아서 텍스트박스에 표현
-            }
-            if (connectType == 5)
-            {
-            }
-            if (connectType == 6)
-            {
-            }
-        }
-
-
-
         #endregion
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -492,18 +466,21 @@ namespace MultiTerminal
                 data.Add(s);
             }
             Serial_Combo_Port.Items.AddRange(data.Cast<object>().ToArray());
-            
+
             using (var searcher = new ManagementObjectSearcher
                ("SELECT * FROM WIN32_SerialPort"))
             {
                 string[] portnames = SerialPort.GetPortNames();
                 var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
+                //상세한 이름 가져오기
                 var tList = (from n in portnames
                              join p in ports on n equals p["DeviceID"].ToString()
                              select " - " + p["Caption"]).ToList();
+                //지원하는 포트 이름만 가져오기(비교해서 위에 있는 놈 붙여넣으려고)
                 var cmpList = (from n in portnames
                                join p in ports on n equals p["DeviceID"].ToString()
                                select n).ToList();
+                //usb이름 가져오는 녀석
                 foreach (string s in cmpList)
                 {
                     for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
@@ -518,6 +495,13 @@ namespace MultiTerminal
 
                         }
                     }
+                }
+                //comport 이름 가져오는 녀석
+                foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
+                {
+                    string[] comportName = comPort.Name.Split('-');
+                    int a = Serial_Combo_Port.Items.IndexOf(comportName[0]);
+                    Serial_Combo_Port.Items[a] += " - " + comPort.Description;
                 }
             }
             if (Serial_Combo_Port.Items.Count != 0)
