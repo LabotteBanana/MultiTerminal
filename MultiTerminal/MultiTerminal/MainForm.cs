@@ -12,6 +12,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Timers;
 using System.Management;
+using System.IO;
 
 namespace MultiTerminal
 {
@@ -260,6 +261,7 @@ namespace MultiTerminal
             this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.Serial_Combo_Port.DropDownWidth = GetLargestTextEntent();
         }
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
@@ -487,6 +489,8 @@ namespace MultiTerminal
             this.Serial_Combo_StopBit.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
+
+            // 이 부분에서 포트 없는 상태에서 불러올때마다 에러생기는 듯. 조건식 필요~!
             List<string> data = new List<string>();
             foreach (string s in SerialPort.GetPortNames())
             {
@@ -499,12 +503,15 @@ namespace MultiTerminal
             {
                 string[] portnames = SerialPort.GetPortNames();
                 var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
+                //상세한 이름 가져오기
                 var tList = (from n in portnames
                              join p in ports on n equals p["DeviceID"].ToString()
                              select " - " + p["Caption"]).ToList();
+                //지원하는 포트 이름만 가져오기(비교해서 위에 있는 놈 붙여넣으려고)
                 var cmpList = (from n in portnames
                                join p in ports on n equals p["DeviceID"].ToString()
                                select n).ToList();
+                //usb이름 가져오는 녀석
                 foreach (string s in cmpList)
                 {
                     for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
@@ -519,6 +526,13 @@ namespace MultiTerminal
 
                         }
                     }
+                }
+                //comport 이름 가져오는 녀석
+                foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
+                {
+                    string[] comportName = comPort.Name.Split('-');
+                    int a = Serial_Combo_Port.Items.IndexOf(comportName[0]);
+                    Serial_Combo_Port.Items[a] += " - " + comPort.Description;
                 }
             }
             if (Serial_Combo_Port.Items.Count != 0)
@@ -618,16 +632,16 @@ namespace MultiTerminal
         // 수신 텍스트박스 업데이트 이벤트
         public void UpdateWindowText(object sender, SerialDataReceivedEventArgs e)
         {
-
-            Thread thread = new Thread(new ThreadStart(delegate ()
-            {
-                this.Invoke(new Action(() =>
-                {
-                    this.ReceiveWindowBox.Text = Global.globalVar;
+            //Thread thread = new Thread(new ThreadStart(delegate ()
+            //{
+            //    this.Invoke(new Action(() =>
+            //    {
+                    this.ReceiveWindowBox.AppendText("수신 : " + GetTimer() + Global.globalVar + "\n");
+                    this.ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     this.ReceiveWindowBox.ScrollToCaret();
-                }));
-            }));
-            thread.Start();
+            //    }));
+            //}));
+            //thread.Start();
         }
 
         // 송신 텍스트박스 업데이트 이벤트
