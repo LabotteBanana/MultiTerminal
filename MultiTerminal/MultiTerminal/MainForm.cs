@@ -46,6 +46,8 @@ namespace MultiTerminal
         public System.Timers.Timer aftertimer = null;
         private DateTime nowTime;
 
+        private List<string> connetName = new List<string>();
+
         public MainForm()
         {
 
@@ -521,6 +523,12 @@ namespace MultiTerminal
             if (Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
 
+            //로그 분석할거양
+            for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
+            {
+                connetName.Add(Serial_Combo_Port.Items[i].ToString());
+            }
+
             List<string> data2 = new List<string>();
             string[] Baud = { "4800", "9600", "14400", "19200" };
             foreach (string s in Baud)
@@ -639,17 +647,16 @@ namespace MultiTerminal
         // 수신 텍스트박스 업데이트 이벤트
         public void UpdateWindowText(object sender, SerialDataReceivedEventArgs e)
         {
-
-            Thread thread = new Thread(new ThreadStart(delegate ()
-            {
-                this.Invoke(new Action(() =>
-                {
+            //Thread thread = new Thread(new ThreadStart(delegate ()
+            //{
+             //   this.Invoke(new Action(() =>
+              //  {
                     this.ReceiveWindowBox.AppendText("수신 : " + GetTimer() + Global.globalVar + "\n");
                     this.ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     this.ReceiveWindowBox.ScrollToCaret();
-                }));
-            }));
-            thread.Start();
+              //  }));
+            //}));
+            //thread.Start();
         }
 
         #endregion
@@ -1198,7 +1205,83 @@ namespace MultiTerminal
 
         }
 
-        
+        private void saveLog_Click(object sender, EventArgs e) {
+            SaveFileDialog saveLog = new SaveFileDialog();
+
+            saveLog.InitialDirectory = @"C:\"; //기본 경로 설정
+            saveLog.Title = "로그 저장";//파일 저장 다이얼로그 제목
+            saveLog.Filter = "로그 파일(*.log)|*.log|모든 파일|*.*";//파일 형식 필터
+            saveLog.DefaultExt = "log";
+            saveLog.AddExtension = true;
+
+            if (saveLog.ShowDialog() == DialogResult.OK) {
+                //saveLog.Filename에서 경로를 가져온다.
+                FileStream filestream = new FileStream(saveLog.FileName, FileMode.Create, FileAccess.Write);
+                StreamWriter streamwriter = new StreamWriter(filestream);
+                streamwriter.WriteLine(ReceiveWindowBox.Text);//텍박에 있는 거 저장
+
+                //lastIndexOf 지정된 문자열이 마지막으로 발견되는 위치 값을 받는다.
+                int position = saveLog.FileName.LastIndexOf("\\");
+
+                //Substring에 위치 값을 하나만 넣어주면 그 위치 부터 문자열의 끝까지 출력한다.
+                string textboxname = saveLog.FileName.Substring(position + 1);
+                streamwriter.Close();
+            }
+        }
+        private void openLog_Click(object sender, EventArgs e) {
+            OpenFileDialog openLog = new OpenFileDialog();
+            openLog.Title = "로그 열기";
+            openLog.Filter = "로그 파일(*.log)|*.log|모든 파일|*.*";
+            if (openLog.ShowDialog() == DialogResult.OK) {
+                //열기 대상 파일 경로
+                string openfileposition = openLog.FileName;
+
+                //lastIndexOf 지정된 문자열이 마지막으로 발견되는 위치 값을 받는다.
+                int openPosition = openLog.FileName.LastIndexOf("\\");
+
+                //Substring에 위치 값을 하나만 넣어주면 그 위치부터 문자열의 끝까지 출력한다.
+                string logfileName = openLog.FileName.Substring(openPosition + 1);
+
+                StreamReader streamreader = new StreamReader(openfileposition);
+
+                //Text를 Null로 초기화 후 읽어들인 문자를 Text에 넣어준다.
+                ReceiveWindowBox.Text = null;
+                ReceiveWindowBox.Text = streamreader.ReadToEnd();
+
+                //Close
+                streamreader.Close();
+            }
+        }
+        private void receiveWindowBoxClear_Click(object sender, EventArgs e) {
+            ReceiveWindowBox.Text = null;
+        }
+
+        //시리얼 포트 콤보박스에서 제일 긴 녀석 넓이 가져오기
+        private int GetLargestTextEntent()
+        {
+            ComboBox cb = this.Serial_Combo_Port;
+            int maxLen = -1;
+            if (cb.Items.Count > -1)
+            {
+                using (Graphics g = cb.CreateGraphics())
+                {
+                    int vertScrollBarWidth = 0;
+                    if (cb.Items.Count > cb.MaxDropDownItems)
+                    {
+                        vertScrollBarWidth = SystemInformation.VerticalScrollBarWidth;
+                    }
+                    for (int nLoopCnt = 0; nLoopCnt < cb.Items.Count; nLoopCnt++)
+                    {
+                        int newWidth = (int)g.MeasureString(cb.Items[nLoopCnt].ToString(), cb.Font).Width + vertScrollBarWidth;
+                        if (newWidth > maxLen)
+                        {
+                            maxLen = newWidth;
+                        }
+                    }
+                }
+            }
+            return maxLen;
+        }
     }
 
 }
