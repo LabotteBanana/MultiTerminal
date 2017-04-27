@@ -31,9 +31,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -133,13 +133,9 @@
             this.SendBox2 = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.SendBox1 = new System.Windows.Forms.RichTextBox();
-            this.Zigbee_Tile = new MetroFramework.Controls.MetroTile();
-            this.WIFI_Tile = new MetroFramework.Controls.MetroTile();
-            this.RF_Tile = new MetroFramework.Controls.MetroTile();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.asdfasdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddfdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SendBtn = new MetroFramework.Controls.MetroButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.로그저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.로그불러오기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -195,9 +191,9 @@
             this.columnHeader3});
             this.listView1.GridLines = true;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(150, 198);
@@ -1224,53 +1220,6 @@
             this.SendBox1.TabStop = false;
             this.SendBox1.Text = "";
             // 
-            // Zigbee_Tile
-            // 
-            this.Zigbee_Tile.BackColor = System.Drawing.Color.White;
-            this.Zigbee_Tile.ForeColor = System.Drawing.SystemColors.Control;
-            this.Zigbee_Tile.Location = new System.Drawing.Point(422, 26);
-            this.Zigbee_Tile.Name = "Zigbee_Tile";
-            this.Zigbee_Tile.Size = new System.Drawing.Size(115, 50);
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.TabIndex = 7;
-            this.Zigbee_Tile.Text = "ZigBee";
-            this.Zigbee_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Zigbee_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Zigbee_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.Zigbee_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.Zigbee_Tile.Visible = false;
-            this.Zigbee_Tile.Click += new System.EventHandler(this.Zigbee_Tile_Click);
-            // 
-            // WIFI_Tile
-            // 
-            this.WIFI_Tile.Location = new System.Drawing.Point(301, 26);
-            this.WIFI_Tile.Name = "WIFI_Tile";
-            this.WIFI_Tile.Size = new System.Drawing.Size(115, 50);
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.WIFI_Tile.TabIndex = 6;
-            this.WIFI_Tile.Text = "WIFI";
-            this.WIFI_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WIFI_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.WIFI_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.WIFI_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.WIFI_Tile.Visible = false;
-            this.WIFI_Tile.Click += new System.EventHandler(this.WIFI_Tile_Click);
-            // 
-            // RF_Tile
-            // 
-            this.RF_Tile.Location = new System.Drawing.Point(180, 26);
-            this.RF_Tile.Name = "RF_Tile";
-            this.RF_Tile.Size = new System.Drawing.Size(115, 50);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
-            this.RF_Tile.TabIndex = 4;
-            this.RF_Tile.Text = "RF";
-            this.RF_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RF_Tile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RF_Tile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.RF_Tile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.RF_Tile.Visible = false;
-            this.RF_Tile.Click += new System.EventHandler(this.RF_Tile_Click);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1300,15 +1249,6 @@
             this.ddfdfToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
             this.ddfdfToolStripMenuItem.Text = "설정";
             // 
-            // SendBtn
-            // 
-            this.SendBtn.Location = new System.Drawing.Point(173, 247);
-            this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(80, 32);
-            this.SendBtn.TabIndex = 16;
-            this.SendBtn.Text = "보내기";
-            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -1335,10 +1275,6 @@
             this.ClientSize = new System.Drawing.Size(737, 697);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.SendBtn);
-            this.Controls.Add(this.Zigbee_Tile);
-            this.Controls.Add(this.RF_Tile);
-            this.Controls.Add(this.WIFI_Tile);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(0, 60, 0, 0);
@@ -1374,10 +1310,7 @@
 
         #endregion
         private MetroFramework.Controls.MetroPanel metroPanel1;
-        private MetroFramework.Controls.MetroTile WIFI_Tile;
         private MetroFramework.Controls.MetroTile UART_Tile;
-        private MetroFramework.Controls.MetroTile RF_Tile;
-        private MetroFramework.Controls.MetroTile Zigbee_Tile;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem asdfasdfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ddfdfToolStripMenuItem;
@@ -1386,7 +1319,6 @@
         public System.Windows.Forms.RichTextBox ReceiveWindowBox;
         private MetroFramework.Controls.MetroTile TCP_Tile;
         private MetroFramework.Controls.MetroTile UDP_Tile;
-        private MetroFramework.Controls.MetroButton SendBtn;
         private System.Windows.Forms.RichTextBox SendBox1;
         private System.Windows.Forms.Panel SerialPanel;
         private System.Windows.Forms.ComboBox Serial_Combo_FlowCon;

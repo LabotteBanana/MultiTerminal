@@ -46,7 +46,6 @@ namespace MultiTerminal
         {
 
             InitializeComponent();
-            //Application.Idle +=  new SerialDataReceivedEventHandler(serial.sPort_DataReceivedHandle);
         }
 
         private void MainForm_Load(object sender, EventArgs e)  // 폼 열렸을 때
@@ -228,57 +227,20 @@ namespace MultiTerminal
         #region 버튼부분 입니당 ^-^         
 
         // 연결 방법 선택 1 ~ 6 및 박스 색깔 변경 //
-        private void RF_Tile_Click(object sender, EventArgs e)
-        {
-            OptionSelect(1);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Pink;
-            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-        }
-
         private void UART_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(2);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UART_Tile.Style = MetroFramework.MetroColorStyle.Pink; // 클릭시 박스 색 변경
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.Serial_Combo_Port.DropDownWidth = GetLargestTextEntent();
-        }
-        private void WIFI_Tile_Click(object sender, EventArgs e)
-        {
-            OptionSelect(3);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Pink;
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-        }
-        private void Zigbee_Tile_Click(object sender, EventArgs e)
-        {
-            OptionSelect(4);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Pink;
-            this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
         private void TCP_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(5);
             isServ = false;
-
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
+            
             this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Pink;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
         }
@@ -288,21 +250,10 @@ namespace MultiTerminal
         private void UDP_Tile_Click(object sender, EventArgs e)
         {
             OptionSelect(6);
-            this.RF_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UART_Tile.Style = MetroFramework.MetroColorStyle.Silver; // 클릭시 박스 색 변경
-            this.WIFI_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Pink;
         }
-
-
-        // UI 기능 함수
-        private void Change_Color(int connectType)
-        {
-
-        }
-
 
         // 연결 번호에 따른 각기 다른 옵션패널 띄우는 함수 //
         private void OptionSelect(int OptionNumber)  // 연결 버튼
@@ -312,22 +263,6 @@ namespace MultiTerminal
 
             switch (OptionNumber)
             {
-                case 1:
-                    {
-                        connectType = 1;
-                        this.SerialPanel.Visible = false;
-                        if (tserv != null)
-                            tserv.ServerStop();
-                        if (tcla != null)
-                            tcla.DisConnect();
-                        if (userv != null)
-                            userv.ServerStop();
-                        if (ucla != null)
-                            ucla.DisConnect();
-
-
-                        break;
-                    }
                 case 2:
                     {
                         connectType = 2;
@@ -349,36 +284,6 @@ namespace MultiTerminal
 
                     }
                     break;
-                case 3:
-                    {
-                        connectType = 3;
-                        if (tserv != null)
-                            tserv.ServerStop();
-                        if (tcla != null)
-                            tcla.DisConnect();
-                        if (userv != null)
-                            userv.ServerStop();
-                        if (ucla != null)
-                            ucla.DisConnect();
-
-
-                        break;
-                    }
-                case 4:
-                    {
-                        connectType = 4;
-                        if (tserv != null)
-                            tserv.ServerStop();
-                        if (tcla != null)
-                            tcla.DisConnect();
-                        if (userv != null)
-                            userv.ServerStop();
-                        if (ucla != null)
-                            ucla.DisConnect();
-
-
-                        break;
-                    }
                 case 5:
                     {
                         connectType = 5;
@@ -404,8 +309,6 @@ namespace MultiTerminal
                             tserv.ServerStop();
                         if (tcla != null)
                             tcla.DisConnect();
-
-                        //client.StartClient(metroTextBox1.Text, Int32.Parse(this.metroTextBox2.Text));
                     }
                     break;
             }
@@ -417,24 +320,6 @@ namespace MultiTerminal
             {
                 //serial.DisConSerial();
             }
-        }
-
-
-        private void SendBtn_Click(object sender, EventArgs e)      // 보내기 버튼
-        {
-            if (connectType == 2) //시리얼
-            {
-                //string toserialmsg = serial.SerialSend(this.SendWindowBox.Text); // 시리얼 값 받아오기
-                //this.SendWindowBox.Text += toserialmsg + "\n";                   // 시리얼 텍스트박스에 표현
-            }
-            if (connectType == 5) //server측
-            {
-
-            }
-            if (connectType == 6) //클라측
-            {
-            }
-
         }
         #endregion
 
@@ -1133,10 +1018,6 @@ namespace MultiTerminal
                 Chk_Hexa_Flag = 0;
 
         }
-
-        
-
-
         #endregion
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
