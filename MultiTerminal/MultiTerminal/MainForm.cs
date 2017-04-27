@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
 using System.IO.Ports;
 using System.Threading;
 using System.Timers;
@@ -22,10 +21,12 @@ namespace MultiTerminal
         public int connectType = 1;
         public Tserv tserv = null;
         public Tserv tcla = null;
-        public Tserv userv = null;
-        public Tserv ucla = null;
+        static udpServer userv =new udpServer();
+        static udpClient ucla = new udpClient();
+
         public static Thread macroThread;
         public static Thread SendThread;
+        public static Thread RecvThread;
         public delegate void TRecvCallBack();
         // 체크박스 부분
         static public int Chk_Hexa_Flag = 0;
@@ -35,7 +36,7 @@ namespace MultiTerminal
         public Serial serial = new Serial();
         private string[] SerialOpt = new string[6];
         public System.Timers.Timer timer = null;
-        Stopwatch sw = new Stopwatch();
+        System.Diagnostics.Stopwatch sw = new Stopwatch();
 
         public static System.Timers.Timer mactimer = null;
         public System.Timers.Timer aftertimer = null;
@@ -43,6 +44,7 @@ namespace MultiTerminal
 
         public MainForm()
         {
+
             InitializeComponent();
             //Application.Idle +=  new SerialDataReceivedEventHandler(serial.sPort_DataReceivedHandle);
         }
@@ -52,6 +54,9 @@ namespace MultiTerminal
             this.Style = MetroFramework.MetroColorStyle.Yellow;
 
             UI_Init();
+
+
+
         }
 
         #region Timer(타임스탬프)
@@ -60,6 +65,24 @@ namespace MultiTerminal
             nowTime = e.SignalTime; //현재시분초
         }
 
+        private void RecvEvent(Object source,System.Timers.ElapsedEventArgs e )
+        {
+            if(connectType==6)
+            {
+                if(userv!=null)
+                {
+                    if(userv.server!=null)
+                    if(userv.server.IsBound==true)
+                    userv.RecvMessage();
+                }
+                if(ucla != null)
+                {
+                    if(ucla.client!=null)
+                    if(ucla.m_isConnected==true)
+                    ucla.RecvMessage();
+                }
+            }
+        }
         private void OnMacro(Object soruce, System.Timers.ElapsedEventArgs e)
         {
             if (connectType == 2)
@@ -93,15 +116,14 @@ namespace MultiTerminal
                     {
                         if (isServ == true && tserv.client.Connected == true)
                         {
+
                             SendThread = new Thread(new ThreadStart(delegate ()
                             {
                                 this.Invoke(new Action(() =>
                                 {
                                     tserv.SendMsg(SendBox1.Text);
 
-                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                                    ReceiveWindowBox.ScrollToCaret();
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                                 }));
                             }));
                             SendThread.Start();
@@ -118,9 +140,7 @@ namespace MultiTerminal
                                 {
                                     tcla.SendMsg(SendBox1.Text);
 
-                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                                    ReceiveWindowBox.ScrollToCaret();
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                                 }));
                             }));
                             SendThread.Start();
@@ -138,17 +158,17 @@ namespace MultiTerminal
                 {
                     if (userv != null)
                     {
-                        if (isServ == true && userv.client.Connected == true)
+                        if (isServ == true)
                         {
+                            //macroThread = new Thread(() => userv.SendMessage(SendBox1.Text));
+
                             SendThread = new Thread(new ThreadStart(delegate ()
                             {
                                 this.Invoke(new Action(() =>
                                 {
-                                    userv.SendMsg(SendBox1.Text);
+                                    userv.SendMessage(SendBox1.Text);
 
-                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                                    ReceiveWindowBox.ScrollToCaret();
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                                 }));
                             }));
                             SendThread.Start();
@@ -157,17 +177,15 @@ namespace MultiTerminal
                     }
                     if (ucla != null)
                     {
-                        if (isServ == false && ucla.client.Connected == true)
+                        if (isServ == false)
                         {
                             SendThread = new Thread(new ThreadStart(delegate ()
                             {
                                 this.Invoke(new Action(() =>
                                 {
-                                    ucla.SendMsg(SendBox1.Text);
+                                    ucla.SendMessage(SendBox1.Text);
 
-                                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                                    ReceiveWindowBox.ScrollToCaret();
+                                    ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                                 }));
                             }));
                             SendThread.Start();
@@ -242,7 +260,6 @@ namespace MultiTerminal
             this.Zigbee_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.TCP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
             this.UDP_Tile.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Serial_Combo_Port.DropDownWidth = GetLargestTextEntent();
         }
         private void WIFI_Tile_Click(object sender, EventArgs e)
         {
@@ -315,7 +332,7 @@ namespace MultiTerminal
                         if (tcla != null)
                             tcla.DisConnect();
                         if (userv != null)
-                            userv.ServerStop();
+                            userv.DisConnect();
                         if (ucla != null)
                             ucla.DisConnect();
 
@@ -335,7 +352,7 @@ namespace MultiTerminal
                         if (tcla != null)
                             tcla.DisConnect();
                         if (userv != null)
-                            userv.ServerStop();
+                            userv.DisConnect();
                         if (ucla != null)
                             ucla.DisConnect();
 
@@ -350,7 +367,7 @@ namespace MultiTerminal
                         if (tcla != null)
                             tcla.DisConnect();
                         if (userv != null)
-                            userv.ServerStop();
+                            userv.DisConnect();
                         if (ucla != null)
                             ucla.DisConnect();
 
@@ -365,7 +382,7 @@ namespace MultiTerminal
                         if (tcla != null)
                             tcla.DisConnect();
                         if (userv != null)
-                            userv.ServerStop();
+                            userv.DisConnect();
                         if (ucla != null)
                             ucla.DisConnect();
 
@@ -380,7 +397,7 @@ namespace MultiTerminal
                         SerialPanel.Visible = false;
                         UdpPanel.Visible = false;
                         if (userv != null)
-                            userv.ServerStop();
+                            userv.DisConnect();
                         if (ucla != null)
                             ucla.DisConnect();
 
@@ -482,15 +499,12 @@ namespace MultiTerminal
             {
                 string[] portnames = SerialPort.GetPortNames();
                 var ports = searcher.Get().Cast<ManagementBaseObject>().ToList();
-                //상세한 이름 가져오기
                 var tList = (from n in portnames
                              join p in ports on n equals p["DeviceID"].ToString()
                              select " - " + p["Caption"]).ToList();
-                //지원하는 포트 이름만 가져오기(비교해서 위에 있는 놈 붙여넣으려고)
                 var cmpList = (from n in portnames
                                join p in ports on n equals p["DeviceID"].ToString()
                                select n).ToList();
-                //usb이름 가져오는 녀석
                 foreach (string s in cmpList)
                 {
                     for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
@@ -506,16 +520,11 @@ namespace MultiTerminal
                         }
                     }
                 }
-                //comport 이름 가져오는 녀석
-                foreach (COMPortInfo comPort in COMPortInfo.GetCOMPortsInfo())
-                {
-                    string[] comportName = comPort.Name.Split('-');
-                    int a = Serial_Combo_Port.Items.IndexOf(comportName[0]);
-                    Serial_Combo_Port.Items[a] += " - " + comPort.Description;
-                }
             }
             if (Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
+
+            Serial_Combo_Port.SelectedIndex = 0;
 
             List<string> data2 = new List<string>();
             string[] Baud = { "4800", "9600", "14400", "19200" };
@@ -566,8 +575,7 @@ namespace MultiTerminal
         // 선택시 이벤트
         private void Serial_Combo_Port_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] portName = Serial_Combo_Port.Text.Split(' ');
-            SerialOpt[0] = portName[0];
+            SerialOpt[0] = Serial_Combo_Port.Text;
         }
 
         private void Serial_Combo_Baud_SelectedIndexChanged(object sender, EventArgs e)
@@ -615,13 +623,29 @@ namespace MultiTerminal
             {
                 this.Invoke(new Action(() =>
                 {
-                    this.ReceiveWindowBox.AppendText("수신 : " + GetTimer() + Global.globalVar + "\n");
-                    this.ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
+                    this.ReceiveWindowBox.Text = Global.globalVar;
                     this.ReceiveWindowBox.ScrollToCaret();
                 }));
             }));
             thread.Start();
         }
+
+        // 송신 텍스트박스 업데이트 이벤트
+        private void Enter_Rich(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (this.SendBox1.Text != null)
+                {
+
+                    serial.SerialSend(SendBox1.Text);
+
+                }
+            }
+        }
+
+
+
 
         #endregion
 
@@ -673,9 +697,7 @@ namespace MultiTerminal
                     {
                         tserv.SendMsg(SendBox1.Text);
 
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
 
                     }
                 }
@@ -685,9 +707,7 @@ namespace MultiTerminal
                     {
                         tcla.SendMsg(SendBox1.Text);
 
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
 
                     }
 
@@ -726,6 +746,8 @@ namespace MultiTerminal
                 SendThread.Abort();
                 macroThread.Abort();
             }
+
+
         }
 
         #region UI 초기화
@@ -754,6 +776,7 @@ namespace MultiTerminal
             aftertimer.Enabled = true;
             aftertimer.AutoReset = true;
             timer.Elapsed += OnTimeEvent;
+            timer.Elapsed += RecvEvent;
         }
         #endregion
         #region 보내기 버튼 묶음
@@ -764,50 +787,67 @@ namespace MultiTerminal
             {
                 if (connectType == 2)
                 {
-                        serial.SerialSend(SendBox1.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                    if (Flag_AEAS[0] == 0)
+                    {
+                        serial.SerialSend(this.SendBox1.Text);
+                    }
+                    else if (Flag_AEAS[0] == 1)
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, "\n"));
+                    }
+                    else
+                    {
+                        serial.SerialSend(SendBox1.Text.Insert(SendBox1.Text.Length, " "));
+                    }
                 }
                 if (connectType == 5)
                 {
                     if (isServ == true && tserv.client.Connected == true)
                     {
                         tserv.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                     }
                     if (isServ == false && tcla.client.Connected == true)
                     {
                         tcla.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                        ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
                     }
                 }
                 if (connectType == 6)
                 {
-                    if (isServ == true && userv.client.Connected == true)
+                    if (isServ == true)
                     {
-                        userv.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                        SendThread = new Thread(new ThreadStart(delegate ()
+                        {
+                            this.Invoke(new Action(() =>
+                            {
+                                userv.SendMessage(SendBox1.Text);
+
+                                ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                            }));
+                        }));
+                        SendThread.Start();
                     }
-                    if (isServ == false && ucla.client.Connected == true)
+                    if (isServ == false)
                     {
-                        ucla.SendMsg(SendBox1.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox1.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
+                        SendThread = new Thread(new ThreadStart(delegate ()
+                        {
+                            this.Invoke(new Action(() =>
+                            {
+                                ucla.SendMessage(SendBox1.Text);
+
+                                ReceiveWindowBox.Text += "송신 : " + GetTimer() + SendBox1.Text + "\n";
+                            }));
+                        }));
+                        SendThread.Start();
+
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+               MessageBox.Show(ex.Message);
             }
         }
 
@@ -815,48 +855,20 @@ namespace MultiTerminal
         {
             try
             {
-                if (connectType == 2)
-                {
-                    serial.SerialSend(SendBox2.Text);
-                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
-                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                    ReceiveWindowBox.ScrollToCaret();
-                }
-                if (connectType == 5)
-                {
-                    if (isServ == true && tserv.client.Connected == true)
-                    {
-                        tserv.SendMsg(SendBox2.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                    if (isServ == false && tcla.client.Connected == true)
-                    {
-                        tcla.SendMsg(SendBox2.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                }
-                if (connectType == 6)
-                {
-                    if (isServ == true && userv.client.Connected == true)
-                    {
-                        userv.SendMsg(SendBox2.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                    if (isServ == false && ucla.client.Connected == true)
-                    {
-                        ucla.SendMsg(SendBox2.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox2.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
 
+                if (Flag_AEAS[1] == 0)
+                {
+                    serial.SerialSend(this.SendBox2.Text);
                 }
+                else if (Flag_AEAS[1] == 1)
+                {
+                    serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, "\n"));
+                }
+                else
+                {
+                    serial.SerialSend(SendBox2.Text.Insert(SendBox2.Text.Length, " "));
+                }
+
             }
             catch (Exception ex)
             {
@@ -869,47 +881,17 @@ namespace MultiTerminal
         {
             try
             {
-                if (connectType == 2)
+                if (Flag_AEAS[2] == 0)
                 {
-                    serial.SerialSend(SendBox3.Text);
-                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
-                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                    ReceiveWindowBox.ScrollToCaret();
+                    serial.SerialSend(this.SendBox3.Text);
                 }
-                if (connectType == 5)
+                else if (Flag_AEAS[2] == 1)
                 {
-                    if (isServ == true && tserv.client.Connected == true)
-                    {
-                        tserv.SendMsg(SendBox3.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                    if (isServ == false && tcla.client.Connected == true)
-                    {
-                        tcla.SendMsg(SendBox3.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
+                    serial.SerialSend(SendBox3.Text.Insert(SendBox3.Text.Length, "\n"));
                 }
-                if (connectType == 6)
+                else
                 {
-                    if (isServ == true && userv.client.Connected == true)
-                    {
-                        userv.SendMsg(SendBox3.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                    if (isServ == false && ucla.client.Connected == true)
-                    {
-                        ucla.SendMsg(SendBox3.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox3.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-
+                    serial.SerialSend(SendBox3.Text.Insert(SendBox3.Text.Length, " "));
                 }
             }
             catch (Exception ex)
@@ -924,47 +906,17 @@ namespace MultiTerminal
         {
             try
             {
-                if (connectType == 2)
+                if (Flag_AEAS[3] == 0)
                 {
-                    serial.SerialSend(SendBox4.Text);
-                    ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
-                    ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                    ReceiveWindowBox.ScrollToCaret();
+                    serial.SerialSend(this.SendBox4.Text);
                 }
-                if (connectType == 5)
+                else if (Flag_AEAS[3] == 1)
                 {
-                    if (isServ == true && tserv.client.Connected == true)
-                    {
-                        tserv.SendMsg(SendBox4.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                    if (isServ == false && tcla.client.Connected == true)
-                    {
-                        tcla.SendMsg(SendBox4.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
+                    serial.SerialSend(SendBox4.Text.Insert(SendBox4.Text.Length, "\n"));
                 }
-                if (connectType == 6)
+                else
                 {
-                    if (isServ == true && userv.client.Connected == true)
-                    {
-                        userv.SendMsg(SendBox4.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-                    if (isServ == false && ucla.client.Connected == true)
-                    {
-                        ucla.SendMsg(SendBox4.Text);
-                        ReceiveWindowBox.AppendText("송신 : " + GetTimer() + SendBox4.Text + "\n");
-                        ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
-                        ReceiveWindowBox.ScrollToCaret();
-                    }
-
+                    serial.SerialSend(SendBox4.Text.Insert(SendBox4.Text.Length, " "));
                 }
             }
             catch (Exception ex)
@@ -1111,7 +1063,7 @@ namespace MultiTerminal
             if (tcla != null)
                 tcla.DisConnect();
             if (userv != null)
-                userv.ServerStop();
+                userv.DisConnect();
             if (ucla != null)
                 ucla.DisConnect();
             Process currentProcess = Process.GetCurrentProcess();
@@ -1140,93 +1092,16 @@ namespace MultiTerminal
             if (UServerCheck.Checked == true)
             {
                 int port = Int32.Parse(UPortNumber.Text);
-                userv = new Tserv(this, port);
-                userv.ServerStart();
+                userv.Connect(this, port);
 
             }
             else
             {
                 int port = Int32.Parse(UPortNumber.Text);
                 string ip = UIPNumber.Text;
-                ucla = new Tserv(this, ip, port);
-                ucla.Connect();
+                ucla.Connect(this, ip, port);
             }
 
-        }
-        private void saveLog_Click(object sender, EventArgs e) {
-            SaveFileDialog saveLog = new SaveFileDialog();
-
-            saveLog.InitialDirectory = @"C:\"; //기본 경로 설정
-            saveLog.Title = "로그 저장";//파일 저장 다이얼로그 제목
-            saveLog.Filter = "로그 파일(*.log)|*.log|모든 파일|*.*";//파일 형식 필터
-            saveLog.DefaultExt = "log";
-            saveLog.AddExtension = true;
-
-            if (saveLog.ShowDialog() == DialogResult.OK) {
-                //saveLog.Filename에서 경로를 가져온다.
-                FileStream filestream = new FileStream(saveLog.FileName, FileMode.Create, FileAccess.Write);
-                StreamWriter streamwriter = new StreamWriter(filestream);
-                streamwriter.WriteLine(ReceiveWindowBox.Text);//텍박에 있는 거 저장
-
-                //lastIndexOf 지정된 문자열이 마지막으로 발견되는 위치 값을 받는다.
-                int position = saveLog.FileName.LastIndexOf("\\");
-
-                //Substring에 위치 값을 하나만 넣어주면 그 위치 부터 문자열의 끝까지 출력한다.
-                string textboxname = saveLog.FileName.Substring(position + 1);
-                streamwriter.Close();
-            }
-        }
-        private void openLog_Click(object sender, EventArgs e) {
-            OpenFileDialog openLog = new OpenFileDialog();
-            openLog.Title = "로그 열기";
-            openLog.Filter = "로그 파일(*.log)|*.log|모든 파일|*.*";
-            if (openLog.ShowDialog() == DialogResult.OK) {
-                //열기 대상 파일 경로
-                string openfileposition = openLog.FileName;
-
-                //lastIndexOf 지정된 문자열이 마지막으로 발견되는 위치 값을 받는다.
-                int openPosition = openLog.FileName.LastIndexOf("\\");
-
-                //Substring에 위치 값을 하나만 넣어주면 그 위치부터 문자열의 끝까지 출력한다.
-                string logfileName = openLog.FileName.Substring(openPosition + 1);
-
-                StreamReader streamreader = new StreamReader(openfileposition);
-
-                //Text를 Null로 초기화 후 읽어들인 문자를 Text에 넣어준다.
-                ReceiveWindowBox.Text = null;
-                ReceiveWindowBox.Text = streamreader.ReadToEnd();
-
-                //Close
-                streamreader.Close();
-            }
-        }
-        private void receiveWindowBoxClear_Click(object sender, EventArgs e) {
-            ReceiveWindowBox.Text = null;
-        }
-        private int GetLargestTextEntent()
-        {
-            ComboBox cb = this.Serial_Combo_Port;
-            int maxLen = -1;
-            if (cb.Items.Count > -1)
-            {
-                using (Graphics g = cb.CreateGraphics())
-                {
-                    int vertScrollBarWidth = 0;
-                    if (cb.Items.Count > cb.MaxDropDownItems)
-                    {
-                        vertScrollBarWidth = SystemInformation.VerticalScrollBarWidth;
-                    }
-                    for (int nLoopCnt = 0; nLoopCnt < cb.Items.Count; nLoopCnt++)
-                    {
-                        int newWidth = (int)g.MeasureString(cb.Items[nLoopCnt].ToString(), cb.Font).Width + vertScrollBarWidth;
-                        if (newWidth > maxLen)
-                        {
-                            maxLen = newWidth;
-                        }
-                    }
-                }
-            }
-            return maxLen;
         }
     }
 
