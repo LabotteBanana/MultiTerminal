@@ -41,6 +41,8 @@ namespace MultiTerminal
         public System.Timers.Timer aftertimer = null;
         private DateTime nowTime;
 
+        private List<string> connetName = new List<string>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -517,6 +519,12 @@ namespace MultiTerminal
             if (Serial_Combo_Port.Items.Count != 0)
                 Serial_Combo_Port.SelectedIndex = 0;
 
+            //로그 분석할거양
+            for (int i = 0; i < Serial_Combo_Port.Items.Count; i++)
+            {
+                connetName.Add(Serial_Combo_Port.Items[i].ToString());
+            }
+
             List<string> data2 = new List<string>();
             string[] Baud = { "4800", "9600", "14400", "19200" };
             foreach (string s in Baud)
@@ -610,17 +618,16 @@ namespace MultiTerminal
         // 수신 텍스트박스 업데이트 이벤트
         public void UpdateWindowText(object sender, SerialDataReceivedEventArgs e)
         {
-
-            Thread thread = new Thread(new ThreadStart(delegate ()
-            {
-                this.Invoke(new Action(() =>
-                {
+            //Thread thread = new Thread(new ThreadStart(delegate ()
+            //{
+             //   this.Invoke(new Action(() =>
+              //  {
                     this.ReceiveWindowBox.AppendText("수신 : " + GetTimer() + Global.globalVar + "\n");
                     this.ReceiveWindowBox.SelectionStart = ReceiveWindowBox.Text.Length;
                     this.ReceiveWindowBox.ScrollToCaret();
-                }));
-            }));
-            thread.Start();
+              //  }));
+            //}));
+            //thread.Start();
         }
 
         #endregion
